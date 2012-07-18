@@ -523,7 +523,8 @@ bob.<span class="keyword">set</span>(bob.retrieve());</code></pre>
 <p>Automatically populate:
 </p>
 <pre><code><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
-    id: <span class="string">'bob'</span>,
+    id: <span class="string">'bob'</span>
+}, {
     onRetrieve: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
         <span class="keyword">this</span>.set(data);
     }
