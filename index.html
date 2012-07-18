@@ -165,36 +165,41 @@
                   <a href="#epitome-collection-sync-api/parse">parse</a>
                 </li>
               
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#epitome-view-api">Epitome.View - API</a>
+          
+            <ul>
+              
                 <li>
-                  <a href="#epitome-collection-sync-api/epitome-view-api">Epitome.View - API</a>
+                  <a href="#epitome-view-api/constructor-initialize">constructor (initialize)</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/constructor-initialize">constructor (initialize)</a>
+                  <a href="#epitome-view-api/render">render</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/render">render</a>
+                  <a href="#epitome-view-api/setelement">setElement</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/setelement">setElement</a>
+                  <a href="#epitome-view-api/template">template</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/template">template</a>
+                  <a href="#epitome-view-api/empty">empty</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/empty">empty</a>
+                  <a href="#epitome-view-api/dispose">dispose</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync-api/dispose">dispose</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection-sync-api/destroy">destroy</a>
+                  <a href="#epitome-view-api/destroy">destroy</a>
                 </li>
               
             </ul>
@@ -825,11 +830,11 @@ var users = <span class="keyword">new</span> usersCollection([{
     <span class="keyword">this</span>.meta = response.meta;
     <span class="keyword">return</span> response.models;
 }</code></pre>
-<h3 id='epitome-collection-sync-api/epitome-view-api'>Epitome.View - API</h3 id='epitome-collection-sync-api/epitome-view-api'>
+<h2 id='epitome-view-api'>Epitome.View - API</h2 id='epitome-view-api'>
 <p>The view is a pretty loose binding around a HTMLElement, it does not try to do much by default. It essentially binds the element to either a Model or a Collection, listening and propagating events that they fire in order to be able to react to them. The expectation is that a <code>render</code> method will be defined that uses the data to output it in the browser. The render can be called based upon change or reset events as needed.
 
 </p>
-<h3 id='epitome-collection-sync-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-collection-sync-api/constructor-initialize'>
+<h3 id='epitome-view-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-view-api/constructor-initialize'>
 <hr>
 <p><em>Expects arguments: <code>(Object) options</code></em>
 
@@ -891,7 +896,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 <li><code>events</code> - an Object with MooTools style event bindings to apply to the <code>element</code>, delegated or not. values are implied event handlers on the instance</li>
 <li><code>onEventHandlers</code> - code that reacts to various events that the instance fires.</li>
 </ul>
-<h3 id='epitome-collection-sync-api/render'>render</h3 id='epitome-collection-sync-api/render'>
+<h3 id='epitome-view-api/render'>render</h3 id='epitome-view-api/render'>
 <hr>
 <p><em>Expects arguments: unknown</em>
 
@@ -905,7 +910,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 <p>It is essential that this method is defined in your View prototype Object definition. It does not assume to do anything by default, you need to define how the output takes place and how your data is being used. For convenience, it has access to either <code>this.model</code> or <code>this.collection</code> as the source of data that can be be passed to the <a href="#epitome-view-api/template">template</a> method. It is expected that at the bottom of your definition, <code>this.parent()</code> is called in order for the <code>render</code> event to fire.
 
 </p>
-<h3 id='epitome-collection-sync-api/setelement'>setElement</h3 id='epitome-collection-sync-api/setelement'>
+<h3 id='epitome-view-api/setelement'>setElement</h3 id='epitome-view-api/setelement'>
 <hr>
 <p><em>Expects arguments: <code>(Mixed) element</code>, optional <code>(Object) events</code></em>
 
@@ -916,7 +921,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 <p>A public method that allows you to change or set an element that powers a view. If called the first time, it will get the Element (through <code>document.id()</code>) and save the reference in <code>this.element</code>. If an events object is passed, it will bind the events. If called a second time, it will unbind all events on the old element, change the element reference and rebind new events, if supplied.
 
 </p>
-<h3 id='epitome-collection-sync-api/template'>template</h3 id='epitome-collection-sync-api/template'>
+<h3 id='epitome-view-api/template'>template</h3 id='epitome-view-api/template'>
 <hr>
 <p><em>Expects arguments: <code>(Object) data</code>, optional <code>(String) template</code></em>
 
@@ -939,7 +944,7 @@ var users = <span class="keyword">new</span> usersCollection([{
         this.element.set(<span class="literal">'html'</span>, this.template({name:'there'}, <span class="literal">'Hello {{name}}'</span>));
     }
 });</code></pre>
-<h3 id='epitome-collection-sync-api/empty'>empty</h3 id='epitome-collection-sync-api/empty'>
+<h3 id='epitome-view-api/empty'>empty</h3 id='epitome-view-api/empty'>
 <hr>
 <p><em>Expects arguments: <code>(Boolean) soft</code></em>
 
@@ -953,7 +958,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 <p>By default, it will empty the element through making innerHTML an empty string, calling GC on all child nodes. If the <code>soft</code> argument is true, will apply <code>this.element.empty()</code>, which is a MooTools Element method that removes all child nodes without destroying them.
 
 </p>
-<h3 id='epitome-collection-sync-api/dispose'>dispose</h3 id='epitome-collection-sync-api/dispose'>
+<h3 id='epitome-view-api/dispose'>dispose</h3 id='epitome-view-api/dispose'>
 <hr>
 <p><em>Expects arguments: none</em>
 
@@ -967,7 +972,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 <p>Will detach <code>this.element</code> from the DOM. It can be injected again later on.
 
 </p>
-<h3 id='epitome-collection-sync-api/destroy'>destroy</h3 id='epitome-collection-sync-api/destroy'>
+<h3 id='epitome-view-api/destroy'>destroy</h3 id='epitome-view-api/destroy'>
 <hr>
 <p><em>Expects arguments: none</em>
 
