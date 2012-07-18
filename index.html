@@ -610,19 +610,19 @@ and the Event observer patterns that come out of the box.
 </p>
 <p>The constructor method will accept a large variety of arguments. You can pass on either an Array of Models or an Array of Objects or a single Model or a single Object. You can also pass an empty Array and populate it later. Typical Collection prototype definition looks something like this:
 </p>
-<pre><code>var usersCollection = <span class="keyword">new</span> <span class="keyword">Class</span>({
+<pre><code class="javascript"><span class="keyword">var</span> usersCollection = <span class="keyword">new</span> Class({
     Extends: Epitome.Collection
-    model: userModel // <span class="keyword">or</span> Epitome.Model by <span class="keyword">default</span>
+    model: userModel <span class="comment">// or Epitome.Model by default</span>
 });
 
-var users = <span class="keyword">new</span> usersCollection([{
-    id: <span class="comment">'bob'</span>
+<span class="keyword">var</span> users = <span class="keyword">new</span> usersCollection([{
+    id: <span class="string">'bob'</span>
 }], {
-    onChange: <span class="keyword">function</span>(model, props) {
-        console.<span class="built_in">log</span>(<span class="comment">'model change', model, props);</span>
+    onChange: <span class="function"><span class="keyword">function</span><span class="params">(model, props)</span> {</span>
+        console.log(<span class="string">'model change'</span>, model, props);
     },
-    onReady: <span class="keyword">function</span>() {
-        console.<span class="built_in">log</span>(<span class="comment">'the collection is ready');</span>
+    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'the collection is ready'</span>);
     }
 });</code></pre>
 <p>For reference purposes, each Model that enters a collection needs to have a <code>cid</code> - collection id. If the Model has an <code>id</code>, that is preferred. Otherwise, a <code>cid</code> will be generated. If the Model gets an <code>id</code> later on, the <code>cid</code> will not be changed.
@@ -736,9 +736,9 @@ var users = <span class="keyword">new</span> usersCollection([{
 </p>
 <p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. For example:
 </p>
-<pre><code><span class="identifier">users</span>.<span class="identifier"><span class="keymethods">sort</span></span>(<span class="string">'name'</span>);
-<span class="regexp">//</span> <span class="identifier">descending</span> <span class="identifier">order</span> <span class="identifier">pseduo</span>
-<span class="identifier">users</span>.<span class="identifier"><span class="keymethods">sort</span></span>(<span class="string">'name:desc'</span>);</code></pre>
+<pre><code class="javascript">users.sort(<span class="string">'name'</span>);
+<span class="comment">// descending order pseduo</span>
+users.sort(<span class="string">'name:desc'</span>);</code></pre>
 <p>Sorting also allows you to pass a function you define yourself as per the <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> interface. When done, it will fire a <code>sort</code> event.
 
 </p>
@@ -863,7 +863,7 @@ var users = <span class="keyword">new</span> usersCollection([{
 </p>
 <p>A simple example would look like this:
 </p>
-<pre><code><span class="comment">// define the View prototype</span>
+<pre><code class="javascript"><span class="comment">// define the View prototype</span>
 <span class="keyword">var</span> testView = <span class="keyword">new</span> Class({
 
     Extends: Epitome.View,
@@ -947,14 +947,14 @@ var users = <span class="keyword">new</span> usersCollection([{
 </p>
 <p>An example override to make it work with Mustache would be:
 </p>
-<pre><code>var myView = <span class="keyword">new</span> Class({
+<pre><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
     Extends: Epitome.View,
-    template: <span class="keyword">function</span>(data, template) {
-        template = template || this.options.template;
+    template: <span class="function"><span class="keyword">function</span><span class="params">(data, template)</span> {</span>
+        template = template || <span class="keyword">this</span>.options.template;
         <span class="keyword">return</span> Mustache.render(template, data);
     },
-    render: <span class="keyword">function</span>() {
-        this.element.set(<span class="literal">'html'</span>, this.template({name:'there'}, <span class="literal">'Hello {{name}}'</span>));
+    render: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template({name:<span class="string">'there'</span>}, <span class="string">'Hello {{name}}'</span>));
     }
 });</code></pre>
 <h3 id='epitome-view/empty'>empty</h3 id='epitome-view/empty'>
@@ -1005,9 +1005,9 @@ var users = <span class="keyword">new</span> usersCollection([{
 </p>
 <p>To add storage functionality to your model, you declare use in the prototype via the <code>Implements</code> mutator:
 </p>
-<pre><code><span class="keyword">var</span> user = <span class="keyword">new</span> <span class="keyword">Class</span>({
-    <span class="keyword">Extends</span>: Epitome.Model,
-    <span class="keyword">Implements</span>: Epitome.Storage.localStorage(<span class="string">'model'</span>)
+<pre><code class="javascript"><span class="keyword">var</span> user = <span class="keyword">new</span> Class({
+    Extends: Epitome.Model,
+    Implements: Epitome.Storage.localStorage(<span class="string">'model'</span>)
 });</code></pre>
 <p>The code above will call the storage factory and enable <code>localStorage</code> within your model with a storage namespace key <code>model</code>. In the actual storage massive, data will appear under an <code>epitome-model</code> key.
 
@@ -1048,15 +1048,15 @@ var users = <span class="keyword">new</span> usersCollection([{
 </p>
 <p>When you retrieve a model or a collection, it will simply return what the browser has as data (based upon the model or colleciton id as key). It will <strong>NOT</strong> apply a <code>model.set(data)</code> for you, you need to do this yourself.
 </p>
-<pre><code><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+<pre><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
     id: <span class="string">'bob'</span>
 });
 
 <span class="comment">// populate model from storage, if available.</span>
-bob.<span class="keyword">set</span>(bob.retrieve());</code></pre>
+bob.set(bob.retrieve());</code></pre>
 <p>Automatically populate:
 </p>
-<pre><code><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+<pre><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
     id: <span class="string">'bob'</span>
 }, {
     onRetrieve: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
@@ -1089,11 +1089,11 @@ bob.<span class="keyword">set</span>(bob.retrieve());</code></pre>
 </ul>
 <p>You can modify the syntax for the tags by altering the regex in the constructor:
 </p>
-<pre><code>options: {
-    // default block logic syntax is <span class="vbscript">&lt;% <span class="keyword">if</span> (data.prop) { %></span>
-    evaluate: /<span class="vbscript">&lt;%([\s\S]+?)%></span>/g,
-    // literal out is <span class="vbscript">&lt;%=<span class="keyword">property</span>%></span>
-    normal: /<span class="vbscript">&lt;%=([\s\S]+?)%></span>/g
+<pre><code class="javascript">options: {
+    <span class="comment">// default block logic syntax is &lt;% if (data.prop) { %></span>
+    evaluate: <span class="regexp">/&lt;%([\s\S]+?)%>/g</span>,
+    <span class="comment">// literal out is &lt;%=property%></span>
+    normal: <span class="regexp">/&lt;%=([\s\S]+?)%>/g</span>
 }</code></pre>
 <h2 id='eptiome-router'>Eptiome.Router</h2 id='eptiome-router'>
 <hr>
