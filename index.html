@@ -149,6 +149,27 @@
         </li>
       
         <li>
+          <a href="#epitome-collection-sync-api">Epitome.Collection.Sync - API</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/constructor-initialize">constructor (initialize)</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/fetch">fetch</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/parse">parse</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
           <a href="#epitome-storage-api">Epitome.Storage - API</a>
           
             <ul>
@@ -720,6 +741,58 @@ var users = <span class="keyword">new</span> usersCollection([{
 <p>Each Collection prototype has that property that references a Model prototype constructor. When data is being received in raw format (so, simple Objects), Models are being created by instantiating the stored constructor object in <code>this.model</code>.
 
 </p>
+<h2 id='epitome-collection-sync-api'>Epitome.Collection.Sync - API</h2 id='epitome-collection-sync-api'>
+<p>The Sync Class is just a layer on top of the normal <a href="#epitome-collection-api">Epitome.Collection</a>. It extends the default Collection prototype and adds a Request instance that can retrieve an Array of Model data from a server and add / update the Collection after.
+
+</p>
+<h3 id='epitome-collection-sync-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-collection-sync-api/constructor-initialize'>
+<hr>
+<p><em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>ready</code></strong></em>
+
+</p>
+<p>In terms of differences with the original prototype, the <code>options</code>, needs just one extra key: <code>urlRoot</code>, which should contain the absolute or relative URL to the end-point that can return the Model data.
+
+</p>
+<h3 id='epitome-collection-sync-api/fetch'>fetch</h3 id='epitome-collection-sync-api/fetch'>
+<hr>
+<p><em>Expects optional arguments: (Boolean) refresh</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>fetch</code></strong></em>
+
+</p>
+<p>When called, it will asynchronously try to go and fetch Model data. When data arrives, Models are reconciled with the Models in the collection already by <code>id</code>. If they exist already, a <code>set()</code> is called that will merge new data into the Model instance and fire <code>change</code> events as appropriate. If the optional <code>refresh</code> argument is set to true, the current collection will be emptied first via <a href="#epitome-collection-api/empty">empty</a>.
+
+</p>
+<p>Returns the instance &#39;now&#39; but because it is async, applying anything to the collection before the <code>fetch</code> event has fired may have unexpected results.
+
+</p>
+<h3 id='epitome-collection-sync-api/parse'>parse</h3 id='epitome-collection-sync-api/parse'>
+<hr>
+<p><em>Expects arguments: <code>(Mixed) response</code></em>
+
+</p>
+<p><em>Expected return: <code>(Array) response</code></em>
+
+</p>
+<p>A method that you can extend in your definition of Epitome.Collection.Sync for doing any pre-processing of data returned by sync from the server. For example:
+
+</p>
+<pre><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
+    <span class="comment">// data comes back with decoration. split them first.</span>
+    <span class="comment">// { meta: { something: 'here' }, models: [] }</span>
+    <span class="keyword">this</span>.meta = response.meta;
+    <span class="keyword">return</span> response.models;
+}</code></pre>
 <h2 id='epitome-storage-api'>Epitome.Storage - API</h2 id='epitome-storage-api'>
 <p>The storage Class is meant to be used as a mix-in. It works with any instances of Epitome.Model (including Epitome.Model.Sync) as well as Epitome.Collection.
 
