@@ -165,6 +165,38 @@
                   <a href="#epitome-collection-sync-api/parse">parse</a>
                 </li>
               
+                <li>
+                  <a href="#epitome-collection-sync-api/epitome-view-api">Epitome.View - API</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/constructor-initialize">constructor (initialize)</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/render">render</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/setelement">setElement</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/template">template</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/empty">empty</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/dispose">dispose</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-sync-api/destroy">destroy</a>
+                </li>
+              
             </ul>
           
         </li>
@@ -793,6 +825,162 @@ var users = <span class="keyword">new</span> usersCollection([{
     <span class="keyword">this</span>.meta = response.meta;
     <span class="keyword">return</span> response.models;
 }</code></pre>
+<h3 id='epitome-collection-sync-api/epitome-view-api'>Epitome.View - API</h3 id='epitome-collection-sync-api/epitome-view-api'>
+<p>The view is a pretty loose binding around a HTMLElement, it does not try to do much by default. It essentially binds the element to either a Model or a Collection, listening and propagating events that they fire in order to be able to react to them. The expectation is that a <code>render</code> method will be defined that uses the data to output it in the browser. The render can be called based upon change or reset events as needed.
+
+</p>
+<h3 id='epitome-collection-sync-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-collection-sync-api/constructor-initialize'>
+<hr>
+<p><em>Expects arguments: <code>(Object) options</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>ready</code></strong></em>
+
+</p>
+<p>A single argument in the shape of an <code>options</code> Object is passed to the constructor of the View. It is expected to have special &#39;mutator&#39;-like properties and key properties that it stores for future use.
+
+</p>
+<p>A simple example would look like this:
+</p>
+<pre><code><span class="comment">// define the View prototype</span>
+<span class="keyword">var</span> testView = <span class="keyword">new</span> Class({
+
+    Extends: Epitome.View,
+
+    render: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="comment">// have a render.</span>
+        <span class="keyword">this</span>.empty();
+        <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));
+        <span class="keyword">this</span>.parent();
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+});
+
+
+<span class="keyword">var</span> testInstance = <span class="keyword">new</span> testView({
+
+    model: someModelInstance,
+
+    element: <span class="string">'someid'</span>,
+
+    template: document.id(<span class="string">'test-template'</span>).get(<span class="string">'html'</span>),
+
+    <span class="comment">// event binding</span>
+    events: {
+        <span class="string">'click:relay(a.task-remove)'</span>: <span class="string">'emptyModel'</span>,
+        <span class="string">'click:relay(button.change-one)'</span>: <span class="string">'changeModel'</span>
+    },
+
+    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="keyword">this</span>.render();
+    },
+
+    `onChange:model`: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>)
+});</code></pre>
+<p>The key <code>options</code> are:
+
+</p>
+<ul>
+<li><code>element</code> - a String id or an element to bind events to and reference</li>
+<li><code>model</code> - optional Model instance structure to bind to. Exchangeable with <code>collection</code></li>
+<li><code>collection</code> - optional Collection instance to bind to. Exchangeable with <code>model</code></li>
+<li><code>template</code> - a String of raw HTML that defines the raw template to use in output.</li>
+<li><code>events</code> - an Object with MooTools style event bindings to apply to the <code>element</code>, delegated or not. values are implied event handlers on the instance</li>
+<li><code>onEventHandlers</code> - code that reacts to various events that the instance fires.</li>
+</ul>
+<h3 id='epitome-collection-sync-api/render'>render</h3 id='epitome-collection-sync-api/render'>
+<hr>
+<p><em>Expects arguments: unknown</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>render</code></strong></em>
+
+</p>
+<p>It is essential that this method is defined in your View prototype Object definition. It does not assume to do anything by default, you need to define how the output takes place and how your data is being used. For convenience, it has access to either <code>this.model</code> or <code>this.collection</code> as the source of data that can be be passed to the <a href="#epitome-view-api/template">template</a> method. It is expected that at the bottom of your definition, <code>this.parent()</code> is called in order for the <code>render</code> event to fire.
+
+</p>
+<h3 id='epitome-collection-sync-api/setelement'>setElement</h3 id='epitome-collection-sync-api/setelement'>
+<hr>
+<p><em>Expects arguments: <code>(Mixed) element</code>, optional <code>(Object) events</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p>A public method that allows you to change or set an element that powers a view. If called the first time, it will get the Element (through <code>document.id()</code>) and save the reference in <code>this.element</code>. If an events object is passed, it will bind the events. If called a second time, it will unbind all events on the old element, change the element reference and rebind new events, if supplied.
+
+</p>
+<h3 id='epitome-collection-sync-api/template'>template</h3 id='epitome-collection-sync-api/template'>
+<hr>
+<p><em>Expects arguments: <code>(Object) data</code>, optional <code>(String) template</code></em>
+
+</p>
+<p><em>Returns: compiled template or function.</em>
+
+</p>
+<p>A simple sandbox function where you can either use the Epitome.Template templating engine or call an external engine like Mustache, Handlebars, Hogan etc. The second argument is optional and if not supplied, it will revert to <code>this.options.template</code> instead.
+
+</p>
+<p>An example override to make it work with Mustache would be:
+</p>
+<pre><code>var myView = <span class="keyword">new</span> Class({
+    Extends: Epitome.View,
+    template: <span class="keyword">function</span>(data, template) {
+        template = template || this.options.template;
+        <span class="keyword">return</span> Mustache.render(template, data);
+    },
+    render: <span class="keyword">function</span>() {
+        this.element.set(<span class="literal">'html'</span>, this.template({name:'there'}, <span class="literal">'Hello {{name}}'</span>));
+    }
+});</code></pre>
+<h3 id='epitome-collection-sync-api/empty'>empty</h3 id='epitome-collection-sync-api/empty'>
+<hr>
+<p><em>Expects arguments: <code>(Boolean) soft</code></em>
+
+</p>
+<p><em>Returns: compiled template or function.</em>
+
+</p>
+<p><em><strong>Events: <code>empty</code></strong></em>
+
+</p>
+<p>By default, it will empty the element through making innerHTML an empty string, calling GC on all child nodes. If the <code>soft</code> argument is true, will apply <code>this.element.empty()</code>, which is a MooTools Element method that removes all child nodes without destroying them.
+
+</p>
+<h3 id='epitome-collection-sync-api/dispose'>dispose</h3 id='epitome-collection-sync-api/dispose'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: compiled template or function.</em>
+
+</p>
+<p><em><strong>Events: <code>dispose</code></strong></em>
+
+</p>
+<p>Will detach <code>this.element</code> from the DOM. It can be injected again later on.
+
+</p>
+<h3 id='epitome-collection-sync-api/destroy'>destroy</h3 id='epitome-collection-sync-api/destroy'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: compiled template or function.</em>
+
+</p>
+<p><em><strong>Events: <code>dispose</code></strong></em>
+
+</p>
+<p>Removes and destroys <code>this.element</code> from the DOM and from memory. You need to use <a href="#epitome-view-api/setelement">setElement</a> to add a new one if you want to re-render.
+
+</p>
 <h2 id='epitome-storage-api'>Epitome.Storage - API</h2 id='epitome-storage-api'>
 <p>The storage Class is meant to be used as a mix-in. It works with any instances of Epitome.Model (including Epitome.Model.Sync) as well as Epitome.Collection.
 
