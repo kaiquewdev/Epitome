@@ -92,6 +92,71 @@
         </li>
       
         <li>
+          <a href="#epitome-collection-api">Epitome.Collection - API</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#epitome-collection-api/constructor-initialize">constructor (initialize)</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/addmodel">addModel</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/removemodel">removeModel</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/getmodelbycid">getModelByCID</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/getmodel">getModel</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/getmodelbyid">getModelById</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/getmodelbyid">getModelById</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/tojson">toJSON</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/empty">empty</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/sort">sort</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/reverse">reverse</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/array-helpers">Array helpers</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/epitome-collection-properties">Epitome.Collection - properties</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-collection-api/length">length</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
           <a href="#epitome-storage-api">Epitome.Storage - API</a>
           
             <ul>
@@ -463,6 +528,215 @@ and the Event observer patterns that come out of the box.
 
 </p>
 <p>It will request the server to return the model object for the current id via a <code>.read()</code>. It will also change the status of the model (<code>model.isNewModel</code>) to false, meaning <code>.save()</code> will never use <code>.create()</code>. The fetch event will fire once the response object has been returned. The response object is then merged with the current model via a <code>.set</code>, it won&#39;t empty your data. To do so, you need to issue a <code>.empty()</code> first.
+
+</p>
+<h2 id='epitome-collection-api'>Epitome.Collection - API</h2 id='epitome-collection-api'>
+<p>Epitome collections are in essence, an Array-like Class that can contain multiple Models. It has a basic model prototype and adding and removing of models works either based upon passing a simple data has or an actual Model instance. When a model is in a collection, it observes all of the model events and fires them on the collection instance. It also allows for filtering, mapping, sorting and many other more convenience methods.
+
+</p>
+<h3 id='epitome-collection-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-collection-api/constructor-initialize'>
+<hr>
+<p><em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>ready</code></strong></em>
+
+</p>
+<p>The constructor method will accept a large variety of arguments. You can pass on either an Array of Models or an Array of Objects or a single Model or a single Object. You can also pass an empty Array and populate it later. Typical Collection prototype definition looks something like this:
+</p>
+<pre><code>var usersCollection = <span class="keyword">new</span> <span class="keyword">Class</span>({
+    Extends: Epitome.Collection
+    model: userModel // <span class="keyword">or</span> Epitome.Model by <span class="keyword">default</span>
+});
+
+var users = <span class="keyword">new</span> usersCollection([{
+    id: <span class="comment">'bob'</span>
+}], {
+    onChange: <span class="keyword">function</span>(model, props) {
+        console.<span class="built_in">log</span>(<span class="comment">'model change', model, props);</span>
+    },
+    onReady: <span class="keyword">function</span>() {
+        console.<span class="built_in">log</span>(<span class="comment">'the collection is ready');</span>
+    }
+});</code></pre>
+<p>For reference purposes, each Model that enters a collection needs to have a <code>cid</code> - collection id. If the Model has an <code>id</code>, that is preferred. Otherwise, a <code>cid</code> will be generated. If the Model gets an <code>id</code> later on, the <code>cid</code> will not be changed.
+
+</p>
+<h3 id='epitome-collection-api/addmodel'>addModel</h3 id='epitome-collection-api/addmodel'>
+<hr>
+<p><em>Expects arguments: <code>(Mixed) model</code> , <code>(Boolean) replace</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>add: function(model, cid) {}</code></strong></em>
+
+</p>
+<p>Adding a Model to a Collection must always happen through this method. It either appends the Model instance to the internal <code>_models</code> Array or it creates a new Model and then appends it. It also starts observing the Model&#39;s events and emitting them to the Collection instance with an additional argument passed <code>Model</code>. So, if you add a Model stored in <code>bob</code> and then do <code>bob.fireEvent(&#39;hai&#39;, &#39;there&#39;)</code>, the collection will also fire an event like this: <code>this.fireEvent(&#39;hai&#39;, [bob, &#39;there&#39;]); Adding a Model also increases the </code>Collection.length` property.
+
+</p>
+<p>The monitoring of the events (Observer) is done through creating a local function override / decoration of the Model&#39;s <code>fireEvent</code> method, normally inherited from the MooTools Events Class. If a model stops being a part of a collection, the override is destroyed and the default <code>fireEvent</code>.
+
+</p>
+<h3 id='epitome-collection-api/removemodel'>removeModel</h3 id='epitome-collection-api/removemodel'>
+<hr>
+<p><em>Expects arguments: <code>(Mixed) model(s)</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>remove: function(model, cid) {}</code>, <code>reset</code></strong></em>
+
+</p>
+<p>This method allows you to remove a single model or an array of models from the collection in the same call. For each removed model, a <code>remove</code> Event will fire. When removing of all Models is done, the collection will also fire a <code>reset</code> event, allowing you to re-render your views if you like.
+
+</p>
+<p>In addition to removing the Model from the Collection, it removes the reference to the Collection in the Model&#39;s <code>collections</code> Array. If that model stops being a member of any collection, the observed <code>fireEvent</code> method is removed from the Model instance, resulting in the method from the Events Class prototype taking over.
+
+</p>
+<p>Decreases the <code>Collection.length</code> property.
+
+</p>
+<h3 id='epitome-collection-api/getmodelbycid'>getModelByCID</h3 id='epitome-collection-api/getmodelbycid'>
+<hr>
+<p><em>Expects arguments: <code>(String) cid</code></em>
+
+</p>
+<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+
+</p>
+<p>Performs a search in the collection by <code>cid</code> (Collection id). Returns found Model instance or <code>null</code> if no match is found.
+
+</p>
+<h3 id='epitome-collection-api/getmodel'>getModel</h3 id='epitome-collection-api/getmodel'>
+<hr>
+<p><em>Expects arguments: <code>(Number) id</code></em>
+
+</p>
+<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+
+</p>
+<p>Returns a model based upon the Array index in the Collection.
+
+</p>
+<h3 id='epitome-collection-api/getmodelbyid'>getModelById</h3 id='epitome-collection-api/getmodelbyid'>
+<hr>
+<p><em>Expects arguments: <code>(String) id</code></em>
+
+</p>
+<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+
+</p>
+<p>Performs a search in the collection by the Model&#39;s <code>id</code> via the standard <code>getter</code>. Returns found Model instance or <code>null</code> if no match is found.
+
+</p>
+<h3 id='epitome-collection-api/getmodelbyid'>getModelById</h3 id='epitome-collection-api/getmodelbyid'>
+<hr>
+<p><em>Expects arguments: <code>(String) id</code></em>
+
+</p>
+<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+
+</p>
+<p>Performs a search in the collection by the Model&#39;s <code>id</code> via the standard <code>getter</code>. Returns found Model instance or <code>null</code> if no match is found.
+
+</p>
+<h3 id='epitome-collection-api/tojson'>toJSON</h3 id='epitome-collection-api/tojson'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: <code>modelsData</code></em>
+
+</p>
+<p>Returns an array of the applied <code>toJSON</code> method on all Models in the collection.
+
+</p>
+<h3 id='epitome-collection-api/empty'>empty</h3 id='epitome-collection-api/empty'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>remove</code>, <code>reset</code>, <code>empty</code></strong></em>
+
+</p>
+<p>Applies <code>this.removeModel</code> to all Models of the collection. Fires <code>empty</code> when done - though before that, a <code>remove</code> and <code>reset</code> will fire, see <a href="#epitome-collection-api/removemodel">removeModel</a>
+
+</p>
+<h3 id='epitome-collection-api/sort'>sort</h3 id='epitome-collection-api/sort'>
+<hr>
+<p><em>Expects arguments: (Mixed) how</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>sort</code></strong></em>
+
+</p>
+<p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. For example:
+</p>
+<pre><code><span class="identifier">users</span>.<span class="identifier"><span class="keymethods">sort</span></span>(<span class="string">'name'</span>);
+<span class="regexp">//</span> <span class="identifier">descending</span> <span class="identifier">order</span> <span class="identifier">pseduo</span>
+<span class="identifier">users</span>.<span class="identifier"><span class="keymethods">sort</span></span>(<span class="string">'name:desc'</span>);</code></pre>
+<p>Sorting also allows you to pass a function you define yourself as per the <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> interface. When done, it will fire a <code>sort</code> event.
+
+</p>
+<h3 id='epitome-collection-api/reverse'>reverse</h3 id='epitome-collection-api/reverse'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>sort</code></strong></em>
+
+</p>
+<p>Reverses sort the order of Models in the collection. Fires a <code>sort</code> event, not <code>reverse</code>
+
+</p>
+<h3 id='epitome-collection-api/array-helpers'>Array helpers</h3 id='epitome-collection-api/array-helpers'>
+<p>The following Array methods are also available directly on the Collection instances:
+
+</p>
+<ul>
+<li>forEach</li>
+<li>each</li>
+<li>invoke</li>
+<li>filter</li>
+<li>map</li>
+<li>some</li>
+<li>indexOf</li>
+<li>contains</li>
+<li>getRandom</li>
+<li>getLast</li>
+</ul>
+<p>For more information, see <a href="http://mootools.net/docs/core/Types/Array">Mootools Array Type</a>
+
+</p>
+<h3 id='epitome-collection-api/epitome-collection-properties'>Epitome.Collection - properties</h3 id='epitome-collection-api/epitome-collection-properties'>
+<h4>_models</h4>
+<hr>
+<p>Each Collection instance has an Array property called <code>_models</code> that contains all referenced Model instances. Even though it is not a real private property, it is recommended you do not alter it from outside of the API.
+
+</p>
+<h3 id='epitome-collection-api/length'>length</h3 id='epitome-collection-api/length'>
+<hr>
+<p>Tries to always reference the length of <code>_models</code>.
+
+</p>
+<h4>model</h4>
+<hr>
+<p>Each Collection prototype has that property that references a Model prototype constructor. When data is being received in raw format (so, simple Objects), Models are being created by instantiating the stored constructor object in <code>this.model</code>.
 
 </p>
 <h2 id='epitome-storage-api'>Epitome.Storage - API</h2 id='epitome-storage-api'>
