@@ -1,5 +1,6 @@
 git reset --hard HEAD 
-curl -X POST http://documentup.com/DimitarChristoff/Epitome/recompile/ > index.html
+curl --silent http://documentup.com/DimitarChristoff/Epitome/recompile
+curl --silent --output index.html http://documentup.com/DimitarChristoff/Epitome/
 git add index.html
 git commit -m'updating docs'
 git push
