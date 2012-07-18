@@ -230,10 +230,20 @@
         <li>
           <a href="#examples">Examples</a>
           
+        </li>
+      
+        <li>
+          <a href="#epitome-template">Epitome.Template</a>
+          
+        </li>
+      
+        <li>
+          <a href="#eptiome-router">Eptiome.Router</a>
+          
             <ul>
               
                 <li>
-                  <a href="#examples/todomvc-reference">TodoMVC reference</a>
+                  <a href="#eptiome-router/todomvc-reference">TodoMVC reference</a>
                 </li>
               
             </ul>
@@ -315,7 +325,7 @@ and the Event observer patterns that come out of the box.
 
 </p>
 </blockquote>
-<p>Strictly speaking, <code>Epitome.View</code> is closer to a <em>presenter</em> in a MVP implementation than a classic MVC one, with thin logic around the views, represented by <code>Epitome.Template</code>. However, because <code>Epitome.View</code> is very unassuming, you can also use it in a more classical MVC pattern for multiple purposes if you wish.
+<p>Strictly speaking, <code>Epitome.View</code> is closer to a <em>presenter</em> in a MVP implementation than a classic MVC one, with thin logic around the views, represented by <code>Epitome.Template</code>. However, because <code>Epitome.View</code> is very unassuming, it can be used in a more classical MVC pattern context for multiple purposes.
 
 </p>
 <p>If you feel strongly about semantics of the patterns used, you should look at <a href="http://addyosmani.com/blog/digesting-javascript-mvc-pattern-abuse-or-evolution/">Digesting JavaScript MVC – Pattern Abuse Or Evolution?</a> by Addy Osmani, a talk he gave at London Ajax recently.
@@ -1126,7 +1136,28 @@ userModel.save();</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
 </p>
-<h3 id='examples/todomvc-reference'>TodoMVC reference</h3 id='examples/todomvc-reference'>
+<h2 id='epitome-template'>Epitome.Template</h2 id='epitome-template'>
+<p>The Template module is a dumbed down implementation of the <code>underscore.js</code> _.template(), which in turn was based on work by John Resig. The main differences are the following:
+
+</p>
+<ul>
+<li>referencing object keys in the template that have no matching data causes no javascript exception</li>
+<li>only 2 types of tags are supported: <code>&lt;%=normalKey%&gt;</code> and <code>&lt;% evaluated logic %&gt;</code></li>
+<li>conditional returns do not output. blocks are preferred, eg. <code>&lt;% if (foo) { %&gt;is foo&lt;% } else { %&gt;is not foo&lt;% } %&gt;</code></li>
+</ul>
+<p>You can modify the syntax for the tags by altering the regex in the constructor:
+</p>
+<pre><code>options: {
+    // default block logic syntax is <span class="vbscript">&lt;% <span class="keyword">if</span> (data.prop) { %></span>
+    evaluate: /<span class="vbscript">&lt;%([\s\S]+?)%></span>/g,
+    // literal out is <span class="vbscript">&lt;%=<span class="keyword">property</span>%></span>
+    normal: /<span class="vbscript">&lt;%=([\s\S]+?)%></span>/g
+}</code></pre>
+<h2 id='eptiome-router'>Eptiome.Router</h2 id='eptiome-router'>
+<p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>, see documentation and examples in the original repository.
+
+</p>
+<h3 id='eptiome-router/todomvc-reference'>TodoMVC reference</h3 id='eptiome-router/todomvc-reference'>
 <hr>
 <p>A standard <a href="http://todomvc.com/">TodoMVC</a> reference implementation has been provided here: <a href="https://github.com/DimitarChristoff/Epitome-todo">Epitome-todo</a>.
 
