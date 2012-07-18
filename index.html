@@ -54,33 +54,8 @@
                   <a href="#epitome-model-api/destroy">destroy</a>
                 </li>
               
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-model-properties">Epitome.Model properties</a>
-          
-            <ul>
-              
                 <li>
-                  <a href="#epitome-model-properties/_attributes">_attributes: {}</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-properties/collections">collections: []</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-properties/options">options: {}</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-properties/options-defaults">options.defaults: {}</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-properties/properties">properties: {}</a>
+                  <a href="#epitome-model-api/epitome-model-properties">Epitome.Model - properties</a>
                 </li>
               
             </ul>
@@ -88,28 +63,49 @@
         </li>
       
         <li>
-          <a href="#epitome-model-sync">Epitome.Model.Sync</a>
+          <a href="#epitome-model-sync-api">Epitome.Model.Sync - API</a>
           
             <ul>
               
                 <li>
-                  <a href="#epitome-model-sync/constructor-initialize">constructor (initialize)</a>
+                  <a href="#epitome-model-sync-api/constructor-initialize">constructor (initialize)</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-model-sync/sync">sync</a>
+                  <a href="#epitome-model-sync-api/sync">sync</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-model-sync/parse">parse</a>
+                  <a href="#epitome-model-sync-api/parse">parse</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-model-sync/save">save</a>
+                  <a href="#epitome-model-sync-api/save">save</a>
                 </li>
               
                 <li>
-                  <a href="#epitome-model-sync/fetch">fetch</a>
+                  <a href="#epitome-model-sync-api/fetch">fetch</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#epitome-storage-api">Epitome.Storage - API</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#epitome-storage-api/store">store</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-storage-api/retrieve">retrieve</a>
+                </li>
+              
+                <li>
+                  <a href="#epitome-storage-api/eliminate">eliminate</a>
                 </li>
               
             </ul>
@@ -337,31 +333,31 @@ and the Event observer patterns that come out of the box.
 
 
 </p>
-<h2 id='epitome-model-properties'>Epitome.Model properties</h2 id='epitome-model-properties'>
+<h3 id='epitome-model-api/epitome-model-properties'>Epitome.Model - properties</h3 id='epitome-model-api/epitome-model-properties'>
 <p>There are several additional properties each model instance will have.
 
 </p>
-<h3 id='epitome-model-properties/_attributes'>_attributes: {}</h3 id='epitome-model-properties/_attributes'>
+<h4>_attributes: {}</h4>
 <hr>
 <p>The attributes object is <strong>public</strong> (exposed to manipulation on the instance) and it holds the hash data for the model, based upon keys. It is de-referenced from the constructor object used when creating a model but should not be read directly (normally). Exported by <code>model.toJSON()</code> 
 
 </p>
-<h3 id='epitome-model-properties/collections'>collections: []</h3 id='epitome-model-properties/collections'>
+<h4>collections: []</h4>
 <hr>
 <p>An array that contains references to all instances of Epitome.Collection that the model is currently a member of. Useful for iteration as well as utilised by collections that want to know if Event observers are required.
 
 </p>
-<h3 id='epitome-model-properties/options'>options: {}</h3 id='epitome-model-properties/options'>
+<h4>options: {}</h4>
 <hr>
 <p>A MooTools default options set, which can be on the prototype of the Model constructor.
 
 </p>
-<h3 id='epitome-model-properties/options-defaults'>options.defaults: {}</h3 id='epitome-model-properties/options-defaults'>
+<h4>options.defaults: {}</h4>
 <hr>
 <p>An object with default Model Attributes to use when instantiating. Merged with Model object when creating. 
 
 </p>
-<h3 id='epitome-model-properties/properties'>properties: {}</h3 id='epitome-model-properties/properties'>
+<h4>properties: {}</h4>
 <hr>
 <p>A collection of custom accessors that override default <code>model.get</code> and <code>model.set</code> methods. For example:
 
@@ -383,11 +379,11 @@ and the Event observer patterns that come out of the box.
 
 
 </p>
-<h2 id='epitome-model-sync'>Epitome.Model.Sync</h2 id='epitome-model-sync'>
+<h2 id='epitome-model-sync-api'>Epitome.Model.Sync - API</h2 id='epitome-model-sync-api'>
 <p>This is an example implementation of RESTful module that extends the base Epitome.Model class and adds the ability to read, update and delete models with remote server. In terms of implementation, there are subtle differences. The API and methods are as the normal <a href="#epitome-model-api">Model</a>, unless outlined below:
 
 </p>
-<h3 id='epitome-model-sync/constructor-initialize'>constructor (initialize)</h3 id='epitome-model-sync/constructor-initialize'>
+<h3 id='epitome-model-sync-api/constructor-initialize'>constructor (initialize)</h3 id='epitome-model-sync-api/constructor-initialize'>
 <hr>
 <p><em>Expects arguments: <code>(Object) model</code>, <code>(Object) options</code></em>
 
@@ -398,12 +394,12 @@ and the Event observer patterns that come out of the box.
 <p>An additional option has been added <code>options.emulateREST: true || false</code>, which is being passed to the Request instance. If your server has no CRUD mapping, emulation can be enabled so everything will go through POST/GET requests with <code>_method</code> containing the original intent.
 
 </p>
-<h3 id='epitome-model-sync/sync'>sync</h3 id='epitome-model-sync/sync'>
+<h3 id='epitome-model-sync-api/sync'>sync</h3 id='epitome-model-sync-api/sync'>
 <hr>
 <p><em>Expects optional arguments: <code>(String) method</code>, <code>(Object) model</code></em>
 
 </p>
-<p><em><strong>Events: <code>sync: function(responseObj, method, options)</code></strong></em>
+<p><em><strong>Events: <code>sync: function(responseObj, method, options) {}</code></strong></em>
 
 </p>
 <p>Sync acts as a proxy/interface to the XHR instance in the model <code>this.request</code> A method can be one of the following:
@@ -422,7 +418,7 @@ and the Event observer patterns that come out of the box.
 <p>As a whole, you should NOT use the sync directly but elect to use the API methods for each specific request task.
 
 </p>
-<h3 id='epitome-model-sync/parse'>parse</h3 id='epitome-model-sync/parse'>
+<h3 id='epitome-model-sync-api/parse'>parse</h3 id='epitome-model-sync-api/parse'>
 <hr>
 <p><em>Expects arguments: <code>(Object) response</code></em>
 
@@ -438,7 +434,7 @@ and the Event observer patterns that come out of the box.
     <span class="keyword">this</span>.meta = response.meta;
     <span class="keyword">return</span> response.data;
 }</code></pre>
-<h3 id='epitome-model-sync/save'>save</h3 id='epitome-model-sync/save'>
+<h3 id='epitome-model-sync-api/save'>save</h3 id='epitome-model-sync-api/save'>
 <hr>
 <p><em>Expects optional arguments: <code>(String) key</code>, <code>(String) value</code></em>
 
@@ -455,7 +451,7 @@ and the Event observer patterns that come out of the box.
 <p>If the optional <code>key</code> =&gt; <code>value</code> pair is passed, it will set them on the model and then save the updated model.
 
 </p>
-<h3 id='epitome-model-sync/fetch'>fetch</h3 id='epitome-model-sync/fetch'>
+<h3 id='epitome-model-sync-api/fetch'>fetch</h3 id='epitome-model-sync-api/fetch'>
 <hr>
 <p><em>Expects arguments: none</em>
 
@@ -467,6 +463,83 @@ and the Event observer patterns that come out of the box.
 
 </p>
 <p>It will request the server to return the model object for the current id via a <code>.read()</code>. It will also change the status of the model (<code>model.isNewModel</code>) to false, meaning <code>.save()</code> will never use <code>.create()</code>. The fetch event will fire once the response object has been returned. The response object is then merged with the current model via a <code>.set</code>, it won&#39;t empty your data. To do so, you need to issue a <code>.empty()</code> first.
+
+</p>
+<h2 id='epitome-storage-api'>Epitome.Storage - API</h2 id='epitome-storage-api'>
+<p>The storage Class is meant to be used as a mix-in. It works with any instances of Epitome.Model (including Epitome.Model.Sync) as well as Epitome.Collection.
+
+</p>
+<p>To add storage functionality to your model, you declare use in the prototype via the <code>Implements</code> mutator:
+</p>
+<pre><code><span class="keyword">var</span> user = <span class="keyword">new</span> <span class="keyword">Class</span>({
+    <span class="keyword">Extends</span>: Epitome.Model,
+    <span class="keyword">Implements</span>: Epitome.Storage.localStorage(<span class="string">'model'</span>)
+});</code></pre>
+<p>The code above will call the storage factory and enable <code>localStorage</code> within your model with a storage namespace key <code>model</code>. In the actual storage massive, data will appear under an <code>epitome-model</code> key.
+
+</p>
+<p>The following methods are added to your Class (identical to Element.Storage from MooTools):
+
+</p>
+<h3 id='epitome-storage-api/store'>store</h3 id='epitome-storage-api/store'>
+<hr>
+<p><em>Expects optional arguments: <code>(Object) model</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>store: function(model) {}</code></strong></em>
+
+</p>
+<p>When called without any arguments, store will just save the current model or collection into storage. The models and collections are stored under a sub-key of the value returned <code>.get(&#39;id&#39;)</code>, so it is important to have an id in both if you want to achieve persistence.
+
+</p>
+<p><strong>If no id is provided, an id is generated for models and collections, which means a page reload will cause a different id to be generated and no data will be retrieved</strong>
+
+</p>
+<p>You can also pass a custom object as argument to write instead of the current model or collection.
+
+</p>
+<h3 id='epitome-storage-api/retrieve'>retrieve</h3 id='epitome-storage-api/retrieve'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: <code>(Object) model</code> or <code>(Array) collection</code></em>
+
+</p>
+<p><em><strong>Events: <code>retrieve: function(model) {}</code></strong></em>
+
+</p>
+<p>When you retrieve a model or a collection, it will simply return what the browser has as data (based upon the model or colleciton id as key). It will <strong>NOT</strong> apply a <code>model.set(data)</code> for you, you need to do this yourself.
+</p>
+<pre><code><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+    id: <span class="string">'bob'</span>
+});
+
+<span class="comment">// populate model from storage, if available.</span>
+bob.<span class="keyword">set</span>(bob.retrieve());</code></pre>
+<p>Automatically populate:
+</p>
+<pre><code><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+    id: <span class="string">'bob'</span>,
+    onRetrieve: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+        <span class="keyword">this</span>.set(data);
+    }
+}).retrieve();</code></pre>
+<h3 id='epitome-storage-api/eliminate'>eliminate</h3 id='epitome-storage-api/eliminate'>
+<hr>
+<p><em>Expects arguments: none</em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>eliminate</code></strong></em>
+
+</p>
+<p>Calling eliminate on a model or a collection will destroy the stored data the browser has for that model or collection.
 
 </p>
 <h2 id='examples'>Examples</h2 id='examples'>
