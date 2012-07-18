@@ -361,7 +361,7 @@ and the Event observer patterns that come out of the box.
 <p><em><strong>Events: <code>ready</code></strong></em>
 
 </p>
-<p>The <code>modelObject</code> - if passed, sets the internal data hash to a new derefrenced object with the keys of the <code>modelObject</code>. Special accessor properties as defined in the <code>Epitome.Model.prototype.properties</code> will run first and be applicable. 
+<p>The <code>model</code> - if passed, sets the internal data hash to a new derefrenced object. Special accessor properties, as defined in the <code>Epitome.Model.prototype.properties</code>, will run first and be applicable. See <a href="#epitome-model/properties">properties</a> for more info.
 
 </p>
 <p>The <code>options</code> object is a standard MooTools class options override and is being merged with the <code>Epitome.Model.prototype.options</code> when a new model is created. It typically contains various event handlers in the form of:
@@ -378,7 +378,7 @@ and the Event observer patterns that come out of the box.
 <p>Supported: <code>(Object) options.defaults</code> - allows initial values of the model to be set if they are not being passed to the model constructor.
 
 </p>
-<p>Constructor fires an event called <code>ready</code> when done. Setting the initial model does not fire a <code>change</code> event.
+<p>Of note, the Constructor fires an event called <code>ready</code> when done and setting the initial model does not fire a <code>change</code> event.
 
 </p>
 <h3 id='epitome-model/set'>set</h3 id='epitome-model/set'>
@@ -393,13 +393,13 @@ and the Event observer patterns that come out of the box.
 
 </p>
 <ul>
-<li><code>change: function(changedProperties)</code></li>
-<li><code>change:key: function(valueForKey)</code></li>
+<li><code>change: function(changedProperties) {}</code></li>
+<li><code>change:key: function(valueForKey) {}</code></li>
 </ul>
 <p>Allows changing of any individual model key or a set of key/value pairs, encapsulated in an object. Will fire a single <code>change</code> event with all the changed properties as well as a specific <code>change:key</code> event that passes just the value of the key as argument.
 
 </p>
-<p>For typing of value, you can store anything at all (Primitives, Objects, Functions) but keep in mind that when it comes to serialising the Model and sending it to the server, only Primitive types make sense. 
+<p>For typing of value, you can store anything at all (Primitives, Objects, Functions). Keep in mind that, when it comes to serialising the Model and sending it to the server, only Primitive types or ones with a sensible <code>toString()</code> implementation will make sense.
 
 </p>
 <h3 id='epitome-model/get'>get</h3 id='epitome-model/get'>
