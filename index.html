@@ -228,11 +228,6 @@
         </li>
       
         <li>
-          <a href="#examples">Examples</a>
-          
-        </li>
-      
-        <li>
           <a href="#epitome-template">Epitome.Template</a>
           
         </li>
@@ -240,10 +235,15 @@
         <li>
           <a href="#eptiome-router">Eptiome.Router</a>
           
+        </li>
+      
+        <li>
+          <a href="#examples">Examples</a>
+          
             <ul>
               
                 <li>
-                  <a href="#eptiome-router/todomvc-reference">TodoMVC reference</a>
+                  <a href="#examples/todomvc-reference">TodoMVC reference</a>
                 </li>
               
             </ul>
@@ -1077,6 +1077,30 @@ bob.<span class="keyword">set</span>(bob.retrieve());</code></pre>
 <p>Calling eliminate on a model or a collection will destroy the stored data the browser has for that model or collection.
 
 </p>
+<h2 id='epitome-template'>Epitome.Template</h2 id='epitome-template'>
+<hr>
+<p>The Template module is a dumbed down implementation of the <code>underscore.js</code> _.template(), which in turn was based on work by John Resig. The main differences are the following:
+
+</p>
+<ul>
+<li>referencing object keys in the template that have no matching data causes no javascript exception</li>
+<li>only 2 types of tags are supported: <code>&lt;%=normalKey%&gt;</code> and <code>&lt;% evaluated logic %&gt;</code></li>
+<li>conditional returns do not output. blocks are preferred, eg. <code>&lt;% if (foo) { %&gt;is foo&lt;% } else { %&gt;is not foo&lt;% } %&gt;</code></li>
+</ul>
+<p>You can modify the syntax for the tags by altering the regex in the constructor:
+</p>
+<pre><code>options: {
+    // default block logic syntax is <span class="vbscript">&lt;% <span class="keyword">if</span> (data.prop) { %></span>
+    evaluate: /<span class="vbscript">&lt;%([\s\S]+?)%></span>/g,
+    // literal out is <span class="vbscript">&lt;%=<span class="keyword">property</span>%></span>
+    normal: /<span class="vbscript">&lt;%=([\s\S]+?)%></span>/g
+}</code></pre>
+<h2 id='eptiome-router'>Eptiome.Router</h2 id='eptiome-router'>
+<hr>
+<p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>, see documentation and examples in the original repository.
+
+
+</p>
 <h2 id='examples'>Examples</h2 id='examples'>
 <hr>
 <p>A quick model creation with prototyping and <code>localStorage</code> looks like this:
@@ -1136,28 +1160,7 @@ userModel.save();</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
 </p>
-<h2 id='epitome-template'>Epitome.Template</h2 id='epitome-template'>
-<p>The Template module is a dumbed down implementation of the <code>underscore.js</code> _.template(), which in turn was based on work by John Resig. The main differences are the following:
-
-</p>
-<ul>
-<li>referencing object keys in the template that have no matching data causes no javascript exception</li>
-<li>only 2 types of tags are supported: <code>&lt;%=normalKey%&gt;</code> and <code>&lt;% evaluated logic %&gt;</code></li>
-<li>conditional returns do not output. blocks are preferred, eg. <code>&lt;% if (foo) { %&gt;is foo&lt;% } else { %&gt;is not foo&lt;% } %&gt;</code></li>
-</ul>
-<p>You can modify the syntax for the tags by altering the regex in the constructor:
-</p>
-<pre><code>options: {
-    // default block logic syntax is <span class="vbscript">&lt;% <span class="keyword">if</span> (data.prop) { %></span>
-    evaluate: /<span class="vbscript">&lt;%([\s\S]+?)%></span>/g,
-    // literal out is <span class="vbscript">&lt;%=<span class="keyword">property</span>%></span>
-    normal: /<span class="vbscript">&lt;%=([\s\S]+?)%></span>/g
-}</code></pre>
-<h2 id='eptiome-router'>Eptiome.Router</h2 id='eptiome-router'>
-<p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>, see documentation and examples in the original repository.
-
-</p>
-<h3 id='eptiome-router/todomvc-reference'>TodoMVC reference</h3 id='eptiome-router/todomvc-reference'>
+<h3 id='examples/todomvc-reference'>TodoMVC reference</h3 id='examples/todomvc-reference'>
 <hr>
 <p>A standard <a href="http://todomvc.com/">TodoMVC</a> reference implementation has been provided here: <a href="https://github.com/DimitarChristoff/Epitome-todo">Epitome-todo</a>.
 
