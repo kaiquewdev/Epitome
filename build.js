@@ -1,6 +1,6 @@
 var dom = require('jsdom'),
 	request = require('http'),
-    fs = require('fs'),
+	fs = require('fs'),
 	options = {
 		host: 'documentup.com',
 		path: '/DimitarChristoff/Epitome'
