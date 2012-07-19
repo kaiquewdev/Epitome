@@ -60,4 +60,7 @@ var dom = require('jsdom'),
 	};
 
 // get going. compile first, then get the new docs.
-request.get(compile, writeDocs);
+request.get(compile, function() {
+	// give it some time to generate
+	setTimeout(writeDocs, 2000);
+});
