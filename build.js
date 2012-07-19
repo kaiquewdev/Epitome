@@ -46,9 +46,11 @@ var dom = require('jsdom'),
 					fs.writeFile('index.html', html, function(error) {
 						if (error) {
 							console.log('Failed to create index.html. ', error);
+							process.exit(1);
 						}
 						else {
 							console.log('index.html was created');
+							process.exit(0);
 						}
 					});
 				});
@@ -56,6 +58,7 @@ var dom = require('jsdom'),
 
 		}).on('error', function() {
 			console.log('Failed to get documentation.');
+			process.exit(1);
 		});
 	};
 
