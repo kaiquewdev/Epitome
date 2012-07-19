@@ -9,6 +9,6 @@
         "node": ">=0.6.0"
     },
     "scripts": {
-        "test": "./build.js"
+        "build": "./build.js"
     }
 }
