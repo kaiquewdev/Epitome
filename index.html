@@ -251,7 +251,7 @@
         </li>
       
         <li>
-          <a href="#building">Building</a>
+          <a href="#download-building">Download + Building</a>
           
         </li>
       
@@ -330,10 +330,10 @@
 <p>If you feel strongly about semantics of the patterns used, you should look at <a href="http://addyosmani.com/blog/digesting-javascript-mvc-pattern-abuse-or-evolution/">Digesting JavaScript MVC – Pattern Abuse Or Evolution?</a> by Addy Osmani, a talk he gave at London Ajax recently.
 
 </p>
-<p>Epitome&#39;s API is still subject to changes, which means documentation is not overly verbose. The code itself is with a lot of inline comments added to help you understand it better.
+<p>Epitome&#39;s API is still subject to change, which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>The creation and logic employed in the writing of Epitome has been documented in several blog posts:
+<p>The creation and logic employed in the writing of Epitome has been documented in several blog posts on the QMetric tech blog:
 
 </p>
 <ul>
@@ -342,6 +342,9 @@
 <li><a href="http://tech.qmetric.co.uk/epitome-template-a-lightweight-templating-engine-for-mootools-that-works_190.html">Adding the template</a></li>
 <li><a href="http://tech.qmetric.co.uk/automating-javascript-ci-with-buster-js-and-travisci_205.html">Testing it in CI via Travis CI</a></li>
 </ul>
+<p>Current version: <em>0.0.6</em>
+
+</p>
 <h2 id='epitome-model'>Epitome.Model</h2 id='epitome-model'>
 <p>The Epitome.Model implementation at its core is a MooTools class with custom data accessors that fires events. As a MooTools Class, you can extend models or implement objects or other classes into your definitions. By default, the MooTools Options and Events classes are implemented already.
 
@@ -1173,14 +1176,17 @@ userModel.save();</code></pre>
 
 
 </p>
-<h2 id='building'>Building</h2 id='building'>
-<p>You can create a minified concatenated version of Epitome. Have a look inside of the simple <code>app.build.js</code> you can use for <code>r.js</code> (require.js optimiser).
+<h2 id='download-building'>Download + Building</h2 id='download-building'>
+<p>You can check it out of the <a href="https://github.com/DimitarChristoff/Epitome/">github repo</a> or you can <a href="https://github.com/DimitarChristoff/Epitome/zipball/master">grab the zip</a> or simply download the minified <a href="https://raw.github.com/DimitarChristoff/Epitome/master/Epitome-min.js">Epitome-min.js</a>.
+
+</p>
+<p>You can create your own minified concatenated version of Epitome with the components you want. Have a look inside of the simple <code>app.build.js</code> you can use for <code>r.js</code> (require.js optimiser).
 
 </p>
 <p>Typically, you&#39;d create a new production build by running:
 
 </p>
-<pre><code>> r<span class="preprocessor">.js</span> -o app<span class="preprocessor">.build</span><span class="preprocessor">.js</span>
+<pre><code class="sh">> r<span class="preprocessor">.js</span> -o app<span class="preprocessor">.build</span><span class="preprocessor">.js</span>
 
 Tracing dependencies for: epitome
 Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</span>
@@ -1208,6 +1214,9 @@ Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</spa
 
 </p>
 <pre><code><span class="title">npm</span> install epitome</code></pre>
+<p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you&#39;d have to move it within your web server root.
+
+</p>
 <h2 id='testing'>Testing</h2 id='testing'>
 <p>Tests are currently separated in 2 groups: node tests and browser tests. The distinction is that under node only,
 it uses <code>mootools-server</code> and lacks <code>Request</code> or <code>Element</code>, so only unit tests will run.
