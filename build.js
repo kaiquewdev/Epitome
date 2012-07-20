@@ -2,13 +2,14 @@
 var dom = require('jsdom'),
 	request = require('http'),
 	fs = require('fs'),
+	repo = 'DimitarChristoff/Epitome',
 	build = {
 		host: 'documentup.com',
-		path: '/DimitarChristoff/Epitome'
+		path: repo
 	},
 	compile = {
 		host: 'documentup.com',
-		path: '/DimitarChristoff/Epitome/recompile'
+		path: repo + '/recompile'
 	},
 	writeDocs = function() {
 		request.get(build).on('response', function(response) {
@@ -66,4 +67,7 @@ var dom = require('jsdom'),
 request.get(compile, function() {
 	// give it some time to generate
 	setTimeout(writeDocs, 2000);
+}).on('error', function() {
+	console.log('Failed to recompile docs.');
+	process.exit(1);
 });
