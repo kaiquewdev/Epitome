@@ -3,7 +3,7 @@ var dom = require('jsdom'),
 	request = require('request'),
 	fs = require('fs'),
 	repo = 'DimitarChristoff/Epitome',
-	build = 'http://documentup.com/' + repo,
+	build = 'http://documentup.com/' + repo + '?theme=v1',
 	compile = 'http://documentup.com/' + repo + '/recompile/',
 	writeDocs = function() {
 		request(build, function(error, response, html) {
