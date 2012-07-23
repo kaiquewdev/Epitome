@@ -28,14 +28,17 @@ var dom = require('jsdom'),
 					'js/docs.js'
 				],
 				function(errors, window) {
-					var head = window.getDocument().getElement('head');
+					var head = window.getDocument().getElement('head'),
+						css = head.getElement('link');
+
+
 
 					// add custom stylesheet
 					new window.Element('link', {
 						href: 'css/docs.css',
 						type: 'text/css',
 						rel: 'stylesheet'
-					}).inject(head);
+					}).replaces(css);
 
 					// move the scripts to the head
 					window.document.getElements('.jsdom').removeClass('jsdom').inject(head);
