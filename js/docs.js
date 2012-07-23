@@ -4,8 +4,10 @@ window.addEvent('domready', function() {
 			this.scroll();
 		},
 		onActive: function(el) {
-			this.element.getElements('li.active').removeClass('active');
 			el.getParents("li").getLast().addClass('active');
+		},
+		onInactive: function() {
+			this.element.getElements('li.active').removeClass('active');
 		}
 	});
 });
