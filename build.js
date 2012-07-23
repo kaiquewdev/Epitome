@@ -5,7 +5,7 @@ var dom = require('jsdom'),
 	repo = 'DimitarChristoff/Epitome',
 	build = {
 		host: 'documentup.com',
-		path: repo
+		path: repo + '?theme=v1'
 	},
 	compile = {
 		host: 'documentup.com',
