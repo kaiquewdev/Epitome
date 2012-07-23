@@ -215,10 +215,11 @@ a {
     color: #369;
 }
 #header {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 #header #logo {
-    color: #333;
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 10px 15px;
@@ -231,13 +232,11 @@ a {
     left: 0;
     width: 250px;
     height: 100%;
-    background: #f9f9f9;
-    background: rgba(0,0,0,0.10);
-    border-right: 1px solid rgba(0,0,0,0.20);
+    background: #556C81;
     -webkit-box-shadow: rgba(0,0,0,0.10) -1px 0 3px 0 inset;
     -moz-box-shadow: rgba(0,0,0,0.10) -1px 0 3px 0 inset;
     box-shadow: rgba(0,0,0,0.10) -1px 0 3px 0 inset;
-    text-shadow: rgba(255,255,255,0.70) 0 1px 0;
+    text-shadow: rgba(0,0,0,0.70) 0 1px 0;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -245,27 +244,46 @@ a {
     display: block;
     font-weight: bold;
     text-decoration: none;
+    color: #fff;
+    -webkit-transition: all 0.4s ease-out 0s;
+    -moz-transition: all 0.4s ease-out 0s;
+    -ms-transition: all 0.4s ease-out 0s;
+    -o-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
+
 }
 #nav #sections {
     margin-bottom: 5px;
-    border-bottom: 1px solid #ccc;
-    background: #f1f1f1;
+    border-bottom: 1px solid #344F68;
+    /*background: #556C81;*/
     -webkit-box-shadow: rgba(0,0,0,0.15) 0 0 5px;
     -moz-box-shadow: rgba(0,0,0,0.15) 0 0 5px;
     box-shadow: rgba(0,0,0,0.15) 0 0 5px;
 }
 #nav #sections > li {
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    border-top: 1px solid rgba(255,255,255,0.50);
+    -webkit-transition: all 0.4s ease-out 0s;
+    -moz-transition: all 0.4s ease-out 0s;
+    -ms-transition: all 0.4s ease-out 0s;
+    -o-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 #nav #sections > li > a {
     padding: 5px 15px;
-    color: #555;
+    color: #fff;
     font-size: 14px;
 }
 #nav #sections > li > a:hover {
-    background: #ddd;
+    color: #FFC76D;
     background: rgba(0,0,0,0.05);
+}
+#nav #sections > li a.active {
+    background: #0D2E4C !important;
+    color: #FFC76D;
+}
+#nav #sections li.active {
+    background: #344F68;
 }
 #nav #sections > li:last-child {
     border-bottom: 1px solid rgba(255,255,255,0.50);
@@ -280,13 +298,14 @@ a {
 #nav #sections ul li a:hover {
     background: #ddd;
     background: rgba(0,0,0,0.05);
+    color: #FFC76D;
 }
 #nav .extra {
     padding: 5px 15px;
     min-height: 1.4em;
 }
 #nav .extra a {
-    color: #555;
+    color: #fff;
     font-size: 14px;
 }
 #nav #travis img {
@@ -553,11 +572,4 @@ a {
     #github-ribbon img {
         width: 100px;
     }
-}
-
-
-
-
-a.active {
-    background: #ccc;
 }
