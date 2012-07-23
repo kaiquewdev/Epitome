@@ -6,9 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Epitome</title>
+    
+    <link href="css/docs.css" type="text/css" rel="stylesheet" />
+    
+    
 
-      <link href="css/docs.css" type="text/css" rel="stylesheet" />
-
+    
       <!-- Google Analytics -->
       <script type="text/javascript">
 
@@ -24,10 +27,21 @@
 
       </script>
     
-  <script src="https://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
-  <script src="js/moostrap-scrollspy.js"></script>
-  <script src="js/docs.js"></script></head>
-  <body style=""><div id="container">
+
+    <!-- Typekit -->
+    
+      <script type="text/javascript">
+        (function() {
+          var config = {
+            kitId: 'hjp0pft',
+            scriptTimeout: 3000
+          };
+          var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+        })();
+      </script>
+    
+  <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script><script src="js/moostrap-scrollspy.js"></script><script src="js/docs.js"></script></head>
+  <body><div id="container">
   <div id="nav">
     
       <div id="header">
@@ -364,7 +378,17 @@
 <p>The Epitome.Model implementation at its core is a MooTools class with custom data accessors that fires events. As a MooTools Class, you can extend models or implement objects or other classes into your definitions. By default, the MooTools Options and Events classes are implemented already.
 
 </p>
-<p>The following are the officially API'd class methods:
+<p>The Model can fire the following events:
+
+</p>
+<ul>
+<li><code>ready</code> - when instantiated</li>
+<li><code>change</code> - when any properties have changed</li>
+<li><code>change:key</code> - when a particular property <code>key</code> has changed</li>
+<li><code>empty</code> - when a model has been emptied of all properties</li>
+<li><code>destroy</code> - when a model has been <code>destroyed</code> and all data removed.</li>
+</ul>
+<p>The following methods are official API on all Model Classes:
 
 </p>
 <h3 id="epitome-model/constructor-initialize">constructor (initialize)</h3>
