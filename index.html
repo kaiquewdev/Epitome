@@ -1157,7 +1157,7 @@ bob.set(bob.retrieve());</code></pre>
 <p><em><strong>Events: <code>ready</code>, <code>before</code>, <code>after</code>, mixed, <code>undefined</code>, <code>error</code>, <code>route:add</code>, <code>route:remove</code></strong></em>
 
 </p>
-<p>As this is quite involved and can act as a Controller for your app, here's a practical example that defines a few route events and adds the event handlers within the Class instance:
+<p>As this is quite involved and can act as a Controller for your app, here's a practical example that defines a few routes and event handlers within the Epitome.Router Class instantiation:
 </p>
 <pre class="prettyprint linenums"><code class="javascript">App.router = <span class="keyword">new</span> Epitome.Router({
     <span class="comment">// routes definition will proxy the events</span>
@@ -1174,12 +1174,12 @@ bob.set(bob.retrieve());</code></pre>
         console.log(<span class="string">'init'</span>);
     },
 
-    <span class="comment">// before route method</span>
+    <span class="comment">// before route method, fires before the event handler once a match has been found</span>
     onBefore: <span class="function"><span class="keyword">function</span><span class="params">(routeId)</span>{</span>
         console.log(<span class="string">'before'</span>, routeId)
     },
 
-    <span class="comment">// specific pseudos for before</span>
+    <span class="comment">// specific pseudos for :before</span>
     <span class="string">'onIndex:before'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
         console.log(<span class="string">'we are about to go to the index route'</span>);
     },
@@ -1189,12 +1189,12 @@ bob.set(bob.retrieve());</code></pre>
         console.log(<span class="string">'navigated already to index route, update breadcrumb?'</span>);
     },
 
-    <span class="comment">// after route method</span>
+    <span class="comment">// after route method has fired, post-route event.</span>
     onAfter: <span class="function"><span class="keyword">function</span><span class="params">(route)</span>{</span>
         console.info(<span class="string">'after'</span>, route)
     },
 
-    <span class="comment">// routes events callbacks</span>
+    <span class="comment">// routes events callbacks are functions that call parts of your app</span>
 
     <span class="comment">// index</span>
     onIndex: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
@@ -1234,7 +1234,6 @@ bob.set(bob.retrieve());</code></pre>
     <span class="string">'onRoute:add'</span>: <span class="function"><span class="keyword">function</span><span class="params">(constructorObject)</span> {</span>
         console.log(constructorObject.id + <span class="string">' was added as a new route'</span>);
     }
-
 });</code></pre>
 <h3 id="eptiome-router/addroute">addRoute</h3>
 <hr />
@@ -1273,6 +1272,10 @@ bob.set(bob.retrieve());</code></pre>
 
 </p>
 <p>Removes a route by the route identifier string.
+
+</p>
+<p>For more examples of Router, have a look inside the <a href="https://github.com/DimitarChristoff/Epitome-todo/blob/master/epitome/js/app.js#L42-70">todomvc</a> demo.
+
 
 
 </p>
