@@ -264,6 +264,22 @@
         <li>
           <a href="#eptiome-router">Eptiome.Router</a>
           
+            <ul>
+              
+                <li>
+                  <a href="#eptiome-router/constructor-initialize">constructor (initialize)</a>
+                </li>
+              
+                <li>
+                  <a href="#eptiome-router/addroute">addRoute</a>
+                </li>
+              
+                <li>
+                  <a href="#eptiome-router/removeroute">removeRoute</a>
+                </li>
+              
+            </ul>
+          
         </li>
       
         <li>
@@ -1127,7 +1143,136 @@ bob.set(bob.retrieve());</code></pre>
     normal: <span class="regexp">/&lt;%=([\s\S]+?)%/g</span>
 }</code></pre>
 <h2 id="eptiome-router">Eptiome.Router</h2>
-<p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>, see documentation and examples in the original repository.
+<p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>.
+
+</p>
+<h3 id="eptiome-router/constructor-initialize">constructor (initialize)</h3>
+<hr />
+<p><em>Expects arguments: <code>(Object) options</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>ready</code>, <code>before</code>, <code>after</code>, mixed, <code>undefined</code>, <code>error</code>, <code>route:add</code>, <code>route:remove</code></strong></em>
+
+</p>
+<p>As this is quite involved and can act as a Controller for your app, here's a practical example that defines a few route events and adds the event handlers within the Class instance:
+</p>
+<pre class="prettyprint linenums"><code class="javascript">App.router = <span class="keyword">new</span> Epitome.Router({
+    <span class="comment">// routes definition will proxy the events</span>
+    routes: {
+        <span class="string">''</span>                        : <span class="string">'index'</span>,
+        <span class="string">'#!help'</span>                : <span class="string">'help'</span>,
+        <span class="string">'#!test1/:query/:id?'</span>    : <span class="string">'test1'</span>,
+        <span class="string">'#!test2/:query/*'</span>        : <span class="string">'test2'</span>,
+        <span class="string">'#!error'</span>               : <span class="string">'dummyerror'</span>
+    },
+
+    <span class="comment">// router init</span>
+    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        console.log(<span class="string">'init'</span>);
+    },
+
+    <span class="comment">// before route method</span>
+    onBefore: <span class="function"><span class="keyword">function</span><span class="params">(routeId)</span>{</span>
+        console.log(<span class="string">'before'</span>, routeId)
+    },
+
+    <span class="comment">// specific pseudos for before</span>
+    <span class="string">'onIndex:before'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'we are about to go to the index route'</span>);
+    },
+
+    <span class="comment">// specific pseudos for after</span>
+    <span class="string">'onIndex:after'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'navigated already to index route, update breadcrumb?'</span>);
+    },
+
+    <span class="comment">// after route method</span>
+    onAfter: <span class="function"><span class="keyword">function</span><span class="params">(route)</span>{</span>
+        console.info(<span class="string">'after'</span>, route)
+    },
+
+    <span class="comment">// routes events callbacks</span>
+
+    <span class="comment">// index</span>
+    onIndex: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'index'</span>)
+    },
+
+    onHelp: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'help'</span>);
+        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    },
+
+    onTest1: <span class="function"><span class="keyword">function</span><span class="params">(query, id)</span> {</span>
+        console.info(<span class="string">'test1'</span>, query, id);
+        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    },
+
+    onTest2: <span class="function"><span class="keyword">function</span><span class="params">(query)</span> {</span>
+        console.info(<span class="string">'test2'</span>, query);
+        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    },
+
+    <span class="comment">// no route event was found, though route was defined</span>
+    onError: <span class="function"><span class="keyword">function</span><span class="params">(error)</span>{</span>
+        console.error(error);
+        <span class="comment">// recover by going default route</span>
+        <span class="keyword">this</span>.navigate(<span class="string">''</span>);
+    },
+
+    onUndefined: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log(<span class="string">'this is an undefined route'</span>);
+    },
+
+    <span class="string">'onRoute:remove'</span>: <span class="function"><span class="keyword">function</span><span class="params">(route)</span> {</span>
+        alert(route + <span class="string">' was removed by popular demand'</span>);
+    },
+
+    <span class="string">'onRoute:add'</span>: <span class="function"><span class="keyword">function</span><span class="params">(constructorObject)</span> {</span>
+        console.log(constructorObject.id + <span class="string">' was added as a new route'</span>);
+    }
+
+});</code></pre>
+<h3 id="eptiome-router/addroute">addRoute</h3>
+<hr />
+<p><em>Expects arguments: <code>(Object) route</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>route:add</code></strong></em>
+
+</p>
+<p>Example adding of route to your instance after instantiation:
+
+</p>
+<pre class="prettyprint linenums"><code class="javascript">App.router.addRoute({
+    route: <span class="string">'#!dynamicRoute'</span>,
+    id: <span class="string">'dynamic'</span>,
+    events: {
+        onDynamic: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            alert(<span class="string">'you found the blowfish'</span>);
+            <span class="keyword">if</span> (confirm(<span class="string">'remove this route?'</span>))
+                <span class="keyword">this</span>.removeRoute(<span class="string">'#!dynamicRoute'</span>);
+        }
+    }
+});</code></pre>
+<h3 id="eptiome-router/removeroute">removeRoute</h3>
+<hr />
+<p><em>Expects arguments: <code>(String) route</code></em>
+
+</p>
+<p><em>Returns: <code>this</code></em>
+
+</p>
+<p><em><strong>Events: <code>route:remove</code></strong></em>
+
+</p>
+<p>Removes a route by the route identifier string.
 
 
 </p>
