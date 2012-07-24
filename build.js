@@ -29,12 +29,6 @@ request(compile, function(error, response, html) {
 			rel: 'stylesheet'
 		}).replaces(css);
 
-		new window.Element('link', {
-			href: 'css/docs.css',
-			type: 'text/css',
-			rel: 'stylesheet'
-		}).inject(bootstrap, 'after');
-
 		// move the scripts to the head
 		window.document.getElements('.jsdom').removeClass('jsdom').inject(head);
 

@@ -6,11 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Epitome</title>
+    
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    
+    
 
-      <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
-
-
-
+    
       <!-- Google Analytics -->
       <script type="text/javascript">
 
@@ -39,10 +40,7 @@
         })();
       </script>
     
-  <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
-  <script src="js/moostrap-scrollspy.js"></script>
-  <script src="js/prettify.js"></script>
-  <script src="js/docs.js"></script></head>
+  <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script><script src="js/moostrap-scrollspy.js"></script><script src="js/prettify.js"></script><script src="js/docs.js"></script></head>
   <body style=""><div id="container">
   <div id="nav">
     
@@ -410,7 +408,7 @@
 <p>The <code>options</code> object is a standard MooTools class options override and is being merged with the <code>Epitome.Model.prototype.options</code> when a new model is created. It typically contains various event handlers in the form of:
 
 </p>
-<pre><code class="javascript"><span class="keyword">new</span> Epitome.Model({}, {
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">new</span> Epitome.Model({}, {
    onChange: <span class="function"><span class="keyword">function</span><span class="params">(key, value)</span> {</span>
        console.log(key, value);
    },
@@ -533,7 +531,7 @@
 <p>A collection of custom accessors that override default <code>model.get</code> and <code>model.set</code> methods. For example:
 
 </p>
-<pre><code class="javascript">properties: {
+<pre class="prettyprint linenums"><code class="javascript">properties: {
     foo: {
         get: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
             <span class="comment">// scope is model</span>
@@ -600,7 +598,7 @@
 <p>A method that you can extend in your definition of Models for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
+<pre class="prettyprint linenums"><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
     <span class="comment">// data comes back with decoration. split them first.</span>
     <span class="keyword">this</span>.meta = response.meta;
     <span class="keyword">return</span> response.data;
@@ -653,7 +651,7 @@
 </p>
 <p>The constructor method will accept a large variety of arguments. You can pass on either an Array of Models or an Array of Objects or a single Model or a single Object. You can also pass an empty Array and populate it later. Typical Collection prototype definition looks something like this:
 </p>
-<pre><code class="javascript"><span class="keyword">var</span> usersCollection = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> usersCollection = <span class="keyword">new</span> Class({
     Extends: Epitome.Collection
     model: userModel <span class="comment">// or Epitome.Model by default</span>
 });
@@ -779,7 +777,7 @@
 </p>
 <p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. For example:
 </p>
-<pre><code class="javascript">users.sort(<span class="string">'name'</span>);
+<pre class="prettyprint linenums"><code class="javascript">users.sort(<span class="string">'name'</span>);
 <span class="comment">// descending order pseduo</span>
 users.sort(<span class="string">'name:desc'</span>);</code></pre>
 <p>Sorting also allows you to pass a function you define yourself as per the <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> interface. When done, it will fire a <code>sort</code> event.
@@ -880,7 +878,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 <p>A method that you can extend in your definition of Epitome.Collection.Sync for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
+<pre class="prettyprint linenums"><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
     <span class="comment">// data comes back with decoration. split them first.</span>
     <span class="comment">// { meta: { something: 'here' }, models: [] }</span>
     <span class="keyword">this</span>.meta = response.meta;
@@ -906,7 +904,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <p>A simple example would look like this:
 </p>
-<pre><code class="javascript"><span class="comment">// define the View prototype</span>
+<pre class="prettyprint linenums"><code class="javascript"><span class="comment">// define the View prototype</span>
 <span class="keyword">var</span> testView = <span class="keyword">new</span> Class({
 
     Extends: Epitome.View,
@@ -990,7 +988,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <p>An example override to make it work with Mustache would be:
 </p>
-<pre><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
     Extends: Epitome.View,
     template: <span class="function"><span class="keyword">function</span><span class="params">(data, template)</span> {</span>
         template = template || <span class="keyword">this</span>.options.template;
@@ -1048,7 +1046,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <p>To add storage functionality to your model, you declare use in the prototype via the <code>Implements</code> mutator:
 </p>
-<pre><code class="javascript"><span class="keyword">var</span> user = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> user = <span class="keyword">new</span> Class({
     Extends: Epitome.Model,
     Implements: Epitome.Storage.localStorage(<span class="string">'model'</span>)
 });</code></pre>
@@ -1091,7 +1089,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <p>When you retrieve a model or a collection, it will simply return what the browser has as data (based upon the model or colleciton id as key). It will <strong>NOT</strong> apply a <code>model.set(data)</code> for you, you need to do this yourself.
 </p>
-<pre><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
     id: <span class="string">'bob'</span>
 });
 
@@ -1099,7 +1097,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 bob.set(bob.retrieve());</code></pre>
 <p>Automatically populate:
 </p>
-<pre><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
     id: <span class="string">'bob'</span>
 }, {
     onRetrieve: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
@@ -1131,7 +1129,7 @@ bob.set(bob.retrieve());</code></pre>
 </ul>
 <p>You can modify the syntax for the tags by altering the regex in the constructor:
 </p>
-<pre><code class="javascript">options: {
+<pre class="prettyprint linenums"><code class="javascript">options: {
     <span class="comment">// default block logic syntax is &lt;% if (data.prop) { %</span>
     evaluate: <span class="regexp">/&lt;%([\s\S]+?)%/g</span>,
     <span class="comment">// literal out is &lt;%=property%</span>
@@ -1146,7 +1144,7 @@ bob.set(bob.retrieve());</code></pre>
 <p>A quick model creation with prototyping and <code>localStorage</code> looks like this:
 
 </p>
-<pre><code class="javascript"><span class="comment">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage</span>
+<pre class="prettyprint linenums"><code class="javascript"><span class="comment">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage</span>
 <span class="keyword">var</span> User = <span class="keyword">new</span> Class({
     Extends: Epitome.Model.Sync,
     Implements: Epitome.Storage.sessionStorage(),
@@ -1211,7 +1209,7 @@ userModel.save();</code></pre>
 </p>
 <p>The todo app is also a submodule of Epitome so you can add it by doing this at the root of the repo:
 </p>
-<pre><code><span class="title">git</span> submodule init
+<pre class="prettyprint linenums"><code><span class="title">git</span> submodule init
 <span class="title">git</span> submodule update</code></pre>
 <p>And you can keep it updated by going to <code>~/example/todo/</code> and doing a pull
 
@@ -1227,7 +1225,7 @@ userModel.save();</code></pre>
 <p>Typically, you'd create a new production build by running:
 
 </p>
-<pre><code class="sh"> r<span class="preprocessor">.js</span> -o app<span class="preprocessor">.build</span><span class="preprocessor">.js</span>
+<pre class="prettyprint linenums"><code class="sh"> r<span class="preprocessor">.js</span> -o app<span class="preprocessor">.build</span><span class="preprocessor">.js</span>
 
 Tracing dependencies for: epitome
 Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</span>
@@ -1247,14 +1245,14 @@ Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</spa
 <p>Install requirejs via npm, if you haven't:
 
 </p>
-<pre><code><span class="title">npm</span> install -g requirejs</code></pre>
+<pre class="prettyprint linenums"><code><span class="title">npm</span> install -g requirejs</code></pre>
 <p>Alternatively, grab r.js and put it inside the project, then do <code>node r.js -o app.build.js</code>
 
 </p>
 <p>An npm package is also available:
 
 </p>
-<pre><code><span class="title">npm</span> install epitome</code></pre>
+<pre class="prettyprint linenums"><code><span class="title">npm</span> install epitome</code></pre>
 <p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root.
 
 </p>

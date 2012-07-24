@@ -14,7 +14,6 @@ window.addEvent('domready', function() {
 		}
 	});
 
-	document.getElements('pre').addClass('prettyprint linenums');
 	prettyPrint();
 
 });
