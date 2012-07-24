@@ -15,23 +15,31 @@ request(compile, function(error, response, html) {
 	dom.env(html, [
 		'http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js',
 		'js/moostrap-scrollspy.js',
+		'js/prettify.js',
 		'js/docs.js'
 	],
 	function(errors, window) {
 		var head = window.getDocument().getElement('head'),
 			css = head.getElement('link');
 
-
-
 		// add custom stylesheet
-		new window.Element('link', {
-			href: 'css/docs.css',
+		var bootstrap = new window.Element('link', {
+			href: 'css/bootstrap.css',
 			type: 'text/css',
 			rel: 'stylesheet'
 		}).replaces(css);
 
+		new window.Element('link', {
+			href: 'css/docs.css',
+			type: 'text/css',
+			rel: 'stylesheet'
+		}).inject(bootstrap, 'after');
+
 		// move the scripts to the head
 		window.document.getElements('.jsdom').removeClass('jsdom').inject(head);
+
+		// prettify
+		window.document.getElements('pre').addClass('prettyprint linenums');
 
 		// fix doctype
 		html = ['<!DOCTYPE html>', window.document.innerHTML].join('\n');
