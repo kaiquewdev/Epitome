@@ -10,4 +10,8 @@ window.addEvent('domready', function() {
 			this.element.getElements('li.active').removeClass('active');
 		}
 	});
+
+	document.getElements('pre').addClass('prettyprint linenums');
+	prettyPrint();
+
 });
