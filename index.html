@@ -1369,6 +1369,20 @@ userModel.set({
 
 <span class="comment">// go wild!</span>
 userModel.save();</code></pre>
+<p>For an example via Require.JS:
+</p>
+<pre class="prettyprint linenums"><code><span class="keyword">require</span>.config({
+    baseUrl: <span class="string">'src'</span>
+});
+
+<span class="keyword">require</span>([<span class="string">'epitome-model'</span>], <span class="keyword">function</span>(Epitome) {
+    <span class="comment">// Epitome will contain Model and isEqual automatically.</span>
+    <span class="keyword">var</span> tweet = <span class="keyword">new</span> <span class="keyword">Class</span>({
+        <span class="keyword">Extends</span>: Epitome.model
+    });
+
+    <span class="comment">// etc.</span>
+});</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
 </p>
