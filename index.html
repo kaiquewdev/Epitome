@@ -553,6 +553,41 @@
 }</code></pre>
 <p>In the example above, any calls to <code>model.set('foo', value)</code> and <code>model.get('foo')</code> are handled by custom functions. This is a pattern that allows you to use getters and setters for properties that are handled differently than normal ones. It can also be used as pre-processors for data. Make sure that you either set them on the instance directly or that you import the default ones for id in a custom prototype version as they are not merged like options.
 
+</p>
+<p>Keep in mind that if you want to use custom setters as transformers, you need to work with the low-level api and mock the default event system for compatibility. Although this gives you great control, it's not exactly API-friendly and can cause circular references if you are not being careful. For instance, decorating a property <code>price</code> with a currency sign:
+</p>
+<pre class="prettyprint linenums"><code class="javascript">properties: {
+    price: {
+        set: <span class="function"><span class="keyword">function</span><span class="params">(value)</span> {</span>
+            <span class="comment">// do NOT do this, it will create an infinite loop as it's calling self.</span>
+            <span class="keyword">return</span> <span class="keyword">this</span>.set(<span class="string">'price'</span>, <span class="string">'$'</span> + value);
+        }
+    }
+}</code></pre>
+<p>Instead, you need to work with the <code>_attributes</code> object and mock the events:
+</p>
+<pre class="prettyprint linenums"><code>properties: {
+    price: {
+        <span class="keyword">set</span>: <span class="keyword">function</span>(value) {
+            // <span class="keyword">get</span> current value <span class="keyword">and</span> prep <span class="keyword">new</span> value.
+            var currentValue = this.<span class="keyword">get</span>(<span class="comment">'price'),</span>
+                newValue = <span class="comment">'$' + value;</span>
+
+            // store it <span class="keyword">in</span> the attributes object
+            this._attributes[<span class="comment">'price'] = newValue;</span>
+
+            // see <span class="keyword">if</span> we need <span class="keyword">to</span> raise change events
+            <span class="keyword">if</span> (!Epitome.isEqual(currentValue, newValue)) {
+                // individual event
+                this.fireEvent(<span class="comment">'change:price', newValue);</span>
+                // <span class="keyword">if</span> a part of a <span class="keyword">set</span>({obj}), general change as well.
+                this.propertiesChanged.push(<span class="comment">'price');</span>
+            }
+        }
+    }
+}</code></pre>
+<p>This gives you great versatility but it does require some understanding of the inner workings of Model. The important thing to remember is, <code>set</code> is a proxy method using <code>_set</code>, which is through a MooTools <code>overloadSetter</code>. The same thing applies to <code>get</code>, which is overloaded through <code>overloadGetter</code>.
+
 
 </p>
 <h2 id="epitome-model-sync">Epitome.Model.Sync</h2>
