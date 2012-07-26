@@ -378,7 +378,10 @@
 <p>Epitome's API is still subject to small changes and improvements (mostly additions of events and bug fixes), which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>Current version: <em>0.0.6 beta</em>
+<p>Current version: <strong>0.0.7 beta 2</strong>
+
+</p>
+<p>All individual components of Epitome work as normal javscript files to be used in a browser as well as through <code>require.js</code> modules. See <a href="#download-building">Downloading + Building</a>
 
 </p>
 <h2 id="epitome-model">Epitome.Model</h2>
@@ -1407,6 +1410,9 @@ userModel.save();</code></pre>
 <p>You can check it out of the <a href="https://github.com/DimitarChristoff/Epitome/">github repo</a> or you can <a href="https://github.com/DimitarChristoff/Epitome/zipball/master">grab the zip</a> or simply download the minified <a href="https://raw.github.com/DimitarChristoff/Epitome/master/Epitome-min.js">Epitome-min.js</a>.
 
 </p>
+<p>All files are wrapped into <code>define</code> blocks, which means you can simply use <code>require.js</code> to ask for a component and all of its dependencies will be resolved automatically for you.
+
+</p>
 <p>You can create your own minified concatenated version of Epitome with the components you want. Have a look inside of the simple <code>app.build.js</code> you can use for <code>r.js</code> (require.js optimiser).
 
 </p>
@@ -1441,7 +1447,7 @@ Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</spa
 
 </p>
 <pre class="prettyprint linenums"><code><span class="title">npm</span> install epitome</code></pre>
-<p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root.
+<p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root. require('epitome') should then return the contents of <code>main.js</code> in the source folder, which grabs all dependencies.
 
 </p>
 <h2 id="testing">Testing</h2>
