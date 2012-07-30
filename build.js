@@ -35,6 +35,28 @@ request(compile, function(error, response, html) {
 		// prettify
 		window.document.getElements('pre').addClass('prettyprint linenums');
 
+		/*
+		window.document.getElements('a.api').each(function(a) {
+			var api = [],
+				searching = true,
+				c = true;
+
+			while(searching && c) {
+				c = a.getNext();
+
+				if (c.hasClass('api-end')) {
+					c.destroy();
+					searching = false;
+				}
+				else {
+					api.push(c);
+				}
+			}
+
+			var foo = new window.Element('div.alert.alert-info').adopt(api).replaces(a);
+		});
+		*/
+
 		// fix doctype
 		html = ['<!DOCTYPE html>', window.document.innerHTML].join('\n');
 
