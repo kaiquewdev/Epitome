@@ -403,15 +403,14 @@
 </p>
 <h3 id="epitome-model/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) model</code>, <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) model</code>, <code>(Object) options</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>ready</code></strong></em>
+<em><strong>Events: <code>ready</code></strong></em>
+</div>
 
-</p>
 <p>The <code>model</code> - if passed, sets the internal data hash to a new derefrenced object. Special accessor properties, as defined in the <code>Epitome.Model.prototype.properties</code>, will run first and be applicable. See <a href="#epitome-model/model-properties">properties</a> for more info.
 
 </p>
@@ -419,7 +418,7 @@
 
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="keyword">new</span> Epitome.Model({}, {
-   onChange: <span class="function"><span class="keyword">function</span><span class="params">(key, value)</span> {</span>
+   onChange: <span class="keyword">function</span>(key, value) {
        console.log(key, value);
    },
    defaults: {
@@ -434,15 +433,14 @@
 </p>
 <h3 id="epitome-model/set">set</h3>
 <hr />
-<p><em>Expects arguments: mixed: <code>(String) key</code>, <code>(Mixed) value</code> - pair - or: <code>(Object) obj</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: mixed: <code>(String) key</code>, <code>(Mixed) value</code> - pair - or: <code>(Object) obj</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events:</strong></em>
+<em><strong>Events:</strong></em>
+</div>
 
-</p>
 <ul>
 <li><code>change: function(changedProperties) {}</code></li>
 <li><code>change:key: function(valueForKey) {}</code></li>
@@ -455,59 +453,58 @@
 </p>
 <h3 id="epitome-model/get">get</h3>
 <hr />
-<p><em>Expects arguments mixed: <code>(String) key</code> or <code>(Array) keys</code></em>
+<div class="alert alert-info">
+<em>Expects arguments mixed: <code>(String) key</code> or <code>(Array) keys</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
+</div>
 
-</p>
 <p>Returns known values within the model for either a single key or an array of keys. For an array of keys, it will return an object with <code>key</code> : <code>value</code> mapping.
 
 </p>
 <h3 id="epitome-model/tojson">toJSON</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
+</div>
 
-</p>
 <p>Returns a de-referenced Object, containing all the known model keys and values.
 
 </p>
 <h3 id="epitome-model/unset">unset</h3>
 <hr />
-<p><em>Expects arguments: mixed: <code>(String) key</code> or <code>(Array) keys</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: mixed: <code>(String) key</code> or <code>(Array) keys</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
+</div>
 
-</p>
 <p>Removes keys from model, either a single one or an array of multiple keys. Does not fire a change event.
 
 </p>
 <h3 id="epitome-model/empty">empty</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>empty</code></strong></em>
+<em><strong>Events: <code>empty</code></strong></em>
+</div>
 
-</p>
 <p>Empties the model of all data and fires a single change event with all keys as well as individual <code>change:key</code> events.
 
 </p>
 <h3 id="epitome-model/destroy">destroy</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>destroy</code></strong></em>
+<em><strong>Events: <code>destroy</code></strong></em>
+</div>
 
-</p>
 <p>Empties the model. No change event. Event is observed by Collections the model is a member of, where it triggers a <code>removeModel()</code>
 
 
@@ -543,11 +540,11 @@
 </p>
 <pre class="prettyprint linenums"><code class="javascript">properties: {
     foo: {
-        get: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        get: <span class="keyword">function</span>() {
             <span class="comment">// scope is model</span>
             <span class="keyword">return</span> <span class="keyword">this</span>.foo();
         },
-        set: <span class="function"><span class="keyword">function</span><span class="params">(value)</span> {</span>
+        set: <span class="keyword">function</span>(value) {
             <span class="comment">// don't send this to the attributes, store in the instance directly.</span>
             <span class="comment">// won't fire a traditional onChange</span>
             <span class="keyword">this</span>.foo = value;
@@ -561,7 +558,7 @@
 </p>
 <pre class="prettyprint linenums"><code class="javascript">properties: {
     price: {
-        set: <span class="function"><span class="keyword">function</span><span class="params">(value)</span> {</span>
+        set: <span class="keyword">function</span>(value) {
             <span class="comment">// do NOT do this, it will create an infinite loop as it's calling self.</span>
             <span class="keyword">return</span> <span class="keyword">this</span>.set(<span class="string">'price'</span>, <span class="string">'$'</span> + value);
         }
@@ -571,20 +568,20 @@
 </p>
 <pre class="prettyprint linenums"><code>properties: {
     price: {
-        <span class="keyword">set</span>: <span class="keyword">function</span>(value) {
-            // <span class="keyword">get</span> current value <span class="keyword">and</span> prep <span class="keyword">new</span> value.
-            var currentValue = this.<span class="keyword">get</span>(<span class="comment">'price'),</span>
-                newValue = <span class="comment">'$' + value;</span>
+        <span class="keyword">set</span>: function(<span class="keyword">value</span>) {
+            <span class="comment">// get current value and prep new value.</span>
+            <span class="keyword">var</span> currentValue = <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'price'</span>),
+                newValue = <span class="string">'$'</span> + <span class="keyword">value</span>;
 
-            // store it <span class="keyword">in</span> the attributes object
-            this._attributes[<span class="comment">'price'] = newValue;</span>
+            <span class="comment">// store it in the attributes object</span>
+            <span class="keyword">this</span>._attributes[<span class="string">'price'</span>] = newValue;
 
-            // see <span class="keyword">if</span> we need <span class="keyword">to</span> raise change events
+            <span class="comment">// see if we need to raise change events</span>
             <span class="keyword">if</span> (!Epitome.isEqual(currentValue, newValue)) {
-                // individual event
-                this.fireEvent(<span class="comment">'change:price', newValue);</span>
-                // <span class="keyword">if</span> a part of a <span class="keyword">set</span>({obj}), general change as well.
-                this.propertiesChanged.push(<span class="comment">'price');</span>
+                <span class="comment">// individual event</span>
+                <span class="keyword">this</span>.fireEvent(<span class="string">'change:price'</span>, newValue);
+                <span class="comment">// if a part of a set({obj}), general change as well.</span>
+                <span class="keyword">this</span>.propertiesChanged.push(<span class="string">'price'</span>);
             }
         }
     }
@@ -599,9 +596,10 @@
 </p>
 <h3 id="epitome-model-sync/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) model</code>, <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) model</code>, <code>(Object) options</code></em>
+</div>
 
-</p>
 <p>A model <code>id</code> with your model as well as setup a <code>urlRoot</code> either as a property of the model or as an options property is required for your model to be synced. The constructor function first calls the Epitome.Model constructor and then sets up the XHR instance and methods.
 
 </p>
@@ -610,12 +608,12 @@
 </p>
 <h3 id="epitome-model-sync/sync">sync</h3>
 <hr />
-<p><em>Expects optional arguments: <code>(String) method</code>, <code>(Object) model</code></em>
+<div class="alert alert-info">
+<em>Expects optional arguments: <code>(String) method</code>, <code>(Object) model</code></em>
 
-</p>
-<p><em><strong>Events: <code>sync: function(responseObj, method, options) {}</code></strong></em>
+<em><strong>Events: <code>sync: function(responseObj, method, options) {}</code></strong></em>
+</div>
 
-</p>
 <p>Sync acts as a proxy/interface to the XHR instance in the model <code>this.request</code> A method can be one of the following:
 </p>
 <blockquote>
@@ -634,31 +632,30 @@
 </p>
 <h3 id="epitome-model-sync/parse">parse</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) response</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) response</code></em>
 
-</p>
-<p><em>Expected return: <code>(Object) response</code></em>
+<em>Expected return: <code>(Object) response</code></em>
+</div>
 
-</p>
 <p>A method that you can extend in your definition of Models for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
+<pre class="prettyprint linenums"><code class="javascript">parse: <span class="keyword">function</span>(response) {
     <span class="comment">// data comes back with decoration. split them first.</span>
     <span class="keyword">this</span>.meta = response.meta;
     <span class="keyword">return</span> response.data;
 }</code></pre>
 <h3 id="epitome-model-sync/save">save</h3>
 <hr />
-<p><em>Expects optional arguments: <code>(String) key</code>, <code>(String) value</code></em>
+<div class="alert alert-info">
+<em>Expects optional arguments: <code>(String) key</code>, <code>(String) value</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>save</code>, <code>sync</code>, possibly <code>create</code>, <code>update</code></strong></em>
+<em><strong>Events: <code>save</code>, <code>sync</code>, possibly <code>create</code>, <code>update</code></strong></em>
+</div>
 
-</p>
 <p>The save should send the contents of the model to the server for storage. If it is a model that has not been saved before or fetched from the server, it will do so via <code>create()</code>, else, it will use <code>update()</code> instead.
 
 </p>
@@ -667,15 +664,14 @@
 </p>
 <h3 id="epitome-model-sync/fetch">fetch</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>fetch</code>, <code>sync</code>, <code>read</code></strong></em>
+<em><strong>Events: <code>fetch</code>, <code>sync</code>, <code>read</code></strong></em>
+</div>
 
-</p>
 <p>It will request the server to return the model object for the current id via a <code>.read()</code>. It will also change the status of the model (<code>model.isNewModel</code>) to false, meaning <code>.save()</code> will never use <code>.create()</code>. The fetch event will fire once the response object has been returned. The response object is then merged with the current model via a <code>.set</code>, it won't empty your data. To do so, you need to issue a <code>.empty()</code> first.
 
 </p>
@@ -685,15 +681,14 @@
 </p>
 <h3 id="epitome-collection/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>ready</code></strong></em>
+<em><strong>Events: <code>ready</code></strong></em>
+</div>
 
-</p>
 <p>The constructor method will accept a large variety of arguments. You can pass on either an Array of Models or an Array of Objects or a single Model or a single Object. You can also pass an empty Array and populate it later. Typical Collection prototype definition looks something like this:
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> usersCollection = <span class="keyword">new</span> Class({
@@ -704,10 +699,10 @@
 <span class="keyword">var</span> users = <span class="keyword">new</span> usersCollection([{
     id: <span class="string">'bob'</span>
 }], {
-    onChange: <span class="function"><span class="keyword">function</span><span class="params">(model, props)</span> {</span>
+    onChange: <span class="keyword">function</span>(model, props) {
         console.log(<span class="string">'model change'</span>, model, props);
     },
-    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onReady: <span class="keyword">function</span>() {
         console.log(<span class="string">'the collection is ready'</span>);
     }
 });</code></pre>
@@ -716,15 +711,14 @@
 </p>
 <h3 id="epitome-collection/addmodel">addModel</h3>
 <hr />
-<p><em>Expects arguments: <code>(Mixed) model</code> , <code>(Boolean) replace</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Mixed) model</code> , <code>(Boolean) replace</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>add: function(model, cid) {}</code></strong></em>
+<em><strong>Events: <code>add: function(model, cid) {}</code></strong></em>
+</div>
 
-</p>
 <p>Adding a Model to a Collection must always happen through this method. It either appends the Model instance to the internal <code>_models</code> Array or it creates a new Model and then appends it. It also starts observing the Model's events and emitting them to the Collection instance with an additional argument passed <code>Model</code>. So, if you add a Model stored in <code>bob</code> and then do <code>bob.fireEvent('hai', 'there')</code>, the collection will also fire an event like this: <code>this.fireEvent('hai', [bob, 'there']); Adding a Model also increases the </code>Collection.length` property.
 
 </p>
@@ -733,15 +727,14 @@
 </p>
 <h3 id="epitome-collection/removemodel">removeModel</h3>
 <hr />
-<p><em>Expects arguments: <code>(Mixed) model(s)</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Mixed) model(s)</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>remove: function(model, cid) {}</code>, <code>reset</code></strong></em>
+<em><strong>Events: <code>remove: function(model, cid) {}</code>, <code>reset</code></strong></em>
+</div>
 
-</p>
 <p>This method allows you to remove a single model or an array of models from the collection in the same call. For each removed model, a <code>remove</code> Event will fire. When removing of all Models is done, the collection will also fire a <code>reset</code> event, allowing you to re-render your views if you like.
 
 </p>
@@ -753,73 +746,71 @@
 </p>
 <h3 id="epitome-collection/getmodel">getModel</h3>
 <hr />
-<p><em>Expects arguments: <code>(Number) id</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Number) id</code></em>
 
-</p>
-<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+<em>Returns: <code>modelInstance</code> or <code>null</code></em>
+</div>
 
-</p>
 <p>Returns a model based upon the Array index in the Collection.
 
 </p>
 <h3 id="epitome-collection/getmodelbycid">getModelByCID</h3>
 <hr />
-<p><em>Expects arguments: <code>(String) cid</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(String) cid</code></em>
 
-</p>
-<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+<em>Returns: <code>modelInstance</code> or <code>null</code></em>
+</div>
 
-</p>
 <p>Performs a search in the collection by <code>cid</code> (Collection id). Returns found Model instance or <code>null</code> if no match is found.
 
 </p>
 <h3 id="epitome-collection/getmodelbyid">getModelById</h3>
 <hr />
-<p><em>Expects arguments: <code>(String) id</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(String) id</code></em>
 
-</p>
-<p><em>Returns: <code>modelInstance</code> or <code>null</code></em>
+<em>Returns: <code>modelInstance</code> or <code>null</code></em>
+</div>
 
-</p>
 <p>Performs a search in the collection by the Model's <code>id</code> via the standard <code>getter</code>. Returns found Model instance or <code>null</code> if no match is found.
 
 </p>
 <h3 id="epitome-collection/tojson">toJSON</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>modelsData</code></em>
+<em>Returns: <code>modelsData</code></em>
+</div>
 
-</p>
 <p>Returns an array of the applied <code>toJSON</code> method on all Models in the collection.
 
 </p>
 <h3 id="epitome-collection/empty">empty</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>remove</code>, <code>reset</code>, <code>empty</code></strong></em>
+<em><strong>Events: <code>remove</code>, <code>reset</code>, <code>empty</code></strong></em>
+</div>
 
-</p>
 <p>Applies <code>this.removeModel</code> to all Models of the collection. Fires <code>empty</code> when done - though before that, a <code>remove</code> and <code>reset</code> will fire, see <a href="#epitome-collection/removemodel">removeModel</a>
 
 </p>
 <h3 id="epitome-collection/sort">sort</h3>
 <hr />
-<p><em>Expects arguments: (Mixed) how</em>
+<div class="alert alert-info">
+<em>Expects arguments: (Mixed) how</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>sort</code></strong></em>
+<em><strong>Events: <code>sort</code></strong></em>
+</div>
 
-</p>
 <p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. For example:
 </p>
 <pre class="prettyprint linenums"><code class="javascript">users.sort(<span class="string">'name'</span>);
@@ -830,15 +821,14 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-collection/reverse">reverse</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>sort</code></strong></em>
+<em><strong>Events: <code>sort</code></strong></em>
+</div>
 
-</p>
 <p>Reverses sort the order of Models in the collection. Fires a <code>sort</code> event, not <code>reverse</code>
 
 </p>
@@ -883,29 +873,27 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-collection-sync/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Array) models / objects</code> (or a single model /object), <code>(Object) options</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>ready</code></strong></em>
+<em><strong>Events: <code>ready</code></strong></em>
+</div>
 
-</p>
 <p>In terms of differences with the original prototype, the <code>options</code>, needs just one extra key: <code>urlRoot</code>, which should contain the absolute or relative URL to the end-point that can return the Model data.
 
 </p>
 <h3 id="epitome-collection-sync/fetch">fetch</h3>
 <hr />
-<p><em>Expects optional arguments: (Boolean) refresh</em>
+<div class="alert alert-info">
+<em>Expects optional arguments: (Boolean) refresh</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>fetch</code></strong></em>
+<em><strong>Events: <code>fetch</code></strong></em>
+</div>
 
-</p>
 <p>When called, it will asynchronously try to go and fetch Model data. When data arrives, Models are reconciled with the Models in the collection already by <code>id</code>. If they exist already, a <code>set()</code> is called that will merge new data into the Model instance and fire <code>change</code> events as appropriate. If the optional <code>refresh</code> argument is set to true, the current collection will be emptied first via <a href="#epitome-collection/empty">empty</a>.
 
 </p>
@@ -914,16 +902,16 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-collection-sync/parse">parse</h3>
 <hr />
-<p><em>Expects arguments: <code>(Mixed) response</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Mixed) response</code></em>
 
-</p>
-<p><em>Expected return: <code>(Array) response</code></em>
+<em>Expected return: <code>(Array) response</code></em>
+</div>
 
-</p>
 <p>A method that you can extend in your definition of Epitome.Collection.Sync for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">parse: <span class="function"><span class="keyword">function</span><span class="params">(response)</span> {</span>
+<pre class="prettyprint linenums"><code class="javascript">parse: <span class="keyword">function</span>(response) {
     <span class="comment">// data comes back with decoration. split them first.</span>
     <span class="comment">// { meta: { something: 'here' }, models: [] }</span>
     <span class="keyword">this</span>.meta = response.meta;
@@ -935,15 +923,14 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-view/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) options</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>ready</code></strong></em>
+<em><strong>Events: <code>ready</code></strong></em>
+</div>
 
-</p>
 <p>A single argument in the shape of an <code>options</code> Object is passed to the constructor of the View. It is expected to have special 'mutator'-like properties and key properties that it stores for future use.
 
 </p>
@@ -954,7 +941,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 
     Extends: Epitome.View,
 
-    render: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    render: <span class="keyword">function</span>() {
         <span class="comment">// have a render.</span>
         <span class="keyword">this</span>.empty();
         <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));
@@ -978,7 +965,7 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
         <span class="string">'click:relay(button.change-one)'</span>: <span class="string">'changeModel'</span>
     },
 
-    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onReady: <span class="keyword">function</span>() {
         <span class="keyword">this</span>.render();
     },
 
@@ -997,37 +984,36 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </ul>
 <h3 id="epitome-view/render">render</h3>
 <hr />
-<p><em>Expects arguments: unknown</em>
+<div class="alert alert-info">
+<em>Expects arguments: unknown</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>render</code></strong></em>
+<em><strong>Events: <code>render</code></strong></em>
+</div>
 
-</p>
 <p>It is essential that this method is defined in your View prototype Object definition. It does not assume to do anything by default, you need to define how the output takes place and how your data is being used. For convenience, it has access to either <code>this.model</code> or <code>this.collection</code> as the source of data that can be be passed to the <a href="#epitome-view/template">template</a> method. It is expected that at the bottom of your definition, <code>this.parent()</code> is called in order for the <code>render</code> event to fire.
 
 </p>
 <h3 id="epitome-view/setelement">setElement</h3>
 <hr />
-<p><em>Expects arguments: <code>(Mixed) element</code>, optional <code>(Object) events</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Mixed) element</code>, optional <code>(Object) events</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
+</div>
 
-</p>
 <p>A public method that allows you to change or set an element that powers a view. If called the first time, it will get the Element (through <code>document.id()</code>) and save the reference in <code>this.element</code>. If an events object is passed, it will bind the events. If called a second time, it will unbind all events on the old element, change the element reference and rebind new events, if supplied.
 
 </p>
 <h3 id="epitome-view/template">template</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) data</code>, optional <code>(String) template</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) data</code>, optional <code>(String) template</code></em>
 
-</p>
-<p><em>Returns: compiled template or function.</em>
+<em>Returns: compiled template or function.</em>
+</div>
 
-</p>
 <p>A simple sandbox function where you can either use the Epitome.Template templating engine or call an external engine like Mustache, Handlebars, Hogan etc. The second argument is optional and if not supplied, it will revert to <code>this.options.template</code> instead.
 
 </p>
@@ -1035,53 +1021,50 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
     Extends: Epitome.View,
-    template: <span class="function"><span class="keyword">function</span><span class="params">(data, template)</span> {</span>
+    template: <span class="keyword">function</span>(data, template) {
         template = template || <span class="keyword">this</span>.options.template;
         <span class="keyword">return</span> Mustache.render(template, data);
     },
-    render: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    render: <span class="keyword">function</span>() {
         <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template({name:<span class="string">'there'</span>}, <span class="string">'Hello {{name}}'</span>));
     }
 });</code></pre>
 <h3 id="epitome-view/empty">empty</h3>
 <hr />
-<p><em>Expects arguments: <code>(Boolean) soft</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Boolean) soft</code></em>
 
-</p>
-<p><em>Returns: compiled template or function.</em>
+<em>Returns: compiled template or function.</em>
 
-</p>
-<p><em><strong>Events: <code>empty</code></strong></em>
+<em><strong>Events: <code>empty</code></strong></em>
+</div>
 
-</p>
 <p>By default, it will empty the element through making innerHTML an empty string, calling GC on all child nodes. If the <code>soft</code> argument is true, will apply <code>this.element.empty()</code>, which is a MooTools Element method that removes all child nodes without destroying them.
 
 </p>
 <h3 id="epitome-view/dispose">dispose</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: compiled template or function.</em>
+<em>Returns: compiled template or function.</em>
 
-</p>
-<p><em><strong>Events: <code>dispose</code></strong></em>
+<em><strong>Events: <code>dispose</code></strong></em>
+</div>
 
-</p>
 <p>Will detach <code>this.element</code> from the DOM. It can be injected again later on.
 
 </p>
 <h3 id="epitome-view/destroy">destroy</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: compiled template or function.</em>
+<em>Returns: compiled template or function.</em>
 
-</p>
-<p><em><strong>Events: <code>dispose</code></strong></em>
+<em><strong>Events: <code>dispose</code></strong></em>
+</div>
 
-</p>
 <p>Removes and destroys <code>this.element</code> from the DOM and from memory. You need to use <a href="#epitome-view/setelement">setElement</a> to add a new one if you want to re-render.
 
 </p>
@@ -1103,15 +1086,14 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-storage/store">store</h3>
 <hr />
-<p><em>Expects optional arguments: <code>(Object) model</code></em>
+<div class="alert alert-info">
+<em>Expects optional arguments: <code>(Object) model</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>store: function(model) {}</code></strong></em>
+<em><strong>Events: <code>store: function(model) {}</code></strong></em>
+</div>
 
-</p>
 <p>When called without any arguments, store will just save the current model or collection into storage. The models and collections are stored under a sub-key of the value returned <code>.get('id')</code>, so it is important to have an id in both if you want to achieve persistence.
 
 </p>
@@ -1123,15 +1105,14 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </p>
 <h3 id="epitome-storage/retrieve">retrieve</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>(Object) model</code> or <code>(Array) collection</code></em>
+<em>Returns: <code>(Object) model</code> or <code>(Array) collection</code></em>
 
-</p>
-<p><em><strong>Events: <code>retrieve: function(model) {}</code></strong></em>
+<em><strong>Events: <code>retrieve: function(model) {}</code></strong></em>
+</div>
 
-</p>
 <p>When you retrieve a model or a collection, it will simply return what the browser has as data (based upon the model or colleciton id as key). It will <strong>NOT</strong> apply a <code>model.set(data)</code> for you, you need to do this yourself.
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
@@ -1145,21 +1126,20 @@ bob.set(bob.retrieve());</code></pre>
 <pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
     id: <span class="string">'bob'</span>
 }, {
-    onRetrieve: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
+    onRetrieve: <span class="keyword">function</span>(data) {
         <span class="keyword">this</span>.set(data);
     }
 }).retrieve();</code></pre>
 <h3 id="epitome-storage/eliminate">eliminate</h3>
 <hr />
-<p><em>Expects arguments: none</em>
+<div class="alert alert-info">
+<em>Expects arguments: none</em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>eliminate</code></strong></em>
+<em><strong>Events: <code>eliminate</code></strong></em>
+</div>
 
-</p>
 <p>Calling eliminate on a model or a collection will destroy the stored data the browser has for that model or collection.
 
 </p>
@@ -1186,15 +1166,14 @@ bob.set(bob.retrieve());</code></pre>
 </p>
 <h3 id="eptiome-router/constructor-initialize">constructor (initialize)</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) options</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) options</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>ready</code>, <code>before</code>, <code>after</code>, mixed, <code>undefined</code>, <code>error</code>, <code>route:add</code>, <code>route:remove</code></strong></em>
+<em><strong>Events: <code>ready</code>, <code>before</code>, <code>after</code>, mixed, <code>undefined</code>, <code>error</code>, <code>route:add</code>, <code>route:remove</code></strong></em>
+</div>
 
-</p>
 <p>As this is quite involved and can act as a Controller for your app, here's a practical example that defines a few routes and event handlers within the Epitome.Router Class instantiation:
 </p>
 <pre class="prettyprint linenums"><code class="javascript">App.router = <span class="keyword">new</span> Epitome.Router({
@@ -1208,82 +1187,81 @@ bob.set(bob.retrieve());</code></pre>
     },
 
     <span class="comment">// router init</span>
-    onReady: <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+    onReady: <span class="keyword">function</span>(){
         console.log(<span class="string">'init'</span>);
     },
 
     <span class="comment">// before route method, fires before the event handler once a match has been found</span>
-    onBefore: <span class="function"><span class="keyword">function</span><span class="params">(routeId)</span>{</span>
+    onBefore: <span class="keyword">function</span>(routeId){
         console.log(<span class="string">'before'</span>, routeId)
     },
 
     <span class="comment">// specific pseudos for :before</span>
-    <span class="string">'onIndex:before'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="string">'onIndex:before'</span>: <span class="keyword">function</span>() {
         console.log(<span class="string">'we are about to go to the index route'</span>);
     },
 
     <span class="comment">// specific pseudos for after</span>
-    <span class="string">'onIndex:after'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="string">'onIndex:after'</span>: <span class="keyword">function</span>() {
         console.log(<span class="string">'navigated already to index route, update breadcrumb?'</span>);
     },
 
     <span class="comment">// after route method has fired, post-route event.</span>
-    onAfter: <span class="function"><span class="keyword">function</span><span class="params">(route)</span>{</span>
+    onAfter: <span class="keyword">function</span>(route){
         console.info(<span class="string">'after'</span>, route)
     },
 
     <span class="comment">// routes events callbacks are functions that call parts of your app</span>
 
     <span class="comment">// index</span>
-    onIndex: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onIndex: <span class="keyword">function</span>() {
         console.log(<span class="string">'index'</span>)
     },
 
-    onHelp: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onHelp: <span class="keyword">function</span>() {
         console.log(<span class="string">'help'</span>);
         console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
     },
 
-    onTest1: <span class="function"><span class="keyword">function</span><span class="params">(query, id)</span> {</span>
+    onTest1: <span class="keyword">function</span>(query, id) {
         console.info(<span class="string">'test1'</span>, query, id);
         console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
     },
 
-    onTest2: <span class="function"><span class="keyword">function</span><span class="params">(query)</span> {</span>
+    onTest2: <span class="keyword">function</span>(query) {
         console.info(<span class="string">'test2'</span>, query);
         console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
     },
 
     <span class="comment">// no route event was found, though route was defined</span>
-    onError: <span class="function"><span class="keyword">function</span><span class="params">(error)</span>{</span>
+    onError: <span class="keyword">function</span>(error){
         console.error(error);
         <span class="comment">// recover by going default route</span>
         <span class="keyword">this</span>.navigate(<span class="string">''</span>);
     },
 
-    onUndefined: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onUndefined: <span class="keyword">function</span>() {
         console.log(<span class="string">'this is an undefined route'</span>);
     },
 
-    <span class="string">'onRoute:remove'</span>: <span class="function"><span class="keyword">function</span><span class="params">(route)</span> {</span>
+    <span class="string">'onRoute:remove'</span>: <span class="keyword">function</span>(route) {
         alert(route + <span class="string">' was removed by popular demand'</span>);
     },
 
-    <span class="string">'onRoute:add'</span>: <span class="function"><span class="keyword">function</span><span class="params">(constructorObject)</span> {</span>
+    <span class="string">'onRoute:add'</span>: <span class="keyword">function</span>(constructorObject) {
         console.log(constructorObject.id + <span class="string">' was added as a new route'</span>);
     }
 });</code></pre>
 <h3 id="eptiome-router/addroute">addRoute</h3>
 <hr />
-<p><em>Expects arguments: <code>(Object) route</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(Object) route</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>route:add</code></strong></em>
+<em><strong>Events: <code>route:add</code></strong></em>
+</div>
 
-</p>
 <p>Example adding of route to your instance after instantiation:
 
 </p>
@@ -1291,7 +1269,7 @@ bob.set(bob.retrieve());</code></pre>
     route: <span class="string">'#!dynamicRoute'</span>,
     id: <span class="string">'dynamic'</span>,
     events: {
-        onDynamic: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        onDynamic: <span class="keyword">function</span>() {
             alert(<span class="string">'you found the blowfish'</span>);
             <span class="keyword">if</span> (confirm(<span class="string">'remove this route?'</span>))
                 <span class="keyword">this</span>.removeRoute(<span class="string">'#!dynamicRoute'</span>);
@@ -1300,15 +1278,14 @@ bob.set(bob.retrieve());</code></pre>
 });</code></pre>
 <h3 id="eptiome-router/removeroute">removeRoute</h3>
 <hr />
-<p><em>Expects arguments: <code>(String) route</code></em>
+<div class="alert alert-info">
+<em>Expects arguments: <code>(String) route</code></em>
 
-</p>
-<p><em>Returns: <code>this</code></em>
+<em>Returns: <code>this</code></em>
 
-</p>
-<p><em><strong>Events: <code>route:remove</code></strong></em>
+<em><strong>Events: <code>route:remove</code></strong></em>
+</div>
 
-</p>
 <p>Removes a route by the route identifier string.
 
 </p>
@@ -1342,14 +1319,14 @@ bob.set(bob.retrieve());</code></pre>
         surname: <span class="string">'Robertson'</span>
     },
     <span class="comment">// add some events</span>
-    onChange: <span class="function"><span class="keyword">function</span><span class="params">(key, value)</span> {</span>
+    onChange: <span class="keyword">function</span>(key, value) {
         console.log(<span class="string">'you changed '</span> + key + <span class="string">' to '</span> + value);
     },
-    onSave: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    onSave: <span class="keyword">function</span>() {
         <span class="comment">// also save to localStorage</span>
         <span class="keyword">this</span>.store();
     },
-    <span class="string">"onChange:name"</span>: <span class="function"><span class="keyword">function</span><span class="params">(value)</span> {</span>
+    <span class="string">"onChange:name"</span>: <span class="keyword">function</span>(value) {
         console.log(<span class="string">'you changed your name to '</span> + value);
     }
 }); <span class="comment">// attr: name: 'Bobby', id: 1, surname: 'Robertson', userModel.urlRoot = '/user/'</span>
@@ -1374,17 +1351,17 @@ userModel.set({
 userModel.save();</code></pre>
 <p>For an example via Require.JS:
 </p>
-<pre class="prettyprint linenums"><code><span class="keyword">require</span>.config({
-    baseUrl: <span class="string">'src'</span>
+<pre class="prettyprint linenums"><code><span class="identifier"><span class="keymethods">require</span></span>.<span class="identifier">config</span>({
+    <span class="identifier">baseUrl</span><span class="symbol">:</span> <span class="string">'src'</span>
 });
 
-<span class="keyword">require</span>([<span class="string">'epitome-model'</span>], <span class="keyword">function</span>(Epitome) {
-    <span class="comment">// Epitome will contain Model and isEqual automatically.</span>
-    <span class="keyword">var</span> tweet = <span class="keyword">new</span> <span class="keyword">Class</span>({
-        <span class="keyword">Extends</span>: Epitome.Model
+<span class="identifier"><span class="keymethods">require</span></span>([<span class="string">'epitome-model'</span>], <span class="identifier">function</span>(<span class="constant">Epitome</span>) {
+    <span class="regexp">//</span> <span class="constant">Epitome</span> <span class="identifier">will</span> <span class="identifier">contain</span> <span class="constant">Model</span> <span class="identifier"><span class="keyword">and</span></span> <span class="identifier">isEqual</span> <span class="identifier">automatically</span>.
+    <span class="identifier">var</span> <span class="identifier">tweet</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Class</span>({
+        <span class="constant">Extends</span><span class="symbol">:</span> <span class="constant">Epitome</span>.<span class="constant">Model</span>
     });
 
-    <span class="comment">// etc.</span>
+    <span class="regexp">//</span> <span class="identifier">etc</span>.
 });</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
@@ -1419,23 +1396,23 @@ userModel.save();</code></pre>
 <p>Typically, you'd create a new production build by running:
 
 </p>
-<pre class="prettyprint linenums"><code class="sh"> r<span class="preprocessor">.js</span> -o app<span class="preprocessor">.build</span><span class="preprocessor">.js</span>
+<pre class="prettyprint linenums"><code class="sh"> r<span class="variable">.js</span> -o app<span class="variable">.build</span><span class="variable">.js</span>
 
-Tracing dependencies for: epitome
-Uglifying file: /projects/Epitome/Epitome-min<span class="preprocessor">.js</span>
+Tracing dependencies <span class="keyword">for</span>: epitome
+Uglifying file: /projects/Epitome/Epitome-min<span class="variable">.js</span>
 
-/projects/Epitome/Epitome-min<span class="preprocessor">.js</span>
+/projects/Epitome/Epitome-min<span class="variable">.js</span>
 ----------------
-/projects/Epitome/src/epitome<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-isequal<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-model<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-model-sync<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-storage<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-collection<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-collection-sync<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-template<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-view<span class="preprocessor">.js</span>
-/projects/Epitome/src/epitome-router<span class="preprocessor">.js</span></code></pre>
+/projects/Epitome/src/epitome<span class="variable">.js</span>
+/projects/Epitome/src/epitome-isequal<span class="variable">.js</span>
+/projects/Epitome/src/epitome-model<span class="variable">.js</span>
+/projects/Epitome/src/epitome-model-sync<span class="variable">.js</span>
+/projects/Epitome/src/epitome-storage<span class="variable">.js</span>
+/projects/Epitome/src/epitome-collection<span class="variable">.js</span>
+/projects/Epitome/src/epitome-collection-sync<span class="variable">.js</span>
+/projects/Epitome/src/epitome-template<span class="variable">.js</span>
+/projects/Epitome/src/epitome-view<span class="variable">.js</span>
+/projects/Epitome/src/epitome-router<span class="variable">.js</span></code></pre>
 <p>Install requirejs via npm, if you haven't:
 
 </p>
@@ -1458,10 +1435,10 @@ it uses <code>mootools-server</code> and lacks <code>Request</code> or <code>Ele
 <p>Testing is run via <a href="http://busterjs.org">Buster.js</a> can be found in <code>/tests/</code> - check the README.md there for more info.
 
 </p>
-<p><em>Please note that as of buster 0.6.0, having browser and node test groups at the same time fails to terminate the buster-test process. node tests are temporary disabled</em>
+<div class="alert alert-error">
+<em>Please note that as of buster 0.6.0, having browser and node test groups at the same time fails to terminate the buster-test process. node tests are temporary disabled</em>
+</div>
 
-
-</p>
 <h2 id="development-and-contribution">Development and contribution</h2>
 <p>Feel free to fork, play and contribute back to the project if you can, pull requests are more than welcome. Just make sure you
 create the request in a branch and write tests / fix existing tests before you send it. Oh, and make sure it does not break the build!
