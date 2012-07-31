@@ -29,6 +29,16 @@ request(compile, function(error, response, html) {
 			rel: 'stylesheet'
 		}).replaces(css);
 
+		new window.Element('link', {
+			rel: 'shortcut icon',
+			href: 'favicon.ico'
+		}).inject(css, 'after');
+
+		// remove typekit
+		window.document.getElements('script[type=text/javascript]').filter(function(s) {
+			return window.String.contains(s.get('text'), 'kitId');
+		}).destroy();
+
 		// move the scripts to the head
 		window.document.getElements('.jsdom').removeClass('jsdom').inject(head);
 
@@ -36,7 +46,7 @@ request(compile, function(error, response, html) {
 		window.document.getElements('pre').addClass('prettyprint linenums');
 
 		// fix doctype
-		html = ['<!DOCTYPE html>', window.document.innerHTML].join('\n');
+		html = ['<!DOCTYPE html>', window.document.innerHTML].join('');
 
 		// write to file.
 		fs.writeFile('index.html', html, function(error) {
