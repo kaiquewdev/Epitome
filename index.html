@@ -87,6 +87,10 @@
                   <a href="#epitome-model/model-properties">Model properties*</a>
                 </li>
               
+                <li>
+                  <a href="#epitome-model/model-validators">Model validators*</a>
+                </li>
+              
             </ul>
           
         </li>
@@ -449,6 +453,7 @@
 
  <em> <code>change: function(changedProperties) {}</code>
  </em> <code>change:key: function(valueForKey) {}</code>
+ * <code>error: function(objectFailedValidation) {}</code>
 
 </p>
 </div>
@@ -590,12 +595,12 @@
 }</code></pre>
 <p>Instead, you need to work with the <code>_attributes</code> object and mock the events:
 </p>
-<pre class="prettyprint linenums"><code>properties: {
+<pre class="prettyprint linenums"><code class="javascript">properties: {
     price: {
-        <span class="keyword">set</span>: function(<span class="keyword">value</span>) {
+        set: <span class="keyword">function</span>(value) {
             <span class="comment">// get current value and prep new value.</span>
-            <span class="keyword">var</span> currentValue = <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'price'</span>),
-                newValue = <span class="string">'$'</span> + <span class="keyword">value</span>;
+            <span class="keyword">var</span> currentValue = <span class="keyword">this</span>.get(<span class="string">'price'</span>),
+                newValue = <span class="string">'$'</span> + value;
 
             <span class="comment">// store it in the attributes object</span>
             <span class="keyword">this</span>._attributes[<span class="string">'price'</span>] = newValue;
@@ -612,6 +617,34 @@
 }</code></pre>
 <p>This gives you great versatility but it does require some understanding of the inner workings of Model. The important thing to remember is that the <code>set</code> method is a proxy and relies on the <strong>private</strong> setter <code>_set</code>, using the MooTools <a href="http://stackoverflow.com/a/4013500/126998">overloadSetter</a>. The same thing applies to <code>get</code>, which is overloaded through <code>overloadGetter</code>.
 
+</p>
+<h3 id="epitome-model/model-validators">Model validators*</h3>
+<p>You can also include basic validators into your model. Validators are an object on the Model prototype that maps any expected key to a function that will return <code>true</code> if the validation passes or a <code>string</code> error message or <code>false</code> on failure.
+
+</p>
+<p>Here is an example:
+</p>
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> validUser = <span class="keyword">new</span> Class({
+    Extends: Epitome.Model,
+    validators: {
+        email: <span class="keyword">function</span>(value) {
+            <span class="keyword">return</span> (<span class="regexp">/(.+)@(.+){2,}\.(.+){2,}/</span>).test(value) ? <span class="literal">true</span> : <span class="string">'This looks like an invalid email address'</span>;
+        }
+    }
+});
+
+<span class="keyword">var</span> userInstance = <span class="keyword">new</span> validUser({}, {
+    onError: <span class="keyword">function</span>(allErrors) {
+        console.log(<span class="string">'The following fields were rejected'</span>, allErrors);
+    },
+    <span class="string">'onError:email'</span>: <span class="keyword">function</span>(errorObj) {
+        <span class="comment">// can have a custom message, action or whatever.</span>
+        console.log(<span class="string">'Email rejected'</span>, errorObj.error);
+    }
+});
+
+userInstance.set(<span class="string">'email'</span>, <span class="string">'this will fail!'</span>);</code></pre>
+<p>The <code>error</code> event is observed by collections and views and fires on all view and collection instances.
 
 </p>
 <h2 id="epitome-model-sync">Epitome.Model.Sync</h2>
