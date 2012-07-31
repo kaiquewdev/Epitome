@@ -32,7 +32,7 @@ request(compile, function(error, response, html) {
 		new window.Element('link', {
 			rel: 'shortcut icon',
 			href: 'favicon.ico'
-		}).inject(css, 'after');
+		}).inject(bootstrap, 'after');
 
 		// remove typekit
 		window.document.getElements('script[type=text/javascript]').filter(function(s) {
