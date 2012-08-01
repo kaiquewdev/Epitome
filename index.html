@@ -1457,8 +1457,28 @@ bob.set(bob.retrieve());</code></pre>
 
 </p>
 <h2 id="examples">Examples</h2>
-<p>A quick model creation with prototyping and <code>localStorage</code> looks like this:
+<p>Epitome is modular via AMD but all the files will also work in a browser in plain script tags. When using Require.JS, you can pull in only sub-modules that you need and Epitome will resolve any dependencies automatically:
+</p>
+<pre class="prettyprint linenums"><code><span class="identifier"><span class="keymethods">require</span></span>.<span class="identifier">config</span>({
+    <span class="identifier">baseUrl</span><span class="symbol">:</span> <span class="string">'src'</span>
+});
 
+<span class="identifier"><span class="keymethods">require</span></span>([<span class="string">'epitome-model-sync'</span>], <span class="identifier">function</span>(<span class="constant">ModelSync</span>) {
+    <span class="regexp">//</span> <span class="identifier">pulls</span> <span class="identifier"><span class="keyword">in</span></span> <span class="identifier">isEqual</span> <span class="identifier"><span class="keyword">and</span></span> <span class="constant">Model</span> <span class="identifier">automatically</span>.
+    <span class="identifier">var</span> <span class="identifier">tweet</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Class</span>({
+        <span class="constant">Extends</span><span class="symbol">:</span> <span class="constant">ModelSync</span>
+    });
+});</code></pre>
+<p>If you'd like the whole project (all modules), you can require <code>main.js</code> (also exported via NPM):
+</p>
+<pre class="prettyprint linenums"><code>require([<span class="string">'main'</span>], <span class="reserved">function</span>(Epitome) {
+    // Epitome <span class="keyword">is</span> an object <span class="reserved">with</span> all the submodules.
+    <span class="reserved">var</span> tweet = <span class="keyword">new</span> Class({
+        Extends: Epitome.Model.Sync,
+        Implements: Epitome.Storage.sessionStorage()
+    });
+});</code></pre>
+<p>When using it in a browser or after the Epitome Object contains all your modules, quick model creation with prototyping and <code>localStorage</code> can look something like this:
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="comment">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage</span>
 <span class="keyword">var</span> User = <span class="keyword">new</span> Class({
@@ -1511,20 +1531,6 @@ userModel.set({
 
 <span class="comment">// go wild!</span>
 userModel.save();</code></pre>
-<p>For an example via Require.JS:
-</p>
-<pre class="prettyprint linenums"><code><span class="identifier"><span class="keymethods">require</span></span>.<span class="identifier">config</span>({
-    <span class="identifier">baseUrl</span><span class="symbol">:</span> <span class="string">'src'</span>
-});
-
-<span class="identifier"><span class="keymethods">require</span></span>([<span class="string">'epitome-model-sync'</span>], <span class="identifier">function</span>(<span class="constant">ModelSync</span>) {
-    <span class="regexp">//</span> <span class="identifier">pulls</span> <span class="identifier"><span class="keyword">in</span></span> <span class="identifier">isEqual</span> <span class="identifier"><span class="keyword">and</span></span> <span class="constant">Model</span> <span class="identifier">automatically</span>.
-    <span class="identifier">var</span> <span class="identifier">tweet</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Class</span>({
-        <span class="constant">Extends</span><span class="symbol">:</span> <span class="constant">ModelSync</span>
-    });
-
-    <span class="regexp">//</span> <span class="identifier">etc</span>.
-});</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
 </p>
