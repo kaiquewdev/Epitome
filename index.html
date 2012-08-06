@@ -161,6 +161,10 @@
                 </li>
               
                 <li>
+                  <a href="#epitome-collection/find">find</a>
+                </li>
+              
+                <li>
                   <a href="#epitome-collection/array-helpers">Array helpers</a>
                 </li>
               
@@ -931,6 +935,44 @@ users.sort(<span class="string">'name:desc'</span>);</code></pre>
 </div>
 
 <p>Reverses sort the order of Models in the collection. Fires a <code>sort</code> event, not <code>reverse</code>
+
+</p>
+<h3 id="epitome-collection/find">find</h3>
+<hr />
+<div class="alert">
+<p>
+<em>Expects arguments: (String) expression</em>
+</p>
+<p>
+<em>Returns: <code>(Array) MatchingModelObjects</code></em>
+</p>
+<p>
+<em><strong>Events: <code>none</code></strong></em>
+</p>
+</div>
+
+<p>This is an experimental API and is subject to change without notice. <code>Collection.find</code> is currently powered by the MooTools <code>Slick.parse</code> engine. This means you can
+ search through your Collection for Models by attributes like you would search in a CSS selector.
+
+</p>
+<p>For example:
+</p>
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> collection = <span class="keyword">new</span> Epitome.Collection([{
+    name: <span class="string">'Bob'</span>,
+    id: <span class="number">2</span>
+}, {
+    name: <span class="string">'Angry Bob'</span>,
+    id: <span class="number">3</span>
+}]);
+
+collection.find(<span class="string">'[name]'</span>); <span class="comment">// where name is defined.</span>
+collection.find(<span class="string">'[name=Bob]'</span>); <span class="comment">// where name is exactly Bob.</span>
+collection.find(<span class="string">'[name*=Bob]'</span>); <span class="comment">// where name contains Bob.</span>
+collection.find(<span class="string">'[name$=Bob]'</span>); <span class="comment">// where name ends on Bob.</span>
+collection.find(<span class="string">'[name^=Bob]'</span>); <span class="comment">// where name starts on Bob.</span>
+collection.find(<span class="string">'[name=Bob],[name^=Angry]'</span>); <span class="comment">// name Bob OR starting with Angry.</span>
+collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="comment">// name Bob AND id==2</span></code></pre>
+<p>Supported operators are <code>=</code> (equals), <code>!=</code> (not equal), <code>*=</code> (contains), <code>$=</code> (ends on), <code>^=</code> (starts with). Currently, you cannot reverse a condition by adding <code>!</code> or <code>not:</code> - in fact, pseudos are not supported yet. Find is just sugar and for more complicated stuff, you can either extend it or use <code>filter</code> instead.
 
 </p>
 <h3 id="epitome-collection/array-helpers">Array helpers</h3>
