@@ -966,7 +966,7 @@ collection.find(<span class="string">'[name]'</span>); <span class="comment">// 
 collection.find(<span class="string">'[name=Bob]'</span>); <span class="comment">// where name is exactly Bob.</span>
 collection.find(<span class="string">'[name*=Bob]'</span>); <span class="comment">// where name contains Bob.</span>
 collection.find(<span class="string">'[name$=Bob]'</span>); <span class="comment">// where name ends on Bob.</span>
-collection.find(<span class="string">'[name^=Bob]'</span>); <span class="comment">// where name starts on Bob.</span>
+collection.find(<span class="string">'[name^=Bob]'</span>); <span class="comment">// where name starts with Bob.</span>
 collection.find(<span class="string">'[name=Bob],[name^=Angry]'</span>); <span class="comment">// name Bob OR starting with Angry.</span>
 collection.find(<span class="string">'[name=Bob][id]'</span>); <span class="comment">// name Bob AND to have an id</span>
 collection.find(<span class="string">'#2[name=Bob],#3'</span>); <span class="comment">// (name Bob AND id==2) OR id==3</span>
