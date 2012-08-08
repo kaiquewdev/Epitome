@@ -342,7 +342,7 @@
       </div>
     
   </div>
-  <div id="content">
+  <div id="content" class="container">
     
       <a href="https://github.com/DimitarChristoff/Epitome" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
     
@@ -1636,8 +1636,29 @@ Uglifying file: /projects/Epitome/Epitome-min<span class="variable">.js</span>
 <p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root. require('epitome') should then return the contents of <code>main.js</code> in the source folder, which grabs all dependencies.
 
 </p>
-<div id="customDownload">
+<div id="customDownload"><div class="row">
+    <span class="span4">
+        <h3>Customise your build of Epitome.</h3>
+        <div id="download">
+            <a target="_blank" class="btn btn-large btn-primary download-link" href="#"><i class="icon-shopping-cart icon-white"></i> Download Epitome</a>
+        </div>
+        <p>
+            The list of AMD modules on the right will be passed to our builder, powered by <code>r.js</code> and built automatically.
+            Your build will get a small hash that can be used to download the same packaged Epitome release later on.</p>
+        <p>
+            The builder does not need all dependencies passed, eg. <code>?build=epitome-collection</code> will automatically pull in
+            any required modules.
+        </p>
+    </span>
+    <span class="span4">
+        <table id="builder" class="table table-striped table-bordered table-condensed">
+            <tbody>
+            </tbody>
+        </table>
+    </span>
 </div>
+</div>
+
 <h2 id="testing">Testing</h2>
 <p>Tests are currently separated in 2 groups: node tests and browser tests. The distinction is that under node only,
 it uses <code>mootools-server</code> and lacks <code>Request</code> or <code>Element</code>, so only unit tests will run.
