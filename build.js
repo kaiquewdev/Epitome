@@ -3,7 +3,12 @@ var dom = require('jsdom'),
 	request = require('request'),
 	fs = require('fs'),
 	repo = 'DimitarChristoff/Epitome',
-	compile = 'http://documentup.com/' + repo + '/recompile/';
+	compile = 'http://documentup.com/' + repo + '/recompile/',
+	template;
+
+fs.readFile('download.tpl', function(error, content) {
+	template = content;
+});
 
 request(compile, function(error, response, html) {
 	if (error) {
@@ -22,12 +27,17 @@ request(compile, function(error, response, html) {
 		var head = window.getDocument().getElement('head'),
 			css = head.getElement('link');
 
+		// bootstrap
+		window.document.getElements('#content').addClass('container');
+
 		// add custom stylesheet
 		var bootstrap = new window.Element('link', {
 			href: 'css/bootstrap.css',
 			type: 'text/css',
 			rel: 'stylesheet'
 		}).replaces(css);
+
+		window.document.getElements('#customDownload').set('html', template);
 
 		new window.Element('link', {
 			rel: 'shortcut icon',
