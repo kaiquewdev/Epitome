@@ -1112,6 +1112,10 @@ collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="co
         <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));
         <span class="keyword">this</span>.parent();
         <span class="keyword">return</span> <span class="keyword">this</span>;
+    },
+
+    doEmpty: <span class="keyword">function</span>() {
+        <span class="keyword">this</span>.model.empty();
     }
 });
 
@@ -1126,7 +1130,7 @@ collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="co
 
     <span class="comment">// event binding</span>
     events: {
-        <span class="string">'click:relay(a.task-remove)'</span>: <span class="string">'emptyModel'</span>,
+        <span class="string">'click:relay(a.task-remove)'</span>: <span class="string">'emptyModel'</span>, <span class="comment">// emit this event to instance</span>
         <span class="string">'click:relay(button.change-one)'</span>: <span class="string">'changeModel'</span>
     },
 
@@ -1134,7 +1138,13 @@ collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="co
         <span class="keyword">this</span>.render();
     },
 
-    `onChange:model`: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>)
+    `onChange:model`: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>),
+
+    onEmptyModel: <span class="keyword">function</span>(event, element) {
+        event &amp;&amp; event.stop &amp;&amp; event.stop();
+        element; <span class="comment">// a.task-remove</span>
+        <span class="keyword">this</span>.doEmpty();
+    }
 });</code></pre>
 <p>The key <code>options</code> are:
 
