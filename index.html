@@ -790,6 +790,12 @@ userInstance.set(<span class="string">'email'</span>, <span class="string">'this
 <p>For reference purposes, each Model that enters a collection needs to have a <code>cid</code> - collection id. If the Model has an <code>id</code>, that is preferred. Otherwise, a <code>cid</code> will be generated. If the Model gets an <code>id</code> later on, the <code>cid</code> will not be changed.
 
 </p>
+<div class="alert alert-info">
+<p>
+<em>Please note that Collections <strong>observe</strong> and bubble <strong>all</strong> model events. For instance, if a Model fires <code>change</code>, the Collection instance will fire <code>onChange</code>, passing the model as <code>arguments[0]</code> and then keeping the rest of the arguments in their original order. For the purposes of implementing this, a decorated local copy of each Model's <code>.fireEvent</code> method is created instead of the one from Class.Event prototype. Once a Model stops being a member of collections, the original <code>fireEvent</code> is restored by deleting the local method on the Model instance.</em>
+</p>
+</div>
+
 <h3 id="epitome-collection/addmodel">addModel</h3>
 <hr />
 <div class="alert">
