@@ -165,6 +165,10 @@
                 </li>
               
                 <li>
+                  <a href="#epitome-collection/findone">findOne</a>
+                </li>
+              
+                <li>
                   <a href="#epitome-collection/array-helpers">Array helpers</a>
                 </li>
               
@@ -988,6 +992,23 @@ collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="co
 <p>Supported operators are <code>=</code> (equals), <code>!=</code> (not equal), <code>*=</code> (contains), <code>$=</code> (ends on), <code>^=</code> (starts with). Currently, you cannot reverse a condition by adding <code>!</code> or <code>not:</code> - in fact, pseudos are not supported yet. Find is just sugar and for more complicated stuff, you can either extend it or use <code>filter</code> instead.
 
 </p>
+<h3 id="epitome-collection/findone">findOne</h3>
+<hr />
+<div class="alert">
+<p>
+<em>Expects arguments: (String) expression</em>
+</p>
+<p>
+<em>Returns: <code>(Model) First matching Model instance or null</code></em>
+</p>
+</div>
+
+<p>Useful for getting a single Model via the <code>.find</code>, this method will return the first matched Model or null if none found.
+
+</p>
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = collection.findOne(<span class="string">'[name=bob]'</span>);
+<span class="comment">// if found, set</span>
+bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'Robert'</span>);</code></pre>
 <h3 id="epitome-collection/array-helpers">Array helpers</h3>
 <p>The following Array methods are also available directly on the Collection instances:
 
