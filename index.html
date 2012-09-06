@@ -1165,7 +1165,7 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
         <span class="keyword">this</span>.render();
     },
 
-    `onChange:model`: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>),
+    <span class="string">'onChange:model'</span>: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>),
 
     onEmptyModel: <span class="keyword">function</span>(event, element) {
         event &amp;&amp; event.stop &amp;&amp; event.stop();
@@ -1241,6 +1241,38 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
         <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template({name:<span class="string">'there'</span>}, <span class="string">'Hello {{name}}'</span>));
     }
 });</code></pre>
+<p>You can change the View prototype to always have Mustache in your views. For example, via AMD/RequireJS, you could do a
+small module that deals with the prototyping of the default View constructor. Say, <code>epitome-view-mustache.js</code>
+</p>
+<pre class="prettyprint linenums"><code class="javascript">
+define([<span class="string">'epitome/epitome-view'</span>], <span class="keyword">function</span>(View){
+    <span class="comment">// prototype it for everyone to use mustache in every view.</span>
+
+    View.implement({
+        template: <span class="keyword">function</span>(data, template) {
+            <span class="comment">// refactor this to work with any other template engine in your constructor</span>
+            template = template || <span class="keyword">this</span>.options.template;
+
+            <span class="keyword">return</span> Mustache.render(template, data);
+        }
+    });
+
+});</code></pre>
+<p>In your Require config (loose example):
+</p>
+<pre class="prettyprint linenums"><code>require.config(<span class="tuple">{
+    paths: <span class="tuple">{
+        epitome: '/js/vendor/epitome'
+    }</span>,
+    deps: [
+        // always load
+        'epitome/epitome-view-mustache'
+    ]
+}</span>);
+
+<span class="function"><span class="title">require</span><span class="params">(['epitome/epitome-view'], <span class="keyword">fun</span><span class="function_name">ction</span>(<span class="variable">View</span>)<span class="tuple">{
+    // <span class="variable">View</span> is now with the mustache template.
+}</span>);</span></span></code></pre>
 <h3 id="epitome-view/empty">empty</h3>
 <hr />
 <div class="alert">
