@@ -930,11 +930,13 @@ userInstance.set(<span class="string">'email'</span>, <span class="string">'this
 </p>
 </div>
 
-<p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. For example:
+<p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. You can also stack up secondary, trinary etc sort keys in case the first one is equal. For example:
 </p>
 <pre class="prettyprint linenums"><code class="javascript">users.sort(<span class="string">'name'</span>);
 <span class="comment">// descending order pseduo</span>
-users.sort(<span class="string">'name:desc'</span>);</code></pre>
+users.sort(<span class="string">'name:desc'</span>);
+<span class="comment">// by type and then birthdate in reverse order (oldest first)</span>
+users.sort(<span class="string">'type,birthdate:desc'</span>);</code></pre>
 <p>Sorting also allows you to pass a function you define yourself as per the <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> interface. When done, it will fire a <code>sort</code> event.
 
 </p>
