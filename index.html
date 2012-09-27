@@ -673,6 +673,10 @@ userInstance.set(<span class="string">'email'</span>, <span class="string">'this
 <p>A model <code>id</code> with your model as well as setup a <code>urlRoot</code> either as a property of the model or as an options property is required for your model to be synced. The constructor function first calls the Epitome.Model constructor and then sets up the XHR instance and methods.
 
 </p>
+<div class="alert">
+<code>options.useJSON</code> (boolean) is an all-important way to control how your Model talks to your server backend. If your server is a native REST implementation, when this value is <code>true</code>, Epitome Sync will set the content-type to application/json and send a strigified JSON of your model on every POST or PUT operation.
+ </div>
+
 <p>An additional option has been added <code>options.emulateREST: true || false</code>, which is being passed to the Request instance. If your server has no CRUD mapping, emulation can be enabled so everything will go through POST/GET requests with <code>_method</code> containing the original intent.
 
 </p>
