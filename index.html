@@ -684,10 +684,10 @@ userInstance.set(<span class="string">'email'</span>, <span class="string">'this
 <hr />
 <div class="alert">
 <p>
-<em>Expects optional arguments: <code>(String) method</code>, <code>(Object) model</code></em>
-</p>
+Expects optional arguments: <code>(String) method</code>, <code>(Object) model</code><em>
+</em></p>
 <p>
-<em><strong>Events: <code>sync: function(responseObj, method, options) {}</code></strong></em>
+<strong>Events: <code>sync: function(responseObj, method, options) {}</code></strong>_
 </p>
 </div>
 
@@ -999,6 +999,28 @@ collection.find(<span class="string">'[name=Bob][id]'</span>); <span class="comm
 collection.find(<span class="string">'#2[name=Bob],#3'</span>); <span class="comment">// (name Bob AND id==2) OR id==3</span>
 collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="comment">// name Bob AND id==2</span></code></pre>
 <p>Supported operators are <code>=</code> (equals), <code>!=</code> (not equal), <code>*=</code> (contains), <code>$=</code> (ends on), <code>^=</code> (starts with). Currently, you cannot reverse a condition by adding <code>!</code> or <code>not:</code> - in fact, pseudos are not supported yet. Find is just sugar and for more complicated stuff, you can either extend it or use <code>filter</code> instead.
+
+</p>
+<p>A new 'feature' has been added that alows you to quickly select deeper object properties by treating any parent keys as tags. For instance:
+
+</p>
+<pre class="prettyprint linenums"><code><span class="identifier">var</span> <span class="identifier">collection</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Epitome</span>.<span class="constant">Collection</span>([{
+    <span class="identifier"><span class="keymethods">name</span></span><span class="symbol">:</span> <span class="string">'Bob'</span>,
+    <span class="identifier">permissions</span><span class="symbol">:</span> {
+        <span class="identifier">edit</span><span class="symbol">:</span> <span class="identifier"><span class="keyword">true</span></span>
+    }
+}, {
+    <span class="identifier"><span class="keymethods">name</span></span><span class="symbol">:</span> <span class="string">'Angry Bob'</span>,
+    <span class="identifier">permissions</span><span class="symbol">:</span> {
+        <span class="identifier">edit</span><span class="symbol">:</span> <span class="identifier"><span class="keyword">false</span></span>
+    }
+}]);
+
+
+<span class="identifier">collection</span>.<span class="identifier"><span class="keymethods">find</span></span>(<span class="string">'permissions[edit]'</span>); <span class="regexp">//</span> <span class="identifier">all</span> <span class="identifier">where</span> <span class="identifier">there</span> <span class="identifier">is</span> <span class="identifier">an</span> <span class="identifier">edit</span> <span class="identifier">property</span>
+<span class="identifier">collection</span>.<span class="identifier"><span class="keymethods">find</span></span>(<span class="string">'permissions[edit=true]'</span>); <span class="regexp">//</span> <span class="identifier">all</span> <span class="identifier">where</span> <span class="identifier">there</span> <span class="identifier">edit</span> <span class="identifier">is</span> <span class="identifier"><span class="keyword">true</span></span></code></pre>
+<p>However, this is more of a syntactic sugar than convention. It won't allow you to do complex CSS-like selections as you cannot combine 'tag' with properties. This means you cannot do <code>permissions[edit][name=Bob]</code> as the context changes to the permissions property. This kind of structure is possibly an anti-pattern anyway, try to keep your models flat.
+
 
 </p>
 <h3 id="epitome-collection/findone">findOne</h3>
