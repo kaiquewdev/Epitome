@@ -21,7 +21,8 @@ request(compile, function(error, response, html) {
 		'http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js',
 		'js/moostrap-scrollspy.js',
 		'js/prettify.js',
-		'js/docs.js'
+		'js/docs.js',
+		'http://widget.uservoice.com/fJ2JKQR4SpUWpEjVynbtgw.js'
 	],
 	function(errors, window) {
 		var head = window.getDocument().getElement('head'),
