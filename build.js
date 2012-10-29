@@ -22,7 +22,7 @@ request(compile, function(error, response, html) {
 		'js/moostrap-scrollspy.js',
 		'js/prettify.js',
 		'js/docs.js',
-		'https://epitome.tenderapp.com/tender_widget.js'
+		'https://epitome.tenderapp.com/tender_widget.js?location=right'
 	],
 	function(errors, window) {
 		var head = window.getDocument().getElement('head'),
