@@ -21,8 +21,7 @@ request(compile, function(error, response, html) {
 		'http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js',
 		'js/moostrap-scrollspy.js',
 		'js/prettify.js',
-		'js/docs.js',
-		'https://epitome.tenderapp.com/tender_widget.js?location=top'
+		'js/docs.js'
 	],
 	function(errors, window) {
 		var head = window.getDocument().getElement('head'),
@@ -55,6 +54,12 @@ request(compile, function(error, response, html) {
 
 		// prettify
 		window.document.getElements('pre').addClass('prettyprint linenums');
+
+		// support thingie
+		new window.Element('script', {
+			src: 'https://epitome.tenderapp.com/tender_widget.js?location=top',
+			type: 'text/javascript'
+		}).inject(window.document.body);
 
 		// fix doctype
 		html = ['<!DOCTYPE html>', window.document.innerHTML].join('');
