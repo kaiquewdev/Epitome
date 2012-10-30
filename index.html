@@ -291,6 +291,14 @@
             <ul>
               
                 <li>
+                  <a href="#examples/sync-and-storage">Sync and Storage</a>
+                </li>
+              
+                <li>
+                  <a href="#examples/prototyping-views">Prototyping Views</a>
+                </li>
+              
+                <li>
                   <a href="#examples/todomvc-reference">TodoMVC reference</a>
                 </li>
               
@@ -1628,6 +1636,9 @@ bob.set(bob.retrieve());</code></pre>
         Implements: Epitome.Storage.sessionStorage()
     });
 });</code></pre>
+<p>an example skeleton of an Epitome-powered AMD app for RequireJS is available <a href="https://github.com/DimitarChristoff/epitome-skeleton-amd">here</a>
+
+</p>
 <p>When using it in a browser or after the Epitome Object contains all your modules, quick model creation with prototyping and <code>localStorage</code> can look something like this:
 </p>
 <pre class="prettyprint linenums"><code class="javascript"><span class="comment">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage</span>
@@ -1681,6 +1692,65 @@ userModel.set({
 
 <span class="comment">// go wild!</span>
 userModel.save();</code></pre>
+<h3 id="examples/sync-and-storage">Sync and Storage</h3>
+<p>Here's an example pattern that allows you to use Storage and Sync on a model to reconcile data on the client and on the server. In a scenario where a model is being updated on the client with an implicit Save button that does the Sync but a <code>onChange</code> event that saves any changes in <code>localStorage</code> in the meanwhile, this is how you'd reconcile the differences:
+
+</p>
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> Model = <span class="keyword">new</span> Class({
+   <span class="comment">// extends always before implements</span>
+    Extends: Epitome.Model.Sync,
+    <span class="comment">// use storage</span>
+    Implements: Epitome.Storage.localStorage(<span class="string">'model'</span>)
+});
+
+<span class="comment">// typically, this will be bound in a view</span>
+<span class="keyword">var</span> model = <span class="keyword">new</span> Model({
+    id: <span class="number">3</span>
+}, {
+    onChange: <span class="keyword">function</span>(){
+        <span class="keyword">this</span>.store();
+    },
+    onFetch: <span class="keyword">function</span>(){
+        <span class="keyword">var</span> data = <span class="keyword">this</span>.retrieve();
+
+        <span class="keyword">if</span> (!Epitome.isEqual(data, <span class="keyword">this</span>.toJSON)){
+            <span class="keyword">if</span> (confirm(<span class="string">'Local copy differs from server, use it?'</span>)) {
+                <span class="keyword">this</span>.set(data);
+            }
+        }
+    }
+});
+
+<span class="comment">// get latest</span>
+model.fetch();</code></pre>
+<p>This pattern can be applied from views as well. Essentially, you are saying: when a model is fetched (and you already know the id), compare server-side version to what storage knows of this model. If a difference is found, you can either prompt the user to accept the client version and load it or you can automatically merge the changes into the model. Since a change always saves into storage, the client-side version will always have an upto date version of data. This is useful when a model is bound to a view and a user modifies it and then reloads the page or navigates away before saving.
+
+</p>
+<h3 id="examples/prototyping-views">Prototyping Views</h3>
+<p>It is sometimes useful to prototype the view, including the events that will be bound - as opposed to doing it in the instantiation.
+
+</p>
+<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
+    Extends: Epitome.View,
+    options: {
+        events: {
+            <span class="comment">// these relate to this.element. if an element is not passed, they won't matter</span>
+            <span class="string">'click:relay(button.save)'</span>: <span class="string">'saveData'</span>
+        },
+        onSaveData: <span class="keyword">function</span>(){
+            <span class="keyword">var</span> data = {};
+            <span class="keyword">this</span>.element.getElements(<span class="string">'input'</span>).each(<span class="keyword">function</span>(el){
+                data[el.get(<span class="string">'name'</span>)] = el.get(<span class="string">'value'</span>).stripScripts().clean()
+            });
+            <span class="comment">// notice there is no onChange:model saving via sync, we save on demand</span>
+            <span class="keyword">this</span>.model.set(data);
+            <span class="keyword">this</span>.model.save();
+        },
+        <span class="string">'onChange:model'</span>: <span class="keyword">function</span>(){
+            <span class="keyword">this</span>.model.store(); <span class="comment">// changes in-between go to storage</span>
+        }
+    }
+});</code></pre>
 <p>For more examples, have a look inside of <code>example/js/</code>
 
 </p>
