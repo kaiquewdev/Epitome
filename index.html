@@ -108,6 +108,10 @@
                 </li>
               
                 <li>
+                  <a href="#epitome-model-sync/preparse">preParse</a>
+                </li>
+              
+                <li>
                   <a href="#epitome-model-sync/fetch">fetch</a>
                 </li>
               
@@ -755,6 +759,25 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 <p>If the optional <code>key</code> =&gt; <code>value</code> pair is passed, it will set them on the model and then save the updated model.
 
 </p>
+<h3 id="epitome-model-sync/preparse">preParse</h3>
+<hr />
+<div class="alert">
+<p>
+<em>Expects arguments: <code>(Object) response</code></em>
+</p>
+<p>
+<em>Expected return: <code>(Object) response</code></em>
+</p>
+</div>
+
+<p>A method that you can extend in your definition of Models for doing any pre-processing of data before using CREATE or UPDATE via sync to the server. For example:
+
+</p>
+<pre class="prettyprint linenums"><code class="javascript">prePaarse: <span class="keyword">function</span>(data) {
+    <span class="comment">// remove local property 'meta' which the server does not like.</span>
+    <span class="keyword">delete</span> data.meta;
+    <span class="keyword">return</span> data;
+}</code></pre>
 <h3 id="epitome-model-sync/fetch">fetch</h3>
 <hr />
 <div class="alert">
