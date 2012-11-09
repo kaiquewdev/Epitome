@@ -203,7 +203,7 @@
                 </li>
               
                 <li>
-                  <a href="#epitome-collection-sync/parse">parse</a>
+                  <a href="#epitome-collection-sync/postprocessor">postProcessor</a>
                 </li>
               
             </ul>
@@ -1160,7 +1160,7 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>Returns the instance 'now' but because it is async, applying anything to the collection before the <code>fetch</code> event has fired may have unexpected results.
 
 </p>
-<h3 id="epitome-collection-sync/parse">parse</h3>
+<h3 id="epitome-collection-sync/postprocessor">postProcessor</h3>
 <hr />
 <div class="alert">
 <p>
@@ -1174,7 +1174,7 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>A method that you can extend in your definition of Epitome.Collection.Sync for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">parse: <span class="keyword">function</span>(response) {
+<pre class="prettyprint linenums"><code class="javascript">postProcessor: <span class="keyword">function</span>(response) {
     <span class="comment">// data comes back with decoration. split them first.</span>
     <span class="comment">// { meta: { something: 'here' }, models: [] }</span>
     <span class="keyword">this</span>.meta = response.meta;
