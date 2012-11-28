@@ -1240,7 +1240,9 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
         <span class="keyword">this</span>.render();
     },
 
-    <span class="string">'onChange:model'</span>: <span class="keyword">this</span>.render.bind(<span class="keyword">this</span>),
+    <span class="string">'onChange:model'</span>: <span class="keyword">function</span>(){
+        <span class="keyword">this</span>.render();
+    },
 
     onEmptyModel: <span class="keyword">function</span>(event, element) {
         event &amp;&amp; event.stop &amp;&amp; event.stop();
