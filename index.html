@@ -1466,7 +1466,7 @@ model.fetch();</code></pre>
 </p>
 <p>The todo app is also a submodule of Epitome so you can add it by doing this at the root of the repo:
 </p>
-<pre class="prettyprint linenums"><code>git submodule init
+<pre><code class="lang-sh">git submodule init
 git submodule update</code></pre>
 <p>And you can keep it updated by going to <code>~/example/todo/</code> and doing a pull
 
@@ -1488,7 +1488,7 @@ git submodule update</code></pre>
 <p>Typically, you'd create a new production build by running:
 
 </p>
-<pre class="prettyprint linenums"><code class="lang-sh">&gt; r.js -o app.build.js
+<pre><code class="lang-sh">&gt; r.js -o app.build.js
 
 Tracing dependencies for: epitome
 Uglifying file: /projects/Epitome/Epitome-min.js
@@ -1508,14 +1508,14 @@ Uglifying file: /projects/Epitome/Epitome-min.js
 <p>Install requirejs via npm, if you haven't:
 
 </p>
-<pre class="prettyprint linenums"><code>npm install -g requirejs</code></pre>
+<pre><code class="lang-sh">npm install -g requirejs</code></pre>
 <p>Alternatively, grab r.js and put it inside the project, then do <code>node r.js -o app.build.js</code>
 
 </p>
 <p>An npm package is also available:
 
 </p>
-<pre class="prettyprint linenums"><code>npm install epitome</code></pre>
+<pre><code class="lang-sh">npm install epitome</code></pre>
 <p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root. require('epitome') should then return the contents of <code>main.js</code> in the source folder, which grabs all dependencies.
 
 </p>
