@@ -1,381 +1,49 @@
-<!DOCTYPE html>
-<html style="" slick-uniqueid="3">
-  <head>
+<!DOCTYPE html><html style="" slick-uniqueid="3">
+<head>
     <meta charset="utf-8" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Epitome</title>
-    
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" /><link rel="shortcut icon" href="favicon.ico" />
-    
-    
-
-    
-      <!-- Google Analytics -->
-      <script type="text/javascript">
-
+    <title>Epitome - MVC/MVP framework for MooTools</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <!-- Google Analytics -->
+    <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-1199722-3']);
         _gaq.push(['_trackPageview']);
-
         (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-
-      </script>
-    
-
-    <!-- Typekit -->
-    
-      
-    
-  <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script><script src="js/moostrap-scrollspy.js"></script><script src="js/prettify.js"></script><script src="js/docs.js"></script></head>
-  <body style=""><div id="container">
-  <div id="nav">
-    
-      <div id="header">
-        <a href="#" id="logo">Epitome</a>
-      </div>
-    
-    <ul id="sections">
-      
-        <li>
-          <a href="#changelog">Changelog</a>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-model">Epitome.Model</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-model/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/set">set</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/get">get</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/tojson">toJSON</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/unset">unset</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/empty">empty</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/destroy">destroy</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/model-properties">Model properties*</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model/model-validators">Model validators*</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-model-sync">Epitome.Model.Sync</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-model-sync/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-sync/sync">sync</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-sync/postprocessor">postProcessor</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-sync/save">save</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-sync/preprocessor">preProcessor</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-model-sync/fetch">fetch</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-collection">Epitome.Collection</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-collection/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/addmodel">addModel</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/removemodel">removeModel</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/getmodel">getModel</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/getmodelbycid">getModelByCID</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/getmodelbyid">getModelById</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/tojson">toJSON</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/empty">empty</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/sort">sort</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/reverse">reverse</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/find">find</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/findone">findOne</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/array-helpers">Array helpers</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection/collection-properties">Collection properties*</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-collection-sync">Epitome.Collection.Sync</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-collection-sync/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection-sync/fetch">fetch</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-collection-sync/postprocessor">postProcessor</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-view">Epitome.View</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-view/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/render">render</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/setelement">setElement</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/template">template</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/empty">empty</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/dispose">dispose</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-view/destroy">destroy</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-storage">Epitome.Storage</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#epitome-storage/store">store</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-storage/retrieve">retrieve</a>
-                </li>
-              
-                <li>
-                  <a href="#epitome-storage/eliminate">eliminate</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#epitome-template">Epitome.Template</a>
-          
-        </li>
-      
-        <li>
-          <a href="#eptiome-router">Eptiome.Router</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#eptiome-router/constructor-initialize">constructor (initialize)</a>
-                </li>
-              
-                <li>
-                  <a href="#eptiome-router/addroute">addRoute</a>
-                </li>
-              
-                <li>
-                  <a href="#eptiome-router/removeroute">removeRoute</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#examples">Examples</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#examples/sync-and-storage">Sync and Storage</a>
-                </li>
-              
-                <li>
-                  <a href="#examples/prototyping-views">Prototyping Views</a>
-                </li>
-              
-                <li>
-                  <a href="#examples/todomvc-reference">TodoMVC reference</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#download-building">Download + Building</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#download-building/amd-builder">AMD Builder</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#testing">Testing</a>
-          
-        </li>
-      
-        <li>
-          <a href="#development-and-contribution">Development and contribution</a>
-          
-        </li>
-      
-        <li>
-          <a href="#credits-and-licensing">Credits and licensing</a>
-          
-        </li>
-      
-    </ul>
-    
-      <div class="extra" id="github">
-        <a href="https://github.com/DimitarChristoff/Epitome">Source on Github</a>
-      </div>
-      
-        <div class="extra" id="github-issues">
-          <a href="https://github.com/DimitarChristoff/Epitome/issues">Issues</a>
+    </script>
+    <script src="js/mootools-yui-compressed.js"></script>
+    <script src="js/moostrap-scrollspy.js"></script>
+    <script src="js/prettify.js"></script>
+    <script src="js/docs.js"></script>
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" /><script src="js/mootools-yui-compressed.js"></script><script src="js/moostrap-scrollspy.js"></script><script src="js/prettify.js"></script><script src="js/docs.js"></script></head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#"></a>
+            <a href="http://travis-ci.org/DimitarChristoff/Epitome" class="travis">
+                <img src="https://secure.travis-ci.org/DimitarChristoff/Epitome.png?branch=master" /></a>
         </div>
-      
-      
-        <div id="travis" class="extra">
-          <a href="http://travis-ci.org/DimitarChristoff/Epitome">
-            <img src="https://secure.travis-ci.org/DimitarChristoff/Epitome.png?branch=master" />
-          </a>
-        </div>
-      
-    
-    
-      <div class="extra twitter">
+    </div>
+    <a id="github-ribbon" href="https://github.com/DimitarChristoff/Epitome"><img alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" /></a>
+</div>
+<div id="nav">
+    <div class="twitter extra">
         <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width: 162px; height: 20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=D_mitar&amp;show_count=false"></iframe>
-      </div>
-    
-      <div class="extra twitter">
-        <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width: 162px; height: 20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=policyexpert&amp;show_count=false"></iframe>
-      </div>
-    
-  </div>
-  <div id="content" class="container">
-    
-      <a href="https://github.com/DimitarChristoff/Epitome" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-    
-    <p><img src="https://github.com/DimitarChristoff/Epitome/raw/master/example/epitome-logo.png" alt="Epitome" />
+    </div>
+    <ul id="sections"><li class="l2"><a href="#changelog">Changelog</a></li><li class="l2"><a href="#epitome-model">Epitome.Model</a><ul><li class="l3"><a href="#epitome-model/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#epitome-model/set">set</a></li><li class="l3"><a href="#epitome-model/get">get</a></li><li class="l3"><a href="#epitome-model/tojson">toJSON</a></li><li class="l3"><a href="#epitome-model/unset">unset</a></li><li class="l3"><a href="#epitome-model/empty">empty</a></li><li class="l3"><a href="#epitome-model/destroy">destroy</a></li><li class="l3"><a href="#epitome-model/model-properties">Model properties*</a></li><li class="l3"><a href="#epitome-model/model-validators">Model validators*</a></li></ul></li><li class="l2"><a href="#epitome-modelsync">Epitome.Model.Sync</a><ul><li class="l3"><a href="#epitome-modelsync/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#epitome-modelsync/sync">sync</a></li><li class="l3"><a href="#epitome-modelsync/postprocessor">postProcessor</a></li><li class="l3"><a href="#epitome-modelsync/save">save</a></li><li class="l3"><a href="#epitome-modelsync/preprocessor">preProcessor</a></li><li class="l3"><a href="#epitome-modelsync/fetch">fetch</a></li></ul></li><li class="l2"><a href="#epitome-collection">Epitome.Collection</a><ul><li class="l3"><a href="#epitome-collection/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#epitome-collection/addmodel">addModel</a></li><li class="l3"><a href="#epitome-collection/removemodel">removeModel</a></li><li class="l3"><a href="#epitome-collection/getmodel">getModel</a></li><li class="l3"><a href="#epitome-collection/getmodelbycid">getModelByCID</a></li><li class="l3"><a href="#epitome-collection/getmodelbyid">getModelById</a></li><li class="l3"><a href="#epitome-collection/tojson">toJSON</a></li><li class="l3"><a href="#epitome-collection/empty">empty</a></li><li class="l3"><a href="#epitome-collection/sort">sort</a></li><li class="l3"><a href="#epitome-collection/reverse">reverse</a></li><li class="l3"><a href="#epitome-collection/find">find</a></li><li class="l3"><a href="#epitome-collection/findone">findOne</a></li><li class="l3"><a href="#epitome-collection/array-helpers">Array helpers</a></li><li class="l3"><a href="#epitome-collection/collection-properties">Collection properties*</a></li></ul></li><li class="l2"><a href="#epitome-collectionsync">Epitome.Collection.Sync</a><ul><li class="l3"><a href="#epitome-collectionsync/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#epitome-collectionsync/fetch">fetch</a></li><li class="l3"><a href="#epitome-collectionsync/postprocessor">postProcessor</a></li></ul></li><li class="l2"><a href="#epitome-view">Epitome.View</a><ul><li class="l3"><a href="#epitome-view/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#epitome-view/render">render</a></li><li class="l3"><a href="#epitome-view/setelement">setElement</a></li><li class="l3"><a href="#epitome-view/template">template</a></li><li class="l3"><a href="#epitome-view/empty">empty</a></li><li class="l3"><a href="#epitome-view/dispose">dispose</a></li><li class="l3"><a href="#epitome-view/destroy">destroy</a></li></ul></li><li class="l2"><a href="#epitome-storage">Epitome.Storage</a><ul><li class="l3"><a href="#epitome-storage/store">store</a></li><li class="l3"><a href="#epitome-storage/retrieve">retrieve</a></li><li class="l3"><a href="#epitome-storage/eliminate">eliminate</a></li></ul></li><li class="l2"><a href="#epitome-template">Epitome.Template</a></li><li class="l2"><a href="#eptiome-router">Eptiome.Router</a><ul><li class="l3"><a href="#eptiome-router/constructor-initialize">constructor (initialize)</a></li><li class="l3"><a href="#eptiome-router/addroute">addRoute</a></li><li class="l3"><a href="#eptiome-router/removeroute">removeRoute</a></li></ul></li><li class="l2"><a href="#examples">Examples</a><ul><li class="l3"><a href="#examples/sync-and-storage">Sync and Storage</a></li><li class="l3"><a href="#examples/prototyping-views">Prototyping Views</a></li><li class="l3"><a href="#examples/todomvc-reference">TodoMVC reference</a></li></ul></li><li class="l2"><a href="#download-building">Download + Building</a><ul><li class="l3"><a href="#download-building/amd-builder">AMD Builder</a></li><li class="l3"><a href="#customise-your-build-of-epitome-">Customise your build of Epitome.</a></li></ul></li><li class="l2"><a href="#testing">Testing</a></li><li class="l2"><a href="#development-and-contribution">Development and contribution</a></li><li class="l2"><a href="#credits-and-licensing">Credits and licensing</a></li></ul>
+    <div class="extra" id="github">
+        <a href="https://github.com/DimitarChristoff/Epitome">Source on Github</a>
+    </div>
+    <div class="extra" id="github-issues">
+        <a href="https://github.com/DimitarChristoff/Epitome/issues">Issues</a>
+    </div>
+</div>
+<div id="content" class="container">
+    <p>
 
 </p>
 <blockquote>
@@ -460,12 +128,12 @@
 <p>The <code>options</code> object is a standard MooTools class options override and is being merged with the <code>Epitome.Model.prototype.options</code> when a new model is created. It typically contains various event handlers in the form of:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">new</span> Epitome.Model({}, {
-   onChange: <span class="keyword">function</span>(key, value) {
+<pre class="prettyprint linenums"><code class="lang-javascript">new Epitome.Model({}, {
+   onChange: function(key, value) {
        console.log(key, value);
    },
    defaults: {
-       userTitle: <span class="string">'admin'</span>
+       userTitle: 'admin'
    }
 });</code></pre>
 <p>Supported: <code>(Object) options.defaults</code> - allows initial values of the model to be set if they are not being passed to the model constructor.
@@ -603,16 +271,16 @@
 <p>A collection of custom accessors that override default <code>model.get</code> and <code>model.set</code> methods. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">properties: {
+<pre class="prettyprint linenums"><code class="lang-javascript">properties: {
     foo: {
-        get: <span class="keyword">function</span>() {
-            <span class="comment">// scope is model</span>
-            <span class="keyword">return</span> <span class="keyword">this</span>.foo();
+        get: function() {
+            // scope is model
+            return this.foo();
         },
-        set: <span class="keyword">function</span>(value) {
-            <span class="comment">// don't send this to the attributes, store in the instance directly.</span>
-            <span class="comment">// won't fire a traditional onChange</span>
-            <span class="keyword">this</span>.foo = value;
+        set: function(value) {
+            // don't send this to the attributes, store in the instance directly.
+            // won't fire a traditional onChange
+            this.foo = value;
         }
     }
 }</code></pre>
@@ -621,32 +289,32 @@
 </p>
 <p>Keep in mind that if you want to use custom setters as transformers, you need to work with the low-level api and mock the default event system for compatibility. Although this gives you great control, it's not exactly API-friendly and can cause circular references if you are not being careful. For instance, decorating a property <code>price</code> with a currency sign:
 </p>
-<pre class="prettyprint linenums"><code class="javascript">properties: {
+<pre class="prettyprint linenums"><code class="lang-javascript">properties: {
     price: {
-        set: <span class="keyword">function</span>(value) {
-            <span class="comment">// do NOT do this, it will create an infinite loop as it's calling self.</span>
-            <span class="keyword">return</span> <span class="keyword">this</span>.set(<span class="string">'price'</span>, <span class="string">'$'</span> + value);
+        set: function(value) {
+            // do NOT do this, it will create an infinite loop as it's calling self.
+            return this.set('price', '$' + value);
         }
     }
 }</code></pre>
 <p>Instead, you need to work with the <code>_attributes</code> object and mock the events:
 </p>
-<pre class="prettyprint linenums"><code class="javascript">properties: {
+<pre class="prettyprint linenums"><code class="lang-javascript">properties: {
     price: {
-        set: <span class="keyword">function</span>(value) {
-            <span class="comment">// get current value and prep new value.</span>
-            <span class="keyword">var</span> currentValue = <span class="keyword">this</span>.get(<span class="string">'price'</span>),
-                newValue = <span class="string">'$'</span> + value;
+        set: function(value) {
+            // get current value and prep new value.
+            var currentValue = this.get('price'),
+                newValue = '$' + value;
 
-            <span class="comment">// store it in the attributes object</span>
-            <span class="keyword">this</span>._attributes[<span class="string">'price'</span>] = newValue;
+            // store it in the attributes object
+            this._attributes['price'] = newValue;
 
-            <span class="comment">// see if we need to raise change events</span>
-            <span class="keyword">if</span> (!Epitome.isEqual(currentValue, newValue)) {
-                <span class="comment">// individual event</span>
-                <span class="keyword">this</span>.fireEvent(<span class="string">'change:price'</span>, newValue);
-                <span class="comment">// if a part of a set({obj}), general change as well.</span>
-                <span class="keyword">this</span>.propertiesChanged.push(<span class="string">'price'</span>);
+            // see if we need to raise change events
+            if (!Epitome.isEqual(currentValue, newValue)) {
+                // individual event
+                this.fireEvent('change:price', newValue);
+                // if a part of a set({obj}), general change as well.
+                this.propertiesChanged.push('price');
             }
         }
     }
@@ -660,34 +328,34 @@
 </p>
 <p>Here is an example:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> validUser = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">var validUser = new Class({
     Extends: Epitome.Model,
     validators: {
-        email: <span class="keyword">function</span>(value) {
-            <span class="keyword">return</span> (<span class="regexp">/(.+)@(.+){2,}\.(.+){2,}/</span>).test(value) ? <span class="literal">true</span> : <span class="string">'This looks like an invalid email address'</span>;
+        email: function(value) {
+            return (/(.+)@(.+){2,}\.(.+){2,}/).test(value) ? true : 'This looks like an invalid email address';
         }
     }
 });
 
-<span class="keyword">var</span> userInstance = <span class="keyword">new</span> validUser({}, {
-    onError: <span class="keyword">function</span>(allErrors) {
-        console.log(<span class="string">'The following fields were rejected'</span>, allErrors);
+var userInstance = new validUser({}, {
+    onError: function(allErrors) {
+        console.log('The following fields were rejected', allErrors);
     },
-    <span class="string">'onError:email'</span>: <span class="keyword">function</span>(errorObj) {
-        <span class="comment">// can have a custom message, action or whatever.</span>
-        console.log(<span class="string">'Email rejected'</span>, errorObj.error);
+    'onError:email': function(errorObj) {
+        // can have a custom message, action or whatever.
+        console.log('Email rejected', errorObj.error);
     }
 });
 
-userInstance.set(<span class="string">'email'</span>, <span class="string">'this will fail!'</span>);</code></pre>
+userInstance.set('email', 'this will fail!');</code></pre>
 <p>The <code>error</code> event is observed by collections and views and fires on all view and collection instances.
 
 </p>
-<h2 id="epitome-model-sync">Epitome.Model.Sync</h2>
+<h2 id="epitome-modelsync">Epitome.Model.Sync</h2>
 <p>This is an example implementation of RESTful module that extends the base Epitome.Model class and adds the ability to read, update and delete models with remote server. In terms of implementation, there are subtle differences. The API and methods are as the normal <a href="#epitome-model">Model</a>, unless outlined below:
 
 </p>
-<h3 id="epitome-model-sync/constructor-initialize">constructor (initialize)</h3>
+<h3 id="epitome-modelsync/constructor-initialize">constructor (initialize)</h3>
 <hr />
 <div class="alert">
 <p>
@@ -705,7 +373,7 @@ userInstance.set(<span class="string">'email'</span>, <span class="string">'this
 <p>An additional option has been added <code>options.emulateREST: true || false</code>, which is being passed to the Request instance. If your server has no CRUD mapping, emulation can be enabled so everything will go through POST/GET requests with <code>_method</code> containing the original intent.
 
 </p>
-<h3 id="epitome-model-sync/sync">sync</h3>
+<h3 id="epitome-modelsync/sync">sync</h3>
 <hr />
 <div class="alert">
 <p>
@@ -732,7 +400,7 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 <p>As a whole, you should NOT use the sync directly but elect to use the API methods for each specific request task.
 
 </p>
-<h3 id="epitome-model-sync/postprocessor">postProcessor</h3>
+<h3 id="epitome-modelsync/postprocessor">postProcessor</h3>
 <hr />
 <div class="alert">
 <p>
@@ -746,12 +414,12 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 <p>A method that you can extend in your definition of Models for doing any post-processing of data <code>returned</code> by sync from the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">postProcessor: <span class="keyword">function</span>(response) {
-    <span class="comment">// data comes back with decoration. split them first.</span>
-    <span class="keyword">this</span>.meta = response.meta;
-    <span class="keyword">return</span> response.data;
+<pre class="prettyprint linenums"><code class="lang-javascript">postProcessor: function(response) {
+    // data comes back with decoration. split them first.
+    this.meta = response.meta;
+    return response.data;
 }</code></pre>
-<h3 id="epitome-model-sync/save">save</h3>
+<h3 id="epitome-modelsync/save">save</h3>
 <hr />
 <div class="alert">
 <p>
@@ -771,7 +439,7 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 <p>If the optional <code>key</code> =&gt; <code>value</code> pair is passed, it will set them on the model and then save the updated model.
 
 </p>
-<h3 id="epitome-model-sync/preprocessor">preProcessor</h3>
+<h3 id="epitome-modelsync/preprocessor">preProcessor</h3>
 <hr />
 <div class="alert">
 <p>
@@ -785,12 +453,12 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 <p>A method that you can add to your definition of Models for doing any pre-processing of data before using <code>CREATE</code> or <code>UPDATE</code> (so, <code>save</code>) via sync to the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">preProcessor: <span class="keyword">function</span>(data) {
-    <span class="comment">// remove local property 'meta' which the server does not like.</span>
-    <span class="keyword">delete</span> data.meta;
-    <span class="keyword">return</span> data;
+<pre class="prettyprint linenums"><code class="lang-javascript">preProcessor: function(data) {
+    // remove local property 'meta' which the server does not like.
+    delete data.meta;
+    return data;
 }</code></pre>
-<h3 id="epitome-model-sync/fetch">fetch</h3>
+<h3 id="epitome-modelsync/fetch">fetch</h3>
 <hr />
 <div class="alert">
 <p>
@@ -827,19 +495,19 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 
 <p>The constructor method will accept a large variety of arguments. You can pass on either an Array of Models or an Array of Objects or a single Model or a single Object. You can also pass an empty Array and populate it later. Typical Collection prototype definition looks something like this:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> usersCollection = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">var usersCollection = new Class({
     Extends: Epitome.Collection
-    model: userModel <span class="comment">// or Epitome.Model by default</span>
+    model: userModel // or Epitome.Model by default
 });
 
-<span class="keyword">var</span> users = <span class="keyword">new</span> usersCollection([{
-    id: <span class="string">'bob'</span>
+var users = new usersCollection([{
+    id: 'bob'
 }], {
-    onChange: <span class="keyword">function</span>(model, props) {
-        console.log(<span class="string">'model change'</span>, model, props);
+    onChange: function(model, props) {
+        console.log('model change', model, props);
     },
-    onReady: <span class="keyword">function</span>() {
-        console.log(<span class="string">'the collection is ready'</span>);
+    onReady: function() {
+        console.log('the collection is ready');
     }
 });</code></pre>
 <p>For reference purposes, each Model that enters a collection needs to have a <code>cid</code> - collection id. If the Model has an <code>id</code>, that is preferred. Otherwise, a <code>cid</code> will be generated. If the Model gets an <code>id</code> later on, the <code>cid</code> will not be changed.
@@ -983,11 +651,11 @@ Expects optional arguments: <code>(String) method</code>, <code>(Object) model</
 
 <p>Sorting is quite flexible. It works a lot like <code>Array.prototype.sort</code>. By default, you can sort based upon strings that represent keys in the Models. You can also stack up secondary, trinary etc sort keys in case the first one is equal. For example:
 </p>
-<pre class="prettyprint linenums"><code class="javascript">users.sort(<span class="string">'name'</span>);
-<span class="comment">// descending order pseduo</span>
-users.sort(<span class="string">'name:desc'</span>);
-<span class="comment">// by type and then birthdate in reverse order (oldest first)</span>
-users.sort(<span class="string">'type,birthdate:desc'</span>);</code></pre>
+<pre class="prettyprint linenums"><code class="lang-javascript">users.sort('name');
+// descending order pseduo
+users.sort('name:desc');
+// by type and then birthdate in reverse order (oldest first)
+users.sort('type,birthdate:desc');</code></pre>
 <p>Sorting also allows you to pass a function you define yourself as per the <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> interface. When done, it will fire a <code>sort</code> event.
 
 </p>
@@ -1025,44 +693,44 @@ users.sort(<span class="string">'type,birthdate:desc'</span>);</code></pre>
 </p>
 <p>For example:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> collection = <span class="keyword">new</span> Epitome.Collection([{
-    name: <span class="string">'Bob'</span>,
-    id: <span class="number">2</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">var collection = new Epitome.Collection([{
+    name: 'Bob',
+    id: 2
 }, {
-    name: <span class="string">'Angry Bob'</span>,
-    id: <span class="number">3</span>
+    name: 'Angry Bob',
+    id: 3
 }]);
 
-collection.find(<span class="string">'[name]'</span>); <span class="comment">// where name is defined.</span>
-collection.find(<span class="string">'[name=Bob]'</span>); <span class="comment">// where name is exactly Bob.</span>
-collection.find(<span class="string">'[name*=Bob]'</span>); <span class="comment">// where name contains Bob.</span>
-collection.find(<span class="string">'[name$=Bob]'</span>); <span class="comment">// where name ends on Bob.</span>
-collection.find(<span class="string">'[name^=Bob]'</span>); <span class="comment">// where name starts with Bob.</span>
-collection.find(<span class="string">'[name=Bob],[name^=Angry]'</span>); <span class="comment">// name Bob OR starting with Angry.</span>
-collection.find(<span class="string">'[name=Bob][id]'</span>); <span class="comment">// name Bob AND to have an id</span>
-collection.find(<span class="string">'#2[name=Bob],#3'</span>); <span class="comment">// (name Bob AND id==2) OR id==3</span>
-collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="comment">// name Bob AND id==2</span></code></pre>
+collection.find('[name]'); // where name is defined.
+collection.find('[name=Bob]'); // where name is exactly Bob.
+collection.find('[name*=Bob]'); // where name contains Bob.
+collection.find('[name$=Bob]'); // where name ends on Bob.
+collection.find('[name^=Bob]'); // where name starts with Bob.
+collection.find('[name=Bob],[name^=Angry]'); // name Bob OR starting with Angry.
+collection.find('[name=Bob][id]'); // name Bob AND to have an id
+collection.find('#2[name=Bob],#3'); // (name Bob AND id==2) OR id==3
+collection.find('[name=Bob][id=2]'); // name Bob AND id==2</code></pre>
 <p>Supported operators are <code>=</code> (equals), <code>!=</code> (not equal), <code>*=</code> (contains), <code>$=</code> (ends on), <code>^=</code> (starts with). Currently, you cannot reverse a condition by adding <code>!</code> or <code>not:</code> - in fact, pseudos are not supported yet. Find is just sugar and for more complicated stuff, you can either extend it or use <code>filter</code> instead.
 
 </p>
 <p>A new 'feature' has been added that alows you to quickly select deeper object properties by treating any parent keys as tags. For instance:
 
 </p>
-<pre class="prettyprint linenums"><code><span class="identifier">var</span> <span class="identifier">collection</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Epitome</span>.<span class="constant">Collection</span>([{
-    <span class="identifier"><span class="keymethods">name</span></span><span class="symbol">:</span> <span class="string">'Bob'</span>,
-    <span class="identifier">permissions</span><span class="symbol">:</span> {
-        <span class="identifier">edit</span><span class="symbol">:</span> <span class="identifier"><span class="keyword">true</span></span>
+<pre class="prettyprint linenums"><code>var collection = new Epitome.Collection([{
+    name: 'Bob',
+    permissions: {
+        edit: true
     }
 }, {
-    <span class="identifier"><span class="keymethods">name</span></span><span class="symbol">:</span> <span class="string">'Angry Bob'</span>,
-    <span class="identifier">permissions</span><span class="symbol">:</span> {
-        <span class="identifier">edit</span><span class="symbol">:</span> <span class="identifier"><span class="keyword">false</span></span>
+    name: 'Angry Bob',
+    permissions: {
+        edit: false
     }
 }]);
 
 
-<span class="identifier">collection</span>.<span class="identifier"><span class="keymethods">find</span></span>(<span class="string">'permissions[edit]'</span>); <span class="regexp">//</span> <span class="identifier">all</span> <span class="identifier">where</span> <span class="identifier">there</span> <span class="identifier">is</span> <span class="identifier">an</span> <span class="identifier">edit</span> <span class="identifier">property</span>
-<span class="identifier">collection</span>.<span class="identifier"><span class="keymethods">find</span></span>(<span class="string">'permissions[edit=true]'</span>); <span class="regexp">//</span> <span class="identifier">all</span> <span class="identifier">where</span> <span class="identifier">there</span> <span class="identifier">edit</span> <span class="identifier">is</span> <span class="identifier"><span class="keyword">true</span></span></code></pre>
+collection.find('permissions[edit]'); // all where there is an edit property
+collection.find('permissions[edit=true]'); // all where there edit is true</code></pre>
 <p>However, this is more of a syntactic sugar than convention. It won't allow you to do complex CSS-like selections as you cannot combine 'tag' with properties. This means you cannot do <code>permissions[edit][name=Bob]</code> as the context changes to the permissions property. This kind of structure is possibly an anti-pattern anyway, try to keep your models flat.
 
 
@@ -1081,9 +749,9 @@ collection.find(<span class="string">'[name=Bob][id=2]'</span>); <span class="co
 <p>Useful for getting a single Model via the <code>.find</code>, this method will return the first matched Model or null if none found.
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = collection.findOne(<span class="string">'[name=bob]'</span>);
-<span class="comment">// if found, set</span>
-bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'Robert'</span>);</code></pre>
+<pre class="prettyprint linenums"><code class="lang-javascript">var bob = collection.findOne('[name=bob]');
+// if found, set
+bob &amp;&amp; bob.set('name','Robert');</code></pre>
 <h3 id="epitome-collection/array-helpers">Array helpers</h3>
 <p>The following Array methods are also available directly on the Collection instances:
 
@@ -1119,11 +787,11 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>Each Collection prototype has that property that references a Model prototype constructor. When data is being received in raw format (so, simple Objects), Models are being created by instantiating the stored constructor object in <code>this.model</code>.
 
 </p>
-<h2 id="epitome-collection-sync">Epitome.Collection.Sync</h2>
+<h2 id="epitome-collectionsync">Epitome.Collection.Sync</h2>
 <p>The Sync Class is just a layer on top of the normal <a href="#epitome-collection">Epitome.Collection</a>. It extends the default Collection prototype and adds a Request instance that can retrieve an Array of Model data from a server and add / update the Collection after.
 
 </p>
-<h3 id="epitome-collection-sync/constructor-initialize">constructor (initialize)</h3>
+<h3 id="epitome-collectionsync/constructor-initialize">constructor (initialize)</h3>
 <hr />
 <div class="alert">
 <p>
@@ -1140,7 +808,7 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>In terms of differences with the original prototype, the <code>options</code>, needs just one extra key: <code>urlRoot</code>, which should contain the absolute or relative URL to the end-point that can return the Model data.
 
 </p>
-<h3 id="epitome-collection-sync/fetch">fetch</h3>
+<h3 id="epitome-collectionsync/fetch">fetch</h3>
 <hr />
 <div class="alert">
 <p>
@@ -1160,7 +828,7 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>Returns the instance 'now' but because it is async, applying anything to the collection before the <code>fetch</code> event has fired may have unexpected results.
 
 </p>
-<h3 id="epitome-collection-sync/postprocessor">postProcessor</h3>
+<h3 id="epitome-collectionsync/postprocessor">postProcessor</h3>
 <hr />
 <div class="alert">
 <p>
@@ -1174,11 +842,11 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 <p>A method that you can extend in your definition of Epitome.Collection.Sync for doing any pre-processing of data returned by sync from the server. For example:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">postProcessor: <span class="keyword">function</span>(response) {
-    <span class="comment">// data comes back with decoration. split them first.</span>
-    <span class="comment">// { meta: { something: 'here' }, models: [] }</span>
-    <span class="keyword">this</span>.meta = response.meta;
-    <span class="keyword">return</span> response.models;
+<pre class="prettyprint linenums"><code class="lang-javascript">postProcessor: function(response) {
+    // data comes back with decoration. split them first.
+    // { meta: { something: 'here' }, models: [] }
+    this.meta = response.meta;
+    return response.models;
 }</code></pre>
 <h2 id="epitome-view">Epitome.View</h2>
 <p>The view is a pretty loose binding around a HTMLElement, it does not try to do much by default. It essentially binds the element to either a Model or a Collection, listening and propagating events that they fire in order to be able to react to them. The expectation is that a <code>render</code> method will be defined that uses the data to output it in the browser. The render can be called based upon change or reset events as needed.
@@ -1203,51 +871,51 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 </p>
 <p>A simple example would look like this:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="comment">// define the View prototype</span>
-<span class="keyword">var</span> testView = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">// define the View prototype
+var testView = new Class({
 
     Extends: Epitome.View,
 
-    render: <span class="keyword">function</span>() {
-        <span class="comment">// have a render.</span>
-        <span class="keyword">this</span>.empty();
-        <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));
-        <span class="keyword">this</span>.parent();
-        <span class="keyword">return</span> <span class="keyword">this</span>;
+    render: function() {
+        // have a render.
+        this.empty();
+        this.element.set('html', this.template(this.model.toJSON()));
+        this.parent();
+        return this;
     },
 
-    doEmpty: <span class="keyword">function</span>() {
-        <span class="keyword">this</span>.model.empty();
+    doEmpty: function() {
+        this.model.empty();
     }
 });
 
 
-<span class="keyword">var</span> testInstance = <span class="keyword">new</span> testView({
+var testInstance = new testView({
 
     model: someModelInstance,
 
-    element: <span class="string">'someid'</span>,
+    element: 'someid',
 
-    template: document.id(<span class="string">'test-template'</span>).get(<span class="string">'html'</span>),
+    template: document.id('test-template').get('html'),
 
-    <span class="comment">// event binding</span>
+    // event binding
     events: {
-        <span class="string">'click:relay(a.task-remove)'</span>: <span class="string">'emptyModel'</span>, <span class="comment">// emit this event to instance</span>
-        <span class="string">'click:relay(button.change-one)'</span>: <span class="string">'changeModel'</span>
+        'click:relay(a.task-remove)': 'emptyModel', // emit this event to instance
+        'click:relay(button.change-one)': 'changeModel'
     },
 
-    onReady: <span class="keyword">function</span>() {
-        <span class="keyword">this</span>.render();
+    onReady: function() {
+        this.render();
     },
 
-    <span class="string">'onChange:model'</span>: <span class="keyword">function</span>(){
-        <span class="keyword">this</span>.render();
+    'onChange:model': function(){
+        this.render();
     },
 
-    onEmptyModel: <span class="keyword">function</span>(event, element) {
+    onEmptyModel: function(event, element) {
         event &amp;&amp; event.stop &amp;&amp; event.stop();
-        element; <span class="comment">// a.task-remove</span>
-        <span class="keyword">this</span>.doEmpty();
+        element; // a.task-remove
+        this.doEmpty();
     }
 });</code></pre>
 <p>The key <code>options</code> are:
@@ -1308,48 +976,48 @@ bob &amp;&amp; bob.set(<span class="string">'name'</span>,<span class="string">'
 </p>
 <p>An example override to make it work with Mustache would be:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">var myView = new Class({
     Extends: Epitome.View,
-    template: <span class="keyword">function</span>(data, template) {
-        template = template || <span class="keyword">this</span>.options.template;
-        <span class="keyword">return</span> Mustache.render(template, data);
+    template: function(data, template) {
+        template = template || this.options.template;
+        return Mustache.render(template, data);
     },
-    render: <span class="keyword">function</span>() {
-        <span class="keyword">this</span>.element.set(<span class="string">'html'</span>, <span class="keyword">this</span>.template({name:<span class="string">'there'</span>}, <span class="string">'Hello {{name}}'</span>));
+    render: function() {
+        this.element.set('html', this.template({name:'there'}, 'Hello {{name}}'));
     }
 });</code></pre>
 <p>You can change the View prototype to always have Mustache in your views. For example, via AMD/RequireJS, you could do a
 small module that deals with the prototyping of the default View constructor. Say, <code>epitome-view-mustache.js</code>
 </p>
-<pre class="prettyprint linenums"><code class="javascript">
-define([<span class="string">'epitome/epitome-view'</span>], <span class="keyword">function</span>(View){
-    <span class="comment">// prototype it for everyone to use mustache in every view.</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">
+define(['epitome/epitome-view'], function(View){
+    // prototype it for everyone to use mustache in every view.
 
     View.implement({
-        template: <span class="keyword">function</span>(data, template) {
-            <span class="comment">// refactor this to work with any other template engine in your constructor</span>
-            template = template || <span class="keyword">this</span>.options.template;
+        template: function(data, template) {
+            // refactor this to work with any other template engine in your constructor
+            template = template || this.options.template;
 
-            <span class="keyword">return</span> Mustache.render(template, data);
+            return Mustache.render(template, data);
         }
     });
 
 });</code></pre>
 <p>In your Require config (loose example):
 </p>
-<pre class="prettyprint linenums"><code>require.config(<span class="tuple">{
-    paths: <span class="tuple">{
+<pre class="prettyprint linenums"><code>require.config({
+    paths: {
         epitome: '/js/vendor/epitome'
-    }</span>,
+    },
     deps: [
         // always load
         'epitome/epitome-view-mustache'
     ]
-}</span>);
+});
 
-<span class="function"><span class="title">require</span><span class="params">(['epitome/epitome-view'], <span class="keyword">fun</span><span class="function_name">ction</span>(<span class="variable">View</span>)<span class="tuple">{
-    // <span class="variable">View</span> is now with the mustache template.
-}</span>);</span></span></code></pre>
+require(['epitome/epitome-view'], function(View){
+    // View is now with the mustache template.
+});</code></pre>
 <h3 id="epitome-view/empty">empty</h3>
 <hr />
 <div class="alert">
@@ -1407,9 +1075,9 @@ define([<span class="string">'epitome/epitome-view'</span>], <span class="keywor
 </p>
 <p>To add storage functionality to your model, you declare use in the prototype via the <code>Implements</code> mutator:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> user = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">var user = new Class({
     Extends: Epitome.Model,
-    Implements: Epitome.Storage.localStorage(<span class="string">'model'</span>)
+    Implements: Epitome.Storage.localStorage('model')
 });</code></pre>
 <p>The code above will call the storage factory and enable <code>localStorage</code> within your model with a storage namespace key <code>model</code>. In the actual storage massive, data will appear under an <code>epitome-model</code> key.
 
@@ -1456,19 +1124,19 @@ define([<span class="string">'epitome/epitome-view'</span>], <span class="keywor
 
 <p>When you retrieve a model or a collection, it will simply return what the browser has as data (based upon the model or colleciton id as key). It will <strong>NOT</strong> apply a <code>model.set(data)</code> for you, you need to do this yourself.
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
-    id: <span class="string">'bob'</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">var bob = new user({
+    id: 'bob'
 });
 
-<span class="comment">// populate model from storage, if available.</span>
+// populate model from storage, if available.
 bob.set(bob.retrieve());</code></pre>
 <p>Automatically populate:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> bob = <span class="keyword">new</span> user({
-    id: <span class="string">'bob'</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">var bob = new user({
+    id: 'bob'
 }, {
-    onRetrieve: <span class="keyword">function</span>(data) {
-        <span class="keyword">this</span>.set(data);
+    onRetrieve: function(data) {
+        this.set(data);
     }
 }).retrieve();</code></pre>
 <h3 id="epitome-storage/eliminate">eliminate</h3>
@@ -1499,11 +1167,11 @@ bob.set(bob.retrieve());</code></pre>
 </ul>
 <p>You can modify the syntax for the tags by altering the regex in the constructor:
 </p>
-<pre class="prettyprint linenums"><code class="javascript">options: {
-    <span class="comment">// default block logic syntax is &lt;% if (data.prop) { %</span>
-    evaluate: <span class="regexp">/&lt;%([\s\S]+?)%/g</span>,
-    <span class="comment">// literal out is &lt;%=property%</span>
-    normal: <span class="regexp">/&lt;%=([\s\S]+?)%/g</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">options: {
+    // default block logic syntax is &lt;% if (data.prop) { %&gt;
+    evaluate: /&lt;%([\s\S]+?)%&gt;/g,
+    // literal out is &lt;%=property%&gt;
+    normal: /&lt;%=([\s\S]+?)%&gt;/g
 }</code></pre>
 <h2 id="eptiome-router">Eptiome.Router</h2>
 <p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>.
@@ -1525,80 +1193,80 @@ bob.set(bob.retrieve());</code></pre>
 
 <p>As this is quite involved and can act as a Controller for your app, here's a practical example that defines a few routes and event handlers within the Epitome.Router Class instantiation:
 </p>
-<pre class="prettyprint linenums"><code class="javascript">App.router = <span class="keyword">new</span> Epitome.Router({
-    <span class="comment">// routes definition will proxy the events</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">App.router = new Epitome.Router({
+    // routes definition will proxy the events
     routes: {
-        <span class="string">''</span>                        : <span class="string">'index'</span>,
-        <span class="string">'#!help'</span>                : <span class="string">'help'</span>,
-        <span class="string">'#!test1/:query/:id?'</span>    : <span class="string">'test1'</span>,
-        <span class="string">'#!test2/:query/*'</span>        : <span class="string">'test2'</span>,
-        <span class="string">'#!error'</span>               : <span class="string">'dummyerror'</span>
+        ''                        : 'index',
+        '#!help'                : 'help',
+        '#!test1/:query/:id?'    : 'test1',
+        '#!test2/:query/*'        : 'test2',
+        '#!error'               : 'dummyerror'
     },
 
-    <span class="comment">// router init</span>
-    onReady: <span class="keyword">function</span>(){
-        console.log(<span class="string">'init'</span>);
+    // router init
+    onReady: function(){
+        console.log('init');
     },
 
-    <span class="comment">// before route method, fires before the event handler once a match has been found</span>
-    onBefore: <span class="keyword">function</span>(routeId){
-        console.log(<span class="string">'before'</span>, routeId)
+    // before route method, fires before the event handler once a match has been found
+    onBefore: function(routeId){
+        console.log('before', routeId)
     },
 
-    <span class="comment">// specific pseudos for :before</span>
-    <span class="string">'onIndex:before'</span>: <span class="keyword">function</span>() {
-        console.log(<span class="string">'we are about to go to the index route'</span>);
+    // specific pseudos for :before
+    'onIndex:before': function() {
+        console.log('we are about to go to the index route');
     },
 
-    <span class="comment">// specific pseudos for after</span>
-    <span class="string">'onIndex:after'</span>: <span class="keyword">function</span>() {
-        console.log(<span class="string">'navigated already to index route, update breadcrumb?'</span>);
+    // specific pseudos for after
+    'onIndex:after': function() {
+        console.log('navigated already to index route, update breadcrumb?');
     },
 
-    <span class="comment">// after route method has fired, post-route event.</span>
-    onAfter: <span class="keyword">function</span>(route){
-        console.info(<span class="string">'after'</span>, route)
+    // after route method has fired, post-route event.
+    onAfter: function(route){
+        console.info('after', route)
     },
 
-    <span class="comment">// routes events callbacks are functions that call parts of your app</span>
+    // routes events callbacks are functions that call parts of your app
 
-    <span class="comment">// index</span>
-    onIndex: <span class="keyword">function</span>() {
-        console.log(<span class="string">'index'</span>)
+    // index
+    onIndex: function() {
+        console.log('index')
     },
 
-    onHelp: <span class="keyword">function</span>() {
-        console.log(<span class="string">'help'</span>);
-        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    onHelp: function() {
+        console.log('help');
+        console.log(this.route, this.req, this.param, this.query)
     },
 
-    onTest1: <span class="keyword">function</span>(query, id) {
-        console.info(<span class="string">'test1'</span>, query, id);
-        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    onTest1: function(query, id) {
+        console.info('test1', query, id);
+        console.log(this.route, this.req, this.param, this.query)
     },
 
-    onTest2: <span class="keyword">function</span>(query) {
-        console.info(<span class="string">'test2'</span>, query);
-        console.log(<span class="keyword">this</span>.route, <span class="keyword">this</span>.req, <span class="keyword">this</span>.param, <span class="keyword">this</span>.query)
+    onTest2: function(query) {
+        console.info('test2', query);
+        console.log(this.route, this.req, this.param, this.query)
     },
 
-    <span class="comment">// no route event was found, though route was defined</span>
-    onError: <span class="keyword">function</span>(error){
+    // no route event was found, though route was defined
+    onError: function(error){
         console.error(error);
-        <span class="comment">// recover by going default route</span>
-        <span class="keyword">this</span>.navigate(<span class="string">''</span>);
+        // recover by going default route
+        this.navigate('');
     },
 
-    onUndefined: <span class="keyword">function</span>() {
-        console.log(<span class="string">'this is an undefined route'</span>);
+    onUndefined: function() {
+        console.log('this is an undefined route');
     },
 
-    <span class="string">'onRoute:remove'</span>: <span class="keyword">function</span>(route) {
-        alert(route + <span class="string">' was removed by popular demand'</span>);
+    'onRoute:remove': function(route) {
+        alert(route + ' was removed by popular demand');
     },
 
-    <span class="string">'onRoute:add'</span>: <span class="keyword">function</span>(constructorObject) {
-        console.log(constructorObject.id + <span class="string">' was added as a new route'</span>);
+    'onRoute:add': function(constructorObject) {
+        console.log(constructorObject.id + ' was added as a new route');
     }
 });</code></pre>
 <h3 id="eptiome-router/addroute">addRoute</h3>
@@ -1618,14 +1286,14 @@ bob.set(bob.retrieve());</code></pre>
 <p>Example adding of route to your instance after instantiation:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript">App.router.addRoute({
-    route: <span class="string">'#!dynamicRoute'</span>,
-    id: <span class="string">'dynamic'</span>,
+<pre class="prettyprint linenums"><code class="lang-javascript">App.router.addRoute({
+    route: '#!dynamicRoute',
+    id: 'dynamic',
     events: {
-        onDynamic: <span class="keyword">function</span>() {
-            alert(<span class="string">'you found the blowfish'</span>);
-            <span class="keyword">if</span> (confirm(<span class="string">'remove this route?'</span>))
-                <span class="keyword">this</span>.removeRoute(<span class="string">'#!dynamicRoute'</span>);
+        onDynamic: function() {
+            alert('you found the blowfish');
+            if (confirm('remove this route?'))
+                this.removeRoute('#!dynamicRoute');
         }
     }
 });</code></pre>
@@ -1654,21 +1322,21 @@ bob.set(bob.retrieve());</code></pre>
 <h2 id="examples">Examples</h2>
 <p>Epitome is modular via AMD but all the files will also work in a browser in plain script tags. When using Require.JS, you can pull in only sub-modules that you need and Epitome will resolve any dependencies automatically:
 </p>
-<pre class="prettyprint linenums"><code><span class="identifier"><span class="keymethods">require</span></span>.<span class="identifier">config</span>({
-    <span class="identifier">baseUrl</span><span class="symbol">:</span> <span class="string">'src'</span>
+<pre class="prettyprint linenums"><code>require.config({
+    baseUrl: 'src'
 });
 
-<span class="identifier"><span class="keymethods">require</span></span>([<span class="string">'epitome-model-sync'</span>], <span class="identifier">function</span>(<span class="constant">ModelSync</span>) {
-    <span class="regexp">//</span> <span class="identifier">pulls</span> <span class="identifier"><span class="keyword">in</span></span> <span class="identifier">isEqual</span> <span class="identifier"><span class="keyword">and</span></span> <span class="constant">Model</span> <span class="identifier">automatically</span>.
-    <span class="identifier">var</span> <span class="identifier">tweet</span> = <span class="identifier"><span class="keymethods">new</span></span> <span class="constant">Class</span>({
-        <span class="constant">Extends</span><span class="symbol">:</span> <span class="constant">ModelSync</span>
+require(['epitome-model-sync'], function(ModelSync) {
+    // pulls in isEqual and Model automatically.
+    var tweet = new Class({
+        Extends: ModelSync
     });
 });</code></pre>
 <p>If you'd like the whole project (all modules), you can require <code>main.js</code> (also exported via NPM):
 </p>
-<pre class="prettyprint linenums"><code>require([<span class="string">'main'</span>], <span class="reserved">function</span>(Epitome) {
-    // Epitome <span class="keyword">is</span> an object <span class="reserved">with</span> all the submodules.
-    <span class="reserved">var</span> tweet = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code>require(['main'], function(Epitome) {
+    // Epitome is an object with all the submodules.
+    var tweet = new Class({
         Extends: Epitome.Model.Sync,
         Implements: Epitome.Storage.sessionStorage()
     });
@@ -1678,87 +1346,87 @@ bob.set(bob.retrieve());</code></pre>
 </p>
 <p>When using it in a browser or after the Epitome Object contains all your modules, quick model creation with prototyping and <code>localStorage</code> can look something like this:
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="comment">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage</span>
-<span class="keyword">var</span> User = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">// create a new user class prototype, basing it on Epitome.Model.Sync and implement storage
+var User = new Class({
     Extends: Epitome.Model.Sync,
     Implements: Epitome.Storage.sessionStorage(),
     options: {
         defaults: {
-            urlRoot: <span class="string">'/user'</span>
+            urlRoot: '/user'
         }
     }
 });
 
-<span class="comment">// make a new model with id '1' and a property 'name'</span>
-<span class="keyword">var</span> userModel = <span class="keyword">new</span> User({
-    id: <span class="string">'1'</span>,
-    name: <span class="string">'Bobby'</span>
+// make a new model with id '1' and a property 'name'
+var userModel = new User({
+    id: '1',
+    name: 'Bobby'
 }, {
-    <span class="comment">// default model values to instance only.</span>
+    // default model values to instance only.
     defaults: {
-        surname: <span class="string">'Robertson'</span>
+        surname: 'Robertson'
     },
-    <span class="comment">// add some events</span>
-    onChange: <span class="keyword">function</span>(key, value) {
-        console.log(<span class="string">'you changed '</span> + key + <span class="string">' to '</span> + value);
+    // add some events
+    onChange: function(key, value) {
+        console.log('you changed ' + key + ' to ' + value);
     },
-    onSave: <span class="keyword">function</span>() {
-        <span class="comment">// also save to localStorage</span>
-        <span class="keyword">this</span>.store();
+    onSave: function() {
+        // also save to localStorage
+        this.store();
     },
-    <span class="string">"onChange:name"</span>: <span class="keyword">function</span>(value) {
-        console.log(<span class="string">'you changed your name to '</span> + value);
+    "onChange:name": function(value) {
+        console.log('you changed your name to ' + value);
     }
-}); <span class="comment">// attr: name: 'Bobby', id: 1, surname: 'Robertson', userModel.urlRoot = '/user/'</span>
+}); // attr: name: 'Bobby', id: 1, surname: 'Robertson', userModel.urlRoot = '/user/'
 
-<span class="comment">// change some values.</span>
+// change some values.
 userModel.set({
-    surname: <span class="string">'Roberts'</span>,
-    name: <span class="string">'Bob'</span>
+    surname: 'Roberts',
+    name: 'Bob'
 });
 
 
-<span class="comment">// get from storage if available, else - from server</span>
-<span class="keyword">var</span> data = userModel.retrieve();
-<span class="keyword">if</span> (data) {
+// get from storage if available, else - from server
+var data = userModel.retrieve();
+if (data) {
     userModel.set(data);
 }
-<span class="keyword">else</span> {
+else {
     userModel.read();
 }
 
-<span class="comment">// go wild!</span>
+// go wild!
 userModel.save();</code></pre>
 <h3 id="examples/sync-and-storage">Sync and Storage</h3>
 <p>Here's an example pattern that allows you to use Storage and Sync on a model to reconcile data on the client and on the server. In a scenario where a model is being updated on the client with an implicit Save button that does the Sync but a <code>onChange</code> event that saves any changes in <code>localStorage</code> in the meanwhile, this is how you'd reconcile the differences:
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> Model = <span class="keyword">new</span> Class({
-   <span class="comment">// extends always before implements</span>
+<pre class="prettyprint linenums"><code class="lang-javascript">var Model = new Class({
+   // extends always before implements
     Extends: Epitome.Model.Sync,
-    <span class="comment">// use storage</span>
-    Implements: Epitome.Storage.localStorage(<span class="string">'model'</span>)
+    // use storage
+    Implements: Epitome.Storage.localStorage('model')
 });
 
-<span class="comment">// typically, this will be bound in a view</span>
-<span class="keyword">var</span> model = <span class="keyword">new</span> Model({
-    id: <span class="number">3</span>
+// typically, this will be bound in a view
+var model = new Model({
+    id: 3
 }, {
-    onChange: <span class="keyword">function</span>(){
-        <span class="keyword">this</span>.store();
+    onChange: function(){
+        this.store();
     },
-    onFetch: <span class="keyword">function</span>(){
-        <span class="keyword">var</span> data = <span class="keyword">this</span>.retrieve();
+    onFetch: function(){
+        var data = this.retrieve();
 
-        <span class="keyword">if</span> (!Epitome.isEqual(data, <span class="keyword">this</span>.toJSON)){
-            <span class="keyword">if</span> (confirm(<span class="string">'Local copy differs from server, use it?'</span>)) {
-                <span class="keyword">this</span>.set(data);
+        if (!Epitome.isEqual(data, this.toJSON)){
+            if (confirm('Local copy differs from server, use it?')) {
+                this.set(data);
             }
         }
     }
 });
 
-<span class="comment">// get latest</span>
+// get latest
 model.fetch();</code></pre>
 <p>This pattern can be applied from views as well. Essentially, you are saying: when a model is fetched (and you already know the id), compare server-side version to what storage knows of this model. If a difference is found, you can either prompt the user to accept the client version and load it or you can automatically merge the changes into the model. Since a change always saves into storage, the client-side version will always have an upto date version of data. This is useful when a model is bound to a view and a user modifies it and then reloads the page or navigates away before saving.
 
@@ -1767,24 +1435,24 @@ model.fetch();</code></pre>
 <p>It is sometimes useful to prototype the view, including the events that will be bound - as opposed to doing it in the instantiation.
 
 </p>
-<pre class="prettyprint linenums"><code class="javascript"><span class="keyword">var</span> myView = <span class="keyword">new</span> Class({
+<pre class="prettyprint linenums"><code class="lang-javascript">var myView = new Class({
     Extends: Epitome.View,
     options: {
         events: {
-            <span class="comment">// these relate to this.element. if an element is not passed, they won't matter</span>
-            <span class="string">'click:relay(button.save)'</span>: <span class="string">'saveData'</span>
+            // these relate to this.element. if an element is not passed, they won't matter
+            'click:relay(button.save)': 'saveData'
         },
-        onSaveData: <span class="keyword">function</span>(){
-            <span class="keyword">var</span> data = {};
-            <span class="keyword">this</span>.element.getElements(<span class="string">'input'</span>).each(<span class="keyword">function</span>(el){
-                data[el.get(<span class="string">'name'</span>)] = el.get(<span class="string">'value'</span>).stripScripts().clean()
+        onSaveData: function(){
+            var data = {};
+            this.element.getElements('input').each(function(el){
+                data[el.get('name')] = el.get('value').stripScripts().clean()
             });
-            <span class="comment">// notice there is no onChange:model saving via sync, we save on demand</span>
-            <span class="keyword">this</span>.model.set(data);
-            <span class="keyword">this</span>.model.save();
+            // notice there is no onChange:model saving via sync, we save on demand
+            this.model.set(data);
+            this.model.save();
         },
-        <span class="string">'onChange:model'</span>: <span class="keyword">function</span>(){
-            <span class="keyword">this</span>.model.store(); <span class="comment">// changes in-between go to storage</span>
+        'onChange:model': function(){
+            this.model.store(); // changes in-between go to storage
         }
     }
 });</code></pre>
@@ -1802,8 +1470,8 @@ model.fetch();</code></pre>
 </p>
 <p>The todo app is also a submodule of Epitome so you can add it by doing this at the root of the repo:
 </p>
-<pre class="prettyprint linenums"><code><span class="title">git</span> submodule init
-<span class="title">git</span> submodule update</code></pre>
+<pre class="prettyprint linenums"><code>git submodule init
+git submodule update</code></pre>
 <p>And you can keep it updated by going to <code>~/example/todo/</code> and doing a pull
 
 </p>
@@ -1824,34 +1492,34 @@ model.fetch();</code></pre>
 <p>Typically, you'd create a new production build by running:
 
 </p>
-<pre class="prettyprint linenums"><code class="sh"> r<span class="variable">.js</span> -o app<span class="variable">.build</span><span class="variable">.js</span>
+<pre class="prettyprint linenums"><code class="lang-sh">&gt; r.js -o app.build.js
 
-Tracing dependencies <span class="keyword">for</span>: epitome
-Uglifying file: /projects/Epitome/Epitome-min<span class="variable">.js</span>
+Tracing dependencies for: epitome
+Uglifying file: /projects/Epitome/Epitome-min.js
 
-/projects/Epitome/Epitome-min<span class="variable">.js</span>
+/projects/Epitome/Epitome-min.js
 ----------------
-/projects/Epitome/src/epitome<span class="variable">.js</span>
-/projects/Epitome/src/epitome-isequal<span class="variable">.js</span>
-/projects/Epitome/src/epitome-model<span class="variable">.js</span>
-/projects/Epitome/src/epitome-model-sync<span class="variable">.js</span>
-/projects/Epitome/src/epitome-storage<span class="variable">.js</span>
-/projects/Epitome/src/epitome-collection<span class="variable">.js</span>
-/projects/Epitome/src/epitome-collection-sync<span class="variable">.js</span>
-/projects/Epitome/src/epitome-template<span class="variable">.js</span>
-/projects/Epitome/src/epitome-view<span class="variable">.js</span>
-/projects/Epitome/src/epitome-router<span class="variable">.js</span></code></pre>
+/projects/Epitome/src/epitome.js
+/projects/Epitome/src/epitome-isequal.js
+/projects/Epitome/src/epitome-model.js
+/projects/Epitome/src/epitome-model-sync.js
+/projects/Epitome/src/epitome-storage.js
+/projects/Epitome/src/epitome-collection.js
+/projects/Epitome/src/epitome-collection-sync.js
+/projects/Epitome/src/epitome-template.js
+/projects/Epitome/src/epitome-view.js
+/projects/Epitome/src/epitome-router.js</code></pre>
 <p>Install requirejs via npm, if you haven't:
 
 </p>
-<pre class="prettyprint linenums"><code><span class="title">npm</span> install -g requirejs</code></pre>
+<pre class="prettyprint linenums"><code>npm install -g requirejs</code></pre>
 <p>Alternatively, grab r.js and put it inside the project, then do <code>node r.js -o app.build.js</code>
 
 </p>
 <p>An npm package is also available:
 
 </p>
-<pre class="prettyprint linenums"><code><span class="title">npm</span> install epitome</code></pre>
+<pre class="prettyprint linenums"><code>npm install epitome</code></pre>
 <p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root. require('epitome') should then return the contents of <code>main.js</code> in the source folder, which grabs all dependencies.
 
 </p>
@@ -1859,7 +1527,7 @@ Uglifying file: /projects/Epitome/Epitome-min<span class="variable">.js</span>
 <hr />
 <div id="customDownload"><div class="row">
     <span class="span4">
-        <h3>Customise your build of Epitome.</h3>
+        <h3 id="customise-your-build-of-epitome-">Customise your build of Epitome.</h3>
         <div id="download">
             <a target="_blank" class="btn btn-large btn-primary download-link" href="#">Download Epitome</a>
         </div>
@@ -1923,6 +1591,6 @@ create the request in a branch and write tests / fix existing tests before you s
 </p>
 <p>Documentation generated via <a href="http://documentup.com">DocumentUp</a>, with a local theme in the style of js garden and our <a href="https://github.com/DimitarChristoff/mootstrap-scrollspy">mootstrap scrollspy plugin</a></p>
 
-  </div>
-</div><script src="https://epitome.tenderapp.com/tender_widget.js?location=top" type="text/javascript"></script></body>
+</div>
+</body>
 </html>
