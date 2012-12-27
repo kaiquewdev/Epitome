@@ -1,5 +1,5 @@
-window.addEvent('domready', function() {
-    var nav = document.id('nav');
+(function(){
+	var nav = document.id('nav');
 
 	nav && new moostrapScrollspy('sections', {
 		offset: -40,
@@ -74,4 +74,4 @@ window.addEvent('domready', function() {
 			tr.inject(builder);
 		});
 	}());
-});
+}());

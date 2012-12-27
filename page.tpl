@@ -15,10 +15,6 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <script src="js/mootools-yui-compressed.js"></script>
-    <script src="js/moostrap-scrollspy.js"></script>
-    <script src="js/prettify.js"></script>
-    <script src="js/docs.js"></script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -47,5 +43,9 @@
 <div id="content" class="container">
     {{&body}}
 </div>
+<script src="js/mootools-yui-compressed.js"></script>
+<script src="js/moostrap-scrollspy.js"></script>
+<script src="js/prettify.js"></script>
+<script src="js/docs.js"></script>
 </body>
 </html>
