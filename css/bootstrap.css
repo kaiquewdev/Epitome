@@ -1703,7 +1703,6 @@ legend + .control-group {
 .alert {
   padding: 8px 35px 0px 14px;
   margin-bottom: 21px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   background-color: #3a3f44;
   border: 1px solid #000000;
   -webkit-border-radius: 4px;
