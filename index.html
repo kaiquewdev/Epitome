@@ -70,11 +70,23 @@
 <p>Epitome's API is still subject to small changes and improvements (mostly additions of events and bug fixes), which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>Current version: <strong>0.1.4-AMD</strong>
+<p>Current version: <strong>0.1.6-AMD</strong>
 
 </p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>0.1.6<ul>
+<li>build.js server changes</li>
+<li>moved to uglify2 for minification</li>
+<li>updated Epitome-min.js to reflect</li>
+<li>prevented stacking up for function deocration for Model instances' <code>.fireEvent</code></li>
+<li>merged example tweak PR</li>
+</ul>
+</li>
+<li>0.1.5<ul>
+<li>small tweaks to AMD/browser wrappers, no breaking changes</li>
+</ul>
+</li>
 <li>0.1.4<ul>
 <li>breaking API change. deprecated: <code>model.sync.parse</code>, replaced with <code>preProcessor</code> and <code>postProcessor</code></li>
 </ul>
