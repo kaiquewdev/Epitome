@@ -70,7 +70,7 @@
 <p>Epitome's API is still subject to small changes and improvements (mostly additions of events and bug fixes), which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>Current version: <strong>0.1.6-AMD</strong>
+<p>Current version: <strong>0.1.7</strong>
 
 </p>
 <p><a class="btn btn-large btn-primary" href="#download-building">Epitome Builder</a>
@@ -79,6 +79,13 @@
 </p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>0.1.7<ul>
+<li>updated templating engine to a later version based on the one in _.js</li>
+<li>added support for <code>&lt;%-var%&gt;</code> syntax to allow escaping of entities</li>
+<li>Internally, extending the MooTools String proto and adding <code>escape</code> for dealing with entities in strings.</li>
+<li>Updated tests</li>
+</ul>
+</li>
 <li>0.1.6<ul>
 <li>build.js server changes</li>
 <li>moved to uglify2 for minification</li>
@@ -1175,17 +1182,23 @@ bob.set(bob.retrieve());</code></pre>
 </p>
 <ul>
 <li>referencing object keys in the template that have no matching data causes no javascript exception</li>
-<li>only 2 types of tags are supported: <code>&lt;%=normalKey%&gt;</code> and <code>&lt;% evaluated logic %&gt;</code></li>
-<li>conditional returns do not output. blocks are preferred, eg. <code>&lt;% if (foo) { %&gt;is foo&lt;% } else { %&gt;is not foo&lt;% } %&gt;</code></li>
+<li>blocks can be used like so: <code>&lt;% if (foo) { %&gt;is foo&lt;% } else { %&gt;is not foo&lt;% } %&gt;</code></li>
+<li>conditional output can also work through <code>print</code> like this: </li>
 </ul>
+<pre class="prettyprint linenums"><code class="lang-javascript">&lt;%-address_1%&gt; &lt;% if(address_2){ print(', ', address_2) } %&gt;</code></pre>
 <p>You can modify the syntax for the tags by altering the regex in the constructor:
 </p>
 <pre class="prettyprint linenums"><code class="lang-javascript">options: {
-    // default block logic syntax is &lt;% if (data.prop) { %&gt;
+    // evaluated logic syntax: &lt;% if (data.prop) { %&gt;
     evaluate: /&lt;%([\s\S]+?)%&gt;/g,
-    // literal out is &lt;%=property%&gt;
-    normal: /&lt;%=([\s\S]+?)%&gt;/g
+    // literal output: &lt;%=property%&gt;
+    normal: /&lt;%=([\s\S]+?)%&gt;/g,
+    // DOM safe scripts and tags: &lt;%-property%&gt;
+    escape: /&lt;%-([\s\S]+?)%&gt;/g
 }</code></pre>
+<p>For more info, read the underscore.js documentation. We still recommend using Mustache or Handlebars instead.
+
+</p>
 <h2 id="eptiome-router">Eptiome.Router</h2>
 <p>The Router Class is a hashbang controller, useful for single page applications. A direct import of <a href="https://github.com/DimitarChristoff/Router"><a href="https://github.com/DimitarChristoff/Router">https://github.com/DimitarChristoff/Router</a></a>.
 
@@ -1483,7 +1496,7 @@ model.fetch();</code></pre>
 </p>
 <p>The todo app is also a submodule of Epitome so you can add it by doing this at the root of the repo:
 </p>
-<pre><code class="lang-sh">git submodule init
+<pre class="prettyprint linenums"><code class="lang-sh">git submodule init
 git submodule update</code></pre>
 <p>And you can keep it updated by going to <code>~/example/todo/</code> and doing a pull
 
@@ -1505,7 +1518,7 @@ git submodule update</code></pre>
 <p>Typically, you'd create a new production build by running:
 
 </p>
-<pre><code class="lang-sh">&gt; r.js -o app.build.js
+<pre class="prettyprint linenums"><code class="lang-sh">&gt; r.js -o app.build.js
 
 Tracing dependencies for: epitome
 Uglifying file: /projects/Epitome/Epitome-min.js
@@ -1525,14 +1538,14 @@ Uglifying file: /projects/Epitome/Epitome-min.js
 <p>Install requirejs via npm, if you haven't:
 
 </p>
-<pre><code class="lang-sh">npm install -g requirejs</code></pre>
+<pre class="prettyprint linenums"><code class="lang-sh">npm install -g requirejs</code></pre>
 <p>Alternatively, grab r.js and put it inside the project, then do <code>node r.js -o app.build.js</code>
 
 </p>
 <p>An npm package is also available:
 
 </p>
-<pre><code class="lang-sh">npm install epitome</code></pre>
+<pre class="prettyprint linenums"><code class="lang-sh">npm install epitome</code></pre>
 <p>Please note this will grab it inside of your node_modules and if you use browser components like view and sync, you'd have to move it within your web server root. require('epitome') should then return the contents of <code>main.js</code> in the source folder, which grabs all dependencies.
 
 </p>
@@ -1599,7 +1612,8 @@ create the request in a branch and write tests / fix existing tests before you s
 <p>Released under the MIT license <a href="http://mootools.net/license.txt"><a href="http://mootools.net/license.txt">http://mootools.net/license.txt</a></a>
 
 </p>
-<p>Documentation generated via <a href="http://documentup.com">DocumentUp</a>, with a local theme in the style of js garden and our <a href="https://github.com/DimitarChristoff/mootstrap-scrollspy">mootstrap scrollspy plugin</a></p>
+<p>Documentation generated via <a href="http://documentup.com">DocumentUp</a>, with a local theme in the style of js garden and our <a href="https://github.com/DimitarChristoff/mootstrap-scrollspy">mootstrap scrollspy plugin</a>
+</p>
 
 </div>
 <script src="js/mootools-yui-compressed.js"></script>
