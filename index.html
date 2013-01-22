@@ -852,7 +852,8 @@ bob &amp;&amp; bob.set('name','Robert');</code></pre>
 <p>Returns the instance 'now' but because it is async, applying anything to the collection before the <code>fetch</code> event has fired may have unexpected results.
 
 </p>
-<p>The queryParams
+<p>The <code>queryParams</code> object, which is also optional, allows you to pass on any <code>GET</code> arguments to the <code>baseUrl</code>. So if your default endpoint looks like this:
+<code>/comments/2/</code> and you call <code>.fetch(false, {page: 2})</code>, it will actually get <code>/comments/2/?page=2</code>.  
 
 </p>
 <h3 id="epitome-collectionsync/postprocessor">postProcessor</h3>
