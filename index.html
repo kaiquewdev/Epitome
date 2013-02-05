@@ -70,7 +70,7 @@
 <p>Epitome's API is still subject to small changes and improvements (mostly additions of events and bug fixes), which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>Current version: <strong>0.1.8</strong>
+<p>Current version: <strong>0.1.9</strong>
 
 </p>
 <p><a class="btn btn-large btn-primary" href="#download-building">Epitome Builder</a>
@@ -79,6 +79,10 @@
 </p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>0.1.9<ul>
+<li>added <code>headers</code> to Model.Sync options that gets passed to the Request</li>
+</ul>
+</li>
 <li>0.1.8<ul>
 <li>added <code>queryParams</code> support to Collection.Sync::fetch, allows for pagination etc.</li>
 </ul>
@@ -395,6 +399,9 @@ userInstance.set('email', 'this will fail!');</code></pre>
  </div>
 
 <p>An additional option has been added <code>options.emulateREST: true || false</code>, which is being passed to the Request instance. If your server has no CRUD mapping, emulation can be enabled so everything will go through POST/GET requests with <code>_method</code> containing the original intent.
+
+</p>
+<p><code>headers</code> (object) is an extra argument that gets passed to the Request instance, allowing you to set whatever you want for CSRF or CORS on your Model.Sync calls.
 
 </p>
 <h3 id="epitome-modelsync/sync">sync</h3>
