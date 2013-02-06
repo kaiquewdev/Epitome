@@ -70,7 +70,7 @@
 <p>Epitome's API is still subject to small changes and improvements (mostly additions of events and bug fixes), which means documentation is not overly verbose. The non-minified code has a lot of inline comments to ease understanding and development.
 
 </p>
-<p>Current version: <strong>0.1.9</strong>
+<p>Current version: <strong>0.1.10</strong>
 
 </p>
 <p><a class="btn btn-large btn-primary" href="#download-building">Epitome Builder</a>
@@ -79,6 +79,10 @@
 </p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>0.1.10<ul>
+<li>fixed bug where fetch/save/create/update events were firing before model.isNew was being changed</li>
+</ul>
+</li>
 <li>0.1.9<ul>
 <li>added <code>headers</code> to Model.Sync options that gets passed to the Request</li>
 </ul>
