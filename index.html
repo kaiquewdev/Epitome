@@ -82,6 +82,11 @@
 <pre class="prettyprint linenums"><code class="lang-HTML">&lt;script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/epitome/0.2.0/Epitome-min.js"&gt;&lt;/script&gt;</code></pre>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>0.2.1<ul>
+<li>the default Epitome Object now returns an instance of Events so you can mediate like <code>Epitome.fireEvent('awesome')</code>
+between components. </li>
+</ul>
+</li>
 <li>0.2.0<ul>
 <li>big shift in he way Sync works with servers. Previously, Model and Collection were only accepting <code>application/json</code> as
 content type to be returned. Failing to receive that caused the browser not to fire any readystatechange events, which in
